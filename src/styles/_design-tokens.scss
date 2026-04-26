@@ -1,0 +1,29 @@
+:root {
+  /* Typography */
+  --font-family-base: "IBM Plex Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: clamp(1.5rem, 4vw, 2rem);
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --line-height-base: 1.5;
+  --letter-spacing-tight: 0.02em;
+
+  /* Black/white palette */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Alias tokens */
+  --color-bg-page: var(--color-white);
+  --color-bg-surface: var(--color-white);
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: var(--color-black);
+  --color-border-strong: var(--color-black);
+
+  /* Effects and layout */
+  --radius-none: 0;
+  --border-width-regular: 2px;
+  --shadow-strong: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
