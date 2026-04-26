@@ -26,6 +26,9 @@ export const WEEKLY_FORM_ROUTES: Routes = [
         path: 'choose-member',
         loadComponent: () => import('./member-name/member-name').then((m) => m.MemberNameComponent),
       },
+      {
+        path: 'enter-data'
+      }
     ]
   },
   {

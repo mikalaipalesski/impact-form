@@ -1,6 +1,7 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { weeklyFormActions } from './actions';
-import { WeeklyFormState, WeeklyFormStep } from '../model/weekly-stepper-model';
+import { WeeklyFormStep } from '../model/weekly-stepper-model';
+import { WeeklyFormState } from '../model/weekly-form-state-model';
 
 export const WEEKLY_FORM_FEATURE_KEY = 'weeklyForm';
 

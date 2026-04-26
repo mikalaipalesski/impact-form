@@ -3,33 +3,11 @@ export interface ImpactMember {
   rank: string;
 }
 
-export interface WeeklyFormState {
-  currentStep: number;
-  members: ImpactMember[];
-  error: string | null;
-  formValue: WeeklyReportFormValue;
-}
-
 export enum GameValues {
   Communication = 'Communication',
   Discipline = 'Discipline',
   Effectiveness = 'Effectiveness',
   Integration = 'Integration',
-}
-
-export interface WeeklyFormValue {
-  currentMember: ImpactMember | null;
-
-  impactMemberValues: ImpactMemberValue[];
-}
-
-export interface ImpactMemberValue {
-  member: ImpactMember;
-
-  positiveValues: GameValues[];
-  negativeValues: GameValues[];
-
-  messageComment: string;
 }
 
 export enum WeeklyFormStep {
@@ -38,11 +16,6 @@ export enum WeeklyFormStep {
     EnterData = 2,
     Review = 3,
     Submit = 4,
-}
-
-export interface WeeklyReportFormValue {
-  currentMember: ImpactMember | null;
-  impactMemberValues: ImpactMemberValue[];
 }
 
 export enum MemberRank {
