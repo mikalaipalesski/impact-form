@@ -3,7 +3,7 @@ import { Store } from "@ngrx/store";
 import * as selectors from '../store/selectors';
 import { FormBuilder, Validators, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { ImpactMember } from "../model/weekly-stepper-model";
+import { ImpactMember, WeeklyFormStep } from "../model/weekly-stepper-model";
 import * as actions from '../store/actions';
 
 @Component({
@@ -24,7 +24,6 @@ export class MemberNameComponent {
   });
 
   onNext() {
-    this.store.dispatch(actions.weeklyFormActions.navigateToStep({ step: 2 }));
-    this.store.dispatch(actions.weeklyFormActions.navigateToStep({ step: 2 }));
+    this.store.dispatch(actions.weeklyFormActions.navigateToStep({ step: WeeklyFormStep.EnterData }));
   }
 }

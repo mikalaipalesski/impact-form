@@ -4,6 +4,7 @@ import { provideState } from '@ngrx/store';
 
 import { WeeklyFormEffects } from './store/effects';
 import { weeklyFormFeature } from './store/reuducer';
+import { WeeklyFormStep } from './model/weekly-stepper-model';
 
 export const WEEKLY_FORM_ROUTES: Routes = [
   {
@@ -18,17 +19,18 @@ export const WEEKLY_FORM_ROUTES: Routes = [
         redirectTo: 'welcome'
       },
       {
-        path: 'welcome',
+        path: WeeklyFormStep.Welcome,
         loadComponent: () =>
           import('./welcome-step/welcome-step').then((m) => m.WelcomeStepComponent),
       },
       {
-        path: 'choose-member',
+        path: WeeklyFormStep.ChooseName,
         loadComponent: () => import('./member-name/member-name').then((m) => m.MemberNameComponent),
       },
       {
-        path: 'enter-data'
-      }
+        path: WeeklyFormStep.EnterData,
+        loadComponent: () => import('./enter-data/enter-data').then((m) => m.EnterDataComponent),
+      },
     ]
   },
   {

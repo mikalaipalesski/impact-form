@@ -16,6 +16,6 @@ export class WelcomeStepComponent {
 
   start() {
     // this.router.navigate(["/weekly-form/step1"]);
-    this.store.dispatch(actions.weeklyFormActions.navigateToStep({ step: WeeklyFormStep.MemberName }));
+    this.store.dispatch(actions.weeklyFormActions.navigateToStep({ step: WeeklyFormStep.ChooseName }));
   }
 }
