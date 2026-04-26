@@ -9,6 +9,11 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'weekly-form/welcome-page'
+    redirectTo: 'weekly-form'
+  },
+  {
+    path: '**',
+    redirectTo: 'weekly-form'
   }
 ];
+  
