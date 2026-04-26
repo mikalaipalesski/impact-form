@@ -3,9 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ImpactMember } from '../model/weekly-stepper-model';
+import { environment } from '../../../environments/environment';
 
-const GOOGLE_SHEETS_API_KEY = 'AIzaSyCSfNxOaoHHajIJUujZKbefFr3qtffSsns';
-const SPREADSHEET_ID = '1E-Tmv0Wk0cFGDtxkzRFrdAIxGM_Z8I7n8EVYcdrugU8';
 const ENCODED_RANGE = 'Sheet1!A:B';
 
 @Injectable({
@@ -22,7 +21,7 @@ export class UsersSheetService {
   constructor(private readonly http: HttpClient) {}
 
   loadUsers(): Observable<ImpactMember[]> {
-    const apiUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${ENCODED_RANGE}?key=${GOOGLE_SHEETS_API_KEY}`;
+    const apiUrl = `https://sheets.googleapis.com/v4/spreadsheets/${environment.spreadsheetId}/values/${ENCODED_RANGE}?key=${environment.googleSheetsApiKey}`;
     
     return this.http
       .get<{ values?: string[][] }>(apiUrl)
