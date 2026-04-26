@@ -9,21 +9,27 @@ export const WEEKLY_FORM_ROUTES: Routes = [
   {
     path: '',
     providers: [provideState(weeklyFormFeature), provideEffects(WeeklyFormEffects)],
+    loadComponent: () =>
+      import('./weekly-form').then((m) => m.WeeklyFormComponent),
     children: [
-      {
-        path: 'welcome-page',
-        loadComponent: () =>
-          import('./welcome-page.component').then((m) => m.WelcomePageComponent)
-      },
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'welcome-page'
-      }
+        redirectTo: 'welcome'
+      },
+      {
+        path: 'welcome',
+        loadComponent: () =>
+          import('./welcome-step/welcome-step').then((m) => m.WelcomeStepComponent),
+      },
+      {
+        path: 'choose-member',
+        loadComponent: () => import('./member-name/member-name').then((m) => m.MemberNameComponent),
+      },
     ]
   },
   {
     path: '**',
-    redirectTo: 'welcome-page'
+    redirectTo: ''
   }
 ];

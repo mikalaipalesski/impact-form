@@ -1,8 +1,15 @@
-import { createActionGroup, emptyProps } from '@ngrx/store';
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
+import { ImpactMember } from '../model/weekly-stepper-model';
+import { WeeklyFormStep } from '../model/weekly-stepper-model';
 
 export const weeklyFormActions = createActionGroup({
   source: 'Weekly Form',
   events: {
-    Entered: emptyProps()
+    Entered: emptyProps(),
+    LoadMembers: emptyProps(),
+    LoadMembersSuccess: props<{ members: ImpactMember[] }>(),
+    LoadMembersFailed: props<{ error: any }>(),
+    SelectCurrentMember: props<{ member: ImpactMember }>(),
+    NavigateToStep: props<{ step: WeeklyFormStep }>(),
   }
 });

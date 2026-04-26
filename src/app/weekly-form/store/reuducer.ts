@@ -1,12 +1,47 @@
-import { createFeature, createReducer } from '@ngrx/store';
+import { createFeature, createReducer, on } from '@ngrx/store';
+import { weeklyFormActions } from './actions';
+import { WeeklyFormState, WeeklyFormStep } from '../model/weekly-stepper-model';
 
 export const WEEKLY_FORM_FEATURE_KEY = 'weeklyForm';
 
-export interface WeeklyFormState {}
+export const initialWeeklyFormState: WeeklyFormState = {
+  currentStep: WeeklyFormStep.Welcome,
+  members: [],
+  error: null,
+  formValue: {
+    currentMember: null,
+    impactMemberValues: []
+  }
+};
 
-export const initialWeeklyFormState: WeeklyFormState = {};
-
-const reducer = createReducer(initialWeeklyFormState);
+const reducer = createReducer(
+  initialWeeklyFormState,
+  on(weeklyFormActions.loadMembers, (state) => ({
+    ...state,
+    error: null
+  })),
+  on(weeklyFormActions.loadMembersSuccess, (state, { members }) => ({
+    ...state,
+    members,
+    error: null
+  })),
+  on(weeklyFormActions.loadMembersFailed, (state, { error }) => ({
+    ...state,
+    members: [],
+    error: error.message || 'Failed to load members'
+  })),
+  on(weeklyFormActions.navigateToStep, (state, { step }) => ({
+    ...state,
+    currentStep: step as WeeklyFormStep
+  })),
+  on(weeklyFormActions.selectCurrentMember, (state, { member }) => ({
+    ...state,
+    formValue: {
+      ...state.formValue,
+      currentMember: member
+    }
+  })),
+);
 
 export const weeklyFormFeature = createFeature({
   name: WEEKLY_FORM_FEATURE_KEY,
