@@ -19,6 +19,7 @@ export interface MemberFormControls {
   positiveValues: FormControl<GameValues[]>;
   negativeValues: FormControl<GameValues[]>;
   messageComment: FormControl<string>;
+  uuid: FormControl<string>;
 }
 
 export interface ImpactMemberValue {

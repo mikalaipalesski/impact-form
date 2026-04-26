@@ -6,10 +6,11 @@ import * as selectors from '../store/selectors';
 import * as actions from '../store/actions';
 import { EnterDataFormService } from "./enter-data-form-service";
 import { EnterDataForm } from "../model/weekly-form-model";
+import { FormWidgetComponent } from "./form-widget/form-widget";
 
 @Component({
   selector: "app-enter-data",
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormWidgetComponent],
   templateUrl: "./enter-data.html",
   styleUrl: "./enter-data.scss",
 })
@@ -22,7 +23,6 @@ export class EnterDataComponent implements OnInit {
 
   ngOnInit() {
     this.enterDataForm = this.enterDataFormService.createForm();
-    // this.store.dispatch(actions.weeklyFormActions.loadMembers());
   }
 
   protected addMember() {

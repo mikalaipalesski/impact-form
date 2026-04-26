@@ -1,0 +1,36 @@
+@let form = memberForm();
+
+<form [formGroup]="form" class="form-widget">
+    <section class="form-widget__select_block">
+        <select formControlName="member">
+            @for(member of members$ | async; track member.name) {
+                <option [value]="member">
+                    {{ member.name }} - {{ member.rank }}
+                </option>
+            }
+        </select>
+    </section>
+    <section formControlName="positiveValues" class="form-widget__checkboxes_block">
+        <label>Пазітыўныя характарыстыкі</label>
+        <ng-container *ngTemplateOutlet="checkboxesTemplate"></ng-container>
+    </section>
+    <section formControlName="negativeValues" class="form-widget__checkboxes_block">
+        <label>Негатыўныя характарыстыкі</label>
+        <ng-container *ngTemplateOutlet="checkboxesTemplate"></ng-container>
+    </section>
+    <section class="form-widget__textarea_block">
+        <label>Каментарыі</label>
+        <textarea formControlName="comments"></textarea>
+    </section>
+</form>
+
+<ng-template #checkboxesTemplate>
+    @for(value of gameValues; track value) {
+        <div class="form-widget__checkbox">
+            <label>
+                <input type="checkbox" [value]="value"/>
+                {{ value }}
+            </label>
+        </div>
+    }
+</ng-template>

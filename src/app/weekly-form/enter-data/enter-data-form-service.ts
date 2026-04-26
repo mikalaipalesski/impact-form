@@ -3,6 +3,7 @@ import { FormBuilder, FormArray, Validators } from "@angular/forms";
 import { FormGroup, FormControl } from "@angular/forms";
 import { EnterDataForm, MemberFormControls, ImpactMemberValue, EnterDataFormValue } from "../model/weekly-form-model";
 import { GameValues, ImpactMember } from "../model/weekly-stepper-model";
+import { v1 as uuid } from "uuid";
 
 @Injectable({
   providedIn: "root",
@@ -27,9 +28,8 @@ export class EnterDataFormService {
       positiveValues: new FormControl<GameValues[]>([], { nonNullable: true, validators: Validators.required }),
       negativeValues: new FormControl<GameValues[]>([], { nonNullable: true, validators: Validators.required }),
       messageComment: new FormControl<string>('', { nonNullable: true }),
+      uuid: new FormControl<string>(uuid(), { nonNullable: true }),
     });
   }
-
-
 }
   

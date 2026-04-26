@@ -3,9 +3,9 @@
 </div>
 
 <form [formArray]="enterDataForm">
-    @for(memberForm of enterDataForm.controls; track memberForm) {
+    @for(memberForm of enterDataForm.controls; track memberForm.controls.uuid.value) {
         <section class="content-card">
-            <label>Choose a nickname</label>
+            <app-form-widget [memberForm]="memberForm"></app-form-widget>
         </section>
     }
 </form>
