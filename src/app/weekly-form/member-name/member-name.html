@@ -1,0 +1,21 @@
+<div class="member-form content-card">
+    <form class="member-form__container" [formGroup]="memberForm">
+        <div class="member-form__label">Абярыце свой нік: </div>
+        <select
+            [disabled]="!(enlistedMemberNames$ | async)?.length"
+            class="member-form__select"
+            formControlName="enlistedMember"
+        >
+            @for(member of enlistedMemberNames$ | async; track member.name) {
+                <option [ngValue]="member">
+                    {{ member.name }} - {{ member.rank }}
+                </option>
+            }
+        </select>
+    </form>
+    <button
+        class="member-form__button"
+        [disabled]="!memberForm.valid"
+        (click)="onNext()"
+    > -> </button>
+</div>
