@@ -13,13 +13,20 @@ export const WEEKLY_FORM_ROUTES: Routes = [
       {
         path: 'welcome-page',
         loadComponent: () =>
-          import('./welcome-page.component').then((m) => m.WelcomePageComponent)
+          import('./welcome-page').then((m) => m.WelcomePageComponent),
+        children: [
+          {
+            path: 'welcome',
+            loadComponent: () =>
+              import('./welcome-step/welcome-step').then((m) => m.WelcomeStepComponent),
+          },
+          {
+            path: '**',
+            pathMatch: 'full',
+            redirectTo: 'welcome'
+          }
+        ],
       },
-      {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'welcome-page'
-      }
     ]
   },
   {
