@@ -7,6 +7,7 @@ import * as actions from '../store/actions';
 import { EnterDataFormService } from "./enter-data-form-service";
 import { EnterDataForm } from "../model/weekly-form-model";
 import { FormWidgetComponent } from "./form-widget/form-widget";
+import { WeeklyFormStep } from "../model/weekly-stepper-model";
 
 @Component({
   selector: "app-enter-data",
@@ -27,5 +28,19 @@ export class EnterDataComponent implements OnInit {
 
   protected addMember() {
     this.enterDataFormService.addMember(this.enterDataForm);
+  }
+
+  protected removeMember(uuid: string) {
+    this.enterDataFormService.removeMember(this.enterDataForm, uuid);
+  }
+
+  protected isFormValid(): boolean {
+    return this.enterDataForm.valid;
+  }
+
+  protected onNext() {
+    if (this.isFormValid()) {
+      this.store.dispatch(actions.weeklyFormActions.navigateToStep({ step: WeeklyFormStep.Review }));
+    }
   }
 }

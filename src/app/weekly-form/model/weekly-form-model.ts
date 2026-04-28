@@ -5,29 +5,48 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 export interface WeeklyFormValue {
   currentMember: ImpactMember | null;
 
-  impactMemberValues: ImpactMemberValue[];
+  impactMemberValues: MemberValue[];
 }
 
 export interface EnterDataFormValue {
-    members: ImpactMemberValue[];
+    members: MemberValue[];
 }
 
-export type EnterDataForm = FormArray<FormGroup<MemberFormControls>>;
+export type EnterDataForm = FormArray<FormGroup<MemberValueFormControls>>;
 
-export interface MemberFormControls {
+// export interface MemberFormControls {
+//   member: FormControl<ImpactMember | null>;
+//   positiveValues: FormControl<GameValues[]>;
+//   negativeValues: FormControl<GameValues[]>;
+//   messageComment: FormControl<string>;
+//   uuid: FormControl<string>;
+// }
+
+export interface MemberValueFormControls {
   member: FormControl<ImpactMember | null>;
-  positiveValues: FormControl<GameValues[]>;
-  negativeValues: FormControl<GameValues[]>;
+  communication: FormControl<boolean | null>;
+  discipline: FormControl<boolean | null>;
+  effectiveness: FormControl<boolean | null>;
+  integration: FormControl<boolean | null>;
   messageComment: FormControl<string>;
   uuid: FormControl<string>;
 }
 
-export interface ImpactMemberValue {
+export interface MemberValue {
   member: ImpactMember;
-
-  positiveValues: GameValues[];
-  negativeValues: GameValues[];
-
+  communication: boolean;
+  discipline: boolean;
+  effectiveness: boolean;
+  integration: boolean;
   messageComment: string;
 }
+
+// export interface ImpactMemberValue {
+//   member: ImpactMember;
+
+//   positiveValues: GameValues[];
+//   negativeValues: GameValues[];
+
+//   messageComment: string;
+// }
 

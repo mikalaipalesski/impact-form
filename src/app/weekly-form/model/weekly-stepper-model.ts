@@ -4,10 +4,10 @@ export interface ImpactMember {
 }
 
 export enum GameValues {
-  Communication = 'Communication',
-  Discipline = 'Discipline',
-  Effectiveness = 'Effectiveness',
-  Integration = 'Integration',
+  Communication = 'communication',
+  Discipline = 'discipline',
+  Effectiveness = 'effectiveness',
+  Integration = 'integration',
 }
 
 export enum WeeklyFormStep {

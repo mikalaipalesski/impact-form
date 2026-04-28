@@ -1,8 +1,17 @@
 @let form = memberForm();
 
 <form [formGroup]="form" class="form-widget">
+    <section class="form-widget__header">
+        <span class="form-widget__error" *ngIf="form | formErrorMessage as formError">{{ formError }}</span>
+        <button
+            (click)="removeMember()"
+            [class.form-widget__remove-error]="!!form.errors?.['formIncomplete']"
+        >
+            X
+        </button>
+    </section>
     <section class="form-widget__select_block">
-        <select formControlName="member">
+        <select class="form-widget__member-select" formControlName="member">
             @for(member of members$ | async; track member.name) {
                 <option [value]="member">
                     {{ member.name }} - {{ member.rank }}
@@ -10,27 +19,29 @@
             }
         </select>
     </section>
-    <section formControlName="positiveValues" class="form-widget__checkboxes_block">
-        <label>Пазітыўныя характарыстыкі</label>
-        <ng-container *ngTemplateOutlet="checkboxesTemplate"></ng-container>
+    <section class="form-widget__values-container">
+        <div class="form-widget__values-title">
+            <span>|-|</span>
+            <span>Абярыце характарыстыкі</span>
+            <span>|+|</span>
+        </div>
+        <div class="form-widget__values">
+            @for(value of gameValues; track value) {
+                <div class="form-widget__value">
+                    @let label = getValueLabel(value);
+                    @let formControl = getFormControl(value);
+
+                    <div class="form-widget__value-radio-group">
+                        <input type="radio" [formControl]="formControl" [value]="false" [name]="getUniqueRadioName(value)" (click)="toggleRadio(formControl, false)"/>
+                        <label>{{ label }}</label>
+                        <input type="radio" [formControl]="formControl" [value]="true" [name]="getUniqueRadioName(value)" (click)="toggleRadio(formControl, true)"/>
+                    </div>
+                </div>
+            }
+        </div>
     </section>
-    <section formControlName="negativeValues" class="form-widget__checkboxes_block">
-        <label>Негатыўныя характарыстыкі</label>
-        <ng-container *ngTemplateOutlet="checkboxesTemplate"></ng-container>
-    </section>
-    <section class="form-widget__textarea_block">
-        <label>Каментарыі</label>
-        <textarea formControlName="comments"></textarea>
+    <section class="form-widget__textarea-block">
+        <label>Каментарыі:</label>
+        <textarea class="form-widget__textarea" formControlName="messageComment"></textarea>
     </section>
 </form>
-
-<ng-template #checkboxesTemplate>
-    @for(value of gameValues; track value) {
-        <div class="form-widget__checkbox">
-            <label>
-                <input type="checkbox" [value]="value"/>
-                {{ value }}
-            </label>
-        </div>
-    }
-</ng-template>

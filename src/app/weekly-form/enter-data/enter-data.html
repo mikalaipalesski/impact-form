@@ -1,16 +1,16 @@
-<div class="enter-data-rules content-card">
+<div class="enter-data__rules content-card">
     Абірайце, калі ласка, адзін з варыянтаў для кожнага пытання. Калі вы не ўпэўнены ў адказе, абярыце той, які найбольш блізкі да вашага меркавання. Вашы адказы дапамогуць нам зразумець, як мы можам палепшыць нашу працу і зрабіць яе больш эфектыўнай. Дзякуй за ўдзел!
 </div>
 
-<form [formArray]="enterDataForm">
+<form class="enter-data__form" [formArray]="enterDataForm">
     @for(memberForm of enterDataForm.controls; track memberForm.controls.uuid.value) {
         <section class="content-card">
-            <app-form-widget [memberForm]="memberForm"></app-form-widget>
+            <app-form-widget [memberForm]="memberForm" (removedMember)="removeMember($event)"></app-form-widget>
         </section>
     }
 </form>
 
-
-<button (click)="addMember()">+</button>
-
-<button>-></button>
+<div class="enter-data__buttons">
+    <button (click)="addMember()">+</button>
+    <button (click)="onNext()" [disabled]="!isFormValid()">-></button>
+</div>
