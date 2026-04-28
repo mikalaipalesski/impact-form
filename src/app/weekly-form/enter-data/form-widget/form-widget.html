@@ -5,6 +5,7 @@
         <span class="form-widget__error" *ngIf="form | formErrorMessage as formError">{{ formError }}</span>
         <button
             (click)="removeMember()"
+            [disabled]="!canRemoveMember()"
             [class.form-widget__remove-error]="!!form.errors?.['formIncomplete']"
         >
             X

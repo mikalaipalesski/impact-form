@@ -2,7 +2,7 @@ import { Component, inject, input, output } from "@angular/core";
 import { Store } from "@ngrx/store";
 import * as selectors from '../../store/selectors';
 import * as actions from '../../store/actions';
-import { FormControl, FormGroup } from "@angular/forms";
+import { FormControl, FormGroup, FormArray } from "@angular/forms";
 import { MemberValueFormControls } from "../../model/weekly-form-model";
 import { GameValues } from "../../model/weekly-stepper-model";
 import { CommonModule } from "@angular/common";
@@ -18,6 +18,7 @@ import { NameMap } from "./form-widget-constants";
 })
 export class FormWidgetComponent {
   public memberForm = input.required<FormGroup<MemberValueFormControls>>();
+  public formArray = input.required<FormArray<FormGroup<MemberValueFormControls>>>();
   public gameValues = Object.values(GameValues);
 
   private store = inject(Store);
@@ -38,9 +39,15 @@ export class FormWidgetComponent {
     return `${value}-${uuid}`;
   }
 
+  protected canRemoveMember(): boolean {
+    return this.formArray().length > 1;
+  }
+
   protected removeMember(): void {
-    const uuid = this.memberForm().controls.uuid.value;
-    this.removedMember.emit(uuid);
+    if (this.canRemoveMember()) {
+      const uuid = this.memberForm().controls.uuid.value;
+      this.removedMember.emit(uuid);
+    }
   }
 
   protected toggleRadio(formControl: FormControl<boolean | null>, value: boolean): void {

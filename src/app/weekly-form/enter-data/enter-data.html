@@ -5,7 +5,7 @@
 <form class="enter-data__form" [formArray]="enterDataForm">
     @for(memberForm of enterDataForm.controls; track memberForm.controls.uuid.value) {
         <section class="content-card">
-            <app-form-widget [memberForm]="memberForm" (removedMember)="removeMember($event)"></app-form-widget>
+            <app-form-widget [memberForm]="memberForm" [formArray]="enterDataForm" (removedMember)="removeMember($event)"></app-form-widget>
         </section>
     }
 </form>
