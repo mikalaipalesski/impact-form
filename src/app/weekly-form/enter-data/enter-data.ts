@@ -43,4 +43,8 @@ export class EnterDataComponent implements OnInit {
       this.store.dispatch(actions.weeklyFormActions.navigateToStep({ step: WeeklyFormStep.Review }));
     }
   }
+
+  protected onBack() {
+    this.store.dispatch(actions.weeklyFormActions.navigateToStep({ step: WeeklyFormStep.ChooseName }));
+  }
 }

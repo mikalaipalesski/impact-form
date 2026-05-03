@@ -3,17 +3,21 @@ import { UsersSheetService } from './services/users-sheet-service';
 import { Store } from '@ngrx/store';
 import { weeklyFormActions } from './store/actions';
 import { RouterOutlet } from '@angular/router';
+import { selectCurrentSteplabel } from './store/selectors';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-weekly-form',
   standalone: true,
   templateUrl: './weekly-form.html',
   styleUrl: './weekly-form.scss',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule],
 })
 export class WeeklyFormComponent implements OnInit {
   public userSheetService = inject(UsersSheetService);
   public store = inject(Store);
+
+  protected selectCurrentStepLabel = this.store.select(selectCurrentSteplabel);
 
   ngOnInit(): void {
     this.store.dispatch(weeklyFormActions.entered());

@@ -10,7 +10,9 @@
     }
 </form>
 
+<button class="enter-data__add-button" (click)="addMember()">+</button>
+
 <div class="enter-data__buttons">
-    <button (click)="addMember()">+</button>
+    <button (click)="onBack()"><-</button>
     <button (click)="onNext()" [disabled]="!isFormValid()">-></button>
 </div>

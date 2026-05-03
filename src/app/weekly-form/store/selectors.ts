@@ -3,6 +3,7 @@ import { createSelector } from '@ngrx/store';
 import { weeklyFormFeature } from './reuducer';
 import { ENLISTED_MEMBER_RANKS } from '../constants/enlisted-member-ranks';
 import { MemberRank } from '../model/weekly-stepper-model';
+import { WeeklyFormStep } from '../model/weekly-stepper-model';
 
 export const {
   name: weeklyFormFeatureKey,
@@ -38,3 +39,11 @@ export const enlistedUsersEmpty = createSelector(
   selectEnlistedUsers,
   (enlistedUsers) => enlistedUsers.length === 0
 );
+
+export const selectCurrentSteplabel = createSelector(
+  selectCurrentStep,
+  (currentStep) => {
+    const steps = Object.values(WeeklyFormStep);
+    return `${steps.indexOf(currentStep) + 1} of ${steps.length}`;
+  }
+)
