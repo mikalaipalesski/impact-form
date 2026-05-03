@@ -1,6 +1,7 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { ImpactMember } from '../model/weekly-stepper-model';
 import { WeeklyFormStep } from '../model/weekly-stepper-model';
+import { MemberValue } from '../model/weekly-form-model';
 
 export const weeklyFormActions = createActionGroup({
   source: 'Weekly Form',
@@ -11,5 +12,6 @@ export const weeklyFormActions = createActionGroup({
     LoadMembersFailed: props<{ error: any }>(),
     SelectCurrentMember: props<{ member: ImpactMember }>(),
     NavigateToStep: props<{ step: WeeklyFormStep }>(),
+    SetImpactMemberValues: props<{ impactMemberValues: MemberValue[] }>(),
   }
 });

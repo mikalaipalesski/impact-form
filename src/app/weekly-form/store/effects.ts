@@ -1,10 +1,11 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { UsersSheetService } from '../services/users-sheet';
+import { UsersSheetService } from '../services/users-sheet-service';
 import { weeklyFormActions } from './actions';
 import { Router } from '@angular/router';
+import { WeeklyFormStep } from '../model/weekly-stepper-model';
 
 @Injectable()
 export class WeeklyFormEffects {
@@ -15,7 +16,10 @@ export class WeeklyFormEffects {
   entered$ = createEffect(() =>
     this.actions$.pipe(
       ofType(weeklyFormActions.entered),
-      map(() => weeklyFormActions.loadMembers())
+      mergeMap(() => [
+        weeklyFormActions.navigateToStep({ step: WeeklyFormStep.Welcome }),
+        weeklyFormActions.loadMembers()
+      ])
     )
   );
 
@@ -36,14 +40,20 @@ export class WeeklyFormEffects {
       ofType(weeklyFormActions.navigateToStep),
       map(({ step }) => {
         switch (step) {
-          case 0:
-            this.router.navigate(['/weekly-form', 'welcome']);
+          case WeeklyFormStep.Welcome:
+            this.router.navigate(['/weekly-form', WeeklyFormStep.Welcome]);
             break;
-          case 1:
-            this.router.navigate(['/weekly-form', 'choose-member']);
+          case WeeklyFormStep.ChooseName:
+            this.router.navigate(['/weekly-form', WeeklyFormStep.ChooseName]);
+            break;
+          case WeeklyFormStep.EnterData:
+            this.router.navigate(['/weekly-form', WeeklyFormStep.EnterData]);
+            break;
+          case WeeklyFormStep.ReviewSubmit:
+            this.router.navigate(['/weekly-form', WeeklyFormStep.ReviewSubmit]);
             break;
           default:
-            this.router.navigate(['/weekly-form', 'welcome']);
+            this.router.navigate(['/weekly-form', WeeklyFormStep.Welcome]);
         }
       })
     ),
