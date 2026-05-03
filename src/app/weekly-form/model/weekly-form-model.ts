@@ -39,6 +39,7 @@ export interface MemberValue {
   effectiveness: boolean;
   integration: boolean;
   messageComment: string;
+  uuid?: string;
 }
 
 // export interface ImpactMemberValue {

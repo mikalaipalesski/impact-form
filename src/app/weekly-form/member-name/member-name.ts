@@ -18,12 +18,14 @@ export class MemberNameComponent {
 
   public enlistedMemberNames$ = this.store.select(selectors.selectEnlistedUsers);
   public enlistedUsersEmpty$ = this.store.select(selectors.enlistedUsersEmpty);
+  public currentEnlistedMember = this.store.selectSignal(selectors.selectCurrentEnlistedMember);
 
   public memberForm = this.fb.group({
-    enlistedMember: [null, Validators.required]
+    enlistedMember: [this.currentEnlistedMember(), Validators.required]
   });
 
   onNext() {
     this.store.dispatch(actions.weeklyFormActions.navigateToStep({ step: WeeklyFormStep.EnterData }));
+    this.store.dispatch(actions.weeklyFormActions.selectCurrentMember({ member: this.memberForm.value.enlistedMember! }))
   }
 }

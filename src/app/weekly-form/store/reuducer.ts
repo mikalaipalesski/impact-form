@@ -43,6 +43,13 @@ const reducer = createReducer(
       currentMember: member
     }
   })),
+  on(weeklyFormActions.setImpactMemberValues, (state, { impactMemberValues }) => ({
+    ...state,
+    formValue: {
+      ...state.formValue,
+      impactMemberValues,
+    },
+  })),
 );
 
 export const weeklyFormFeature = createFeature({

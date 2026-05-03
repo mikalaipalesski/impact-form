@@ -20,10 +20,16 @@ export class EnterDataComponent implements OnInit {
   private enterDataFormService = inject(EnterDataFormService);
 
   members$ = this.store.select(selectors.selectMembers);
+  currentMembersForm = this.store.selectSignal(selectors.selectFormValue);
   protected enterDataForm!: EnterDataForm;
 
   ngOnInit() {
     this.enterDataForm = this.enterDataFormService.createForm();
+
+    const currentMembersFormValue = this.currentMembersForm();
+    if (currentMembersFormValue.length) {
+      this.enterDataFormService.setFormValue(this.enterDataForm, currentMembersFormValue);
+    }
   }
 
   protected addMember() {
@@ -40,7 +46,9 @@ export class EnterDataComponent implements OnInit {
 
   protected onNext() {
     if (this.isFormValid()) {
-      this.store.dispatch(actions.weeklyFormActions.navigateToStep({ step: WeeklyFormStep.Review }));
+      const impactMemberValues = this.enterDataFormService.getFormValue(this.enterDataForm);
+      this.store.dispatch(actions.weeklyFormActions.setImpactMemberValues({ impactMemberValues }));
+      this.store.dispatch(actions.weeklyFormActions.navigateToStep({ step: WeeklyFormStep.ReviewSubmit }));
     }
   }
 

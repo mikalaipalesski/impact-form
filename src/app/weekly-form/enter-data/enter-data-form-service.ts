@@ -29,6 +29,45 @@ export class EnterDataFormService {
     }
   }
 
+  public getFormValue(form: EnterDataForm): MemberValue[] {
+    const members: MemberValue[] = form.controls.map(memberForm => {
+      const controls = memberForm.controls;
+      return {
+        member: controls.member.value!,
+        communication: controls.communication.value!,
+        discipline: controls.discipline.value!,
+        effectiveness: controls.effectiveness.value!,
+        integration: controls.integration.value!,
+        messageComment: controls.messageComment.value!,
+        uuid: controls.uuid.value!,
+      }
+    });
+
+    return members;
+  }
+
+  public setFormValue(form: EnterDataForm, formValue: MemberValue[]): void {
+    form.clear();
+    if (!formValue.length) {
+      form.push(this.createMemberForm());
+      return;
+    }
+
+    const memberForms = formValue.map(memberValue => {
+      const memberForm = this.createMemberForm();
+      memberForm.controls.member.setValue(memberValue.member);
+      memberForm.controls.communication.setValue(memberValue.communication);
+      memberForm.controls.discipline.setValue(memberValue.discipline);
+      memberForm.controls.effectiveness.setValue(memberValue.effectiveness);
+      memberForm.controls.integration.setValue(memberValue.integration);
+      memberForm.controls.messageComment.setValue(memberValue.messageComment);
+      memberForm.controls.uuid.setValue(memberValue.uuid || uuid());
+      return memberForm;      
+    });
+
+    memberForms.forEach(memberForm => form.push(memberForm));
+  }
+
   private createMemberForm(): FormGroup<MemberValueFormControls> {
     const form = new FormGroup<MemberValueFormControls>({
       member: new FormControl<ImpactMember | null>(null, { nonNullable: true, validators: Validators.required }),

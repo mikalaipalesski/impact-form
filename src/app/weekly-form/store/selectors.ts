@@ -30,6 +30,16 @@ export const selectCurrentStep = createSelector(
   (state) => state.currentStep
 );
 
+export const selectCurrentEnlistedMember = createSelector(
+  selectWeeklyFormState,
+  (state) => state.formValue.currentMember
+);
+
+export const selectFormValue = createSelector(
+  selectWeeklyFormState,
+  (state) => state.formValue.impactMemberValues
+);
+
 export const selectEnlistedUsers = createSelector(
   selectMembers,
   (members) => members.filter(member => ENLISTED_MEMBER_RANKS.includes(member.rank as MemberRank))

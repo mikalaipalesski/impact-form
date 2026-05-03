@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { FormWidgetComponent } from "./form-widget";
+import { ReviewSubmitComponent } from "./review-submit";
 
-describe("FormWidgetComponent", () => {
-  let component: FormWidgetComponent;
-  let fixture: ComponentFixture<FormWidgetComponent>;
+describe("ReviewSubmit", () => {
+  let component: ReviewSubmitComponent;
+  let fixture: ComponentFixture<ReviewSubmitComponent >;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormWidgetComponent],
+      imports: [ReviewSubmitComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FormWidgetComponent);
+    fixture = TestBed.createComponent(ReviewSubmitComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

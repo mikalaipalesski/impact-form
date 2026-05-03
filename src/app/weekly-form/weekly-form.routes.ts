@@ -5,6 +5,7 @@ import { provideState } from '@ngrx/store';
 import { WeeklyFormEffects } from './store/effects';
 import { weeklyFormFeature } from './store/reuducer';
 import { WeeklyFormStep } from './model/weekly-stepper-model';
+import { ReviewSubmitComponent } from './review-submit/review-submit';
 
 export const WEEKLY_FORM_ROUTES: Routes = [
   {
@@ -31,6 +32,10 @@ export const WEEKLY_FORM_ROUTES: Routes = [
         path: WeeklyFormStep.EnterData,
         loadComponent: () => import('./enter-data/enter-data').then((m) => m.EnterDataComponent),
       },
+      {
+        path: WeeklyFormStep.ReviewSubmit,
+        loadComponent: () => import('./review-submit/review-submit').then((m) => m.ReviewSubmitComponent),
+      }
     ]
   },
   {

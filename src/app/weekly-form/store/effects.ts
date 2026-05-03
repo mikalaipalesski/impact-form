@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { UsersSheetService } from '../services/users-sheet-service';
 import { weeklyFormActions } from './actions';
@@ -16,7 +16,10 @@ export class WeeklyFormEffects {
   entered$ = createEffect(() =>
     this.actions$.pipe(
       ofType(weeklyFormActions.entered),
-      map(() => weeklyFormActions.loadMembers())
+      mergeMap(() => [
+        weeklyFormActions.navigateToStep({ step: WeeklyFormStep.Welcome }),
+        weeklyFormActions.loadMembers()
+      ])
     )
   );
 
@@ -45,6 +48,9 @@ export class WeeklyFormEffects {
             break;
           case WeeklyFormStep.EnterData:
             this.router.navigate(['/weekly-form', WeeklyFormStep.EnterData]);
+            break;
+          case WeeklyFormStep.ReviewSubmit:
+            this.router.navigate(['/weekly-form', WeeklyFormStep.ReviewSubmit]);
             break;
           default:
             this.router.navigate(['/weekly-form', WeeklyFormStep.Welcome]);
