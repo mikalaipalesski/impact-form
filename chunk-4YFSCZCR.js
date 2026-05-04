@@ -1,0 +1,1 @@
+import{Ra as n,hb as o,ib as i,ob as m}from"./chunk-DEZQGVJY.js";var a=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=n({type:t,selectors:[["app-review-submit"]],decls:2,vars:0,template:function(e,r){e&1&&(o(0,"p"),m(1,"review-submit works!"),i())},encapsulation:2})};export{a as ReviewSubmitComponent};
