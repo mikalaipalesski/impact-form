@@ -3,6 +3,7 @@
         {{ 'welcome.message' | translate }}
     </div>
     <div class="welcome-content__actions">
+        <button class="back-button" (click)="onBack()">{{ 'common.back' | translate }}</button>
         <button class="start-button" (click)="start()">{{ 'welcome.start' | translate }}</button>
     </div>
 </div>

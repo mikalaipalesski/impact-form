@@ -1,4 +1,10 @@
 {
+  "landing": {
+    "intro": "Сардэчна запрашаем у праграму Impact companion. Абярыце форму, якую хочаце запоўніць.",
+    "formWeekly": "Штотыдневая форма",
+    "formPersistence": "Persistance",
+    "formSlFeedback": "Форма зваротнай сувязі SL"
+  },
   "language": {
     "label": "Мова:",
     "uk": "Українська",

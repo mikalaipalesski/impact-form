@@ -29,6 +29,9 @@
   }
 
   <div class="review-submit__actions">
+    <button type="button" (click)="onBack()">
+      {{ 'common.back' | translate }}
+    </button>
     <button type="button" class="review-submit__submit" (click)="onSubmit()">
       {{ 'review.submit' | translate }}
     </button>

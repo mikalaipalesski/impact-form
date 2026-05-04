@@ -16,4 +16,8 @@ export class WelcomeStepComponent {
   start() {
     this.store.dispatch(actions.weeklyFormActions.navigateToStep({ step: WeeklyFormStep.ChooseName }));
   }
+
+  onBack(): void {
+    this.store.dispatch(actions.weeklyFormActions.navigateToMain());
+  }
 }

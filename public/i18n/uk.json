@@ -1,12 +1,18 @@
 {
+  "landing": {
+    "intro": "Ласкаво просимо до застосунку Impact companion. Оберіть форму, яку хочете заповнити.",
+    "formWeekly": "Щотижнева форма",
+    "formPersistence": "Persistance",
+    "formSlFeedback": "Форма зворотного зв’язку SL"
+  },
   "language": {
     "label": "Мова:",
     "uk": "Українська",
     "be": "Беларуская"
   },
   "common": {
-    "back": "Назад",
-    "next": "Далі"
+    "back": "<-",
+    "next": "->"
   },
   "weekly": {
     "title": "Щотижнева форма",

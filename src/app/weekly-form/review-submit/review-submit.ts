@@ -4,7 +4,7 @@ import { TranslatePipe } from "@ngx-translate/core";
 import * as selectors from "../store/selectors";
 import * as actions from "../store/actions";
 import { MemberValue } from "../model/weekly-form-model";
-import { GameValues } from "../model/weekly-stepper-model";
+import { GameValues, WeeklyFormStep } from "../model/weekly-stepper-model";
 
 export interface ReviewValueBlock {
   game: GameValues;
@@ -38,6 +38,12 @@ export class ReviewSubmitComponent {
       acc.push({ game, picked: raw });
       return acc;
     }, []);
+  }
+
+  protected onBack(): void {
+    this.store.dispatch(
+      actions.weeklyFormActions.navigateToStep({ step: WeeklyFormStep.EnterData })
+    );
   }
 
   protected onSubmit(): void {

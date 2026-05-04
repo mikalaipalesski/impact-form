@@ -15,8 +15,7 @@ import * as actions from './store/actions';
   imports: [RouterOutlet, CommonModule, TranslatePipe],
 })
 export class WeeklyFormComponent implements OnInit {
-  public userSheetService = inject(UsersSheetService);
-  public store = inject(Store);
+  private store = inject(Store);
 
   protected stepProgress = this.store.selectSignal(selectStepProgress);
   protected backButtonHandler!: void;
