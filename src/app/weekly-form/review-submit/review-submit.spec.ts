@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { provideMockStore } from "@ngrx/store/testing";
 
 import { ReviewSubmitComponent } from "./review-submit";
 
@@ -9,6 +10,21 @@ describe("ReviewSubmit", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ReviewSubmitComponent],
+      providers: [
+        provideMockStore({
+          initialState: {
+            weeklyForm: {
+              currentStep: "review_submit",
+              members: [],
+              error: null,
+              formValue: {
+                currentMember: null,
+                impactMemberValues: [],
+              },
+            },
+          },
+        }),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ReviewSubmitComponent);

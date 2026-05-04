@@ -30,6 +30,11 @@ export const selectCurrentStep = createSelector(
   (state) => state.currentStep
 );
 
+export const getWeeklyFormValue = createSelector(
+  selectWeeklyFormState,
+  (state) => state.formValue
+);
+
 export const selectCurrentEnlistedMember = createSelector(
   selectWeeklyFormState,
   (state) => state.formValue.currentMember
