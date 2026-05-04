@@ -55,10 +55,13 @@ export const enlistedUsersEmpty = createSelector(
   (enlistedUsers) => enlistedUsers.length === 0
 );
 
-export const selectCurrentSteplabel = createSelector(
+export const selectStepProgress = createSelector(
   selectCurrentStep,
   (currentStep) => {
     const steps = Object.values(WeeklyFormStep);
-    return `${steps.indexOf(currentStep) + 1} of ${steps.length}`;
+    return {
+      current: steps.indexOf(currentStep) + 1,
+      total: steps.length,
+    };
   }
-)
+);

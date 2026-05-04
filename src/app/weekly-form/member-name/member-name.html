@@ -1,6 +1,6 @@
 <div class="member-form content-card">
     <form class="member-form__container" [formGroup]="memberForm">
-        <div class="member-form__label">Абярыце свой нік: </div>
+        <div class="member-form__label">{{ 'memberName.pickNickname' | translate }}</div>
         <select
             [disabled]="!(enlistedMemberNames$ | async)?.length"
             class="member-form__select"
@@ -17,5 +17,5 @@
         class="member-form__button"
         [disabled]="!memberForm.valid"
         (click)="onNext()"
-    > -> </button>
+    >{{ 'common.next' | translate }}</button>
 </div>

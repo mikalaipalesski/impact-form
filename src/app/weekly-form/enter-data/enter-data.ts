@@ -8,10 +8,11 @@ import { EnterDataFormService } from "./enter-data-form-service";
 import { EnterDataForm } from "../model/weekly-form-model";
 import { FormWidgetComponent } from "./form-widget/form-widget";
 import { WeeklyFormStep } from "../model/weekly-stepper-model";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
   selector: "app-enter-data",
-  imports: [CommonModule, ReactiveFormsModule, FormWidgetComponent],
+  imports: [CommonModule, ReactiveFormsModule, FormWidgetComponent, TranslatePipe],
   templateUrl: "./enter-data.html",
   styleUrl: "./enter-data.scss",
 })

@@ -1,5 +1,5 @@
 <div class="enter-data__rules content-card">
-    Абірайце, калі ласка, адзін з варыянтаў для кожнага пытання. Калі вы не ўпэўнены ў адказе, абярыце той, які найбольш блізкі да вашага меркавання. Вашы адказы дапамогуць нам зразумець, як мы можам палепшыць нашу працу і зрабіць яе больш эфектыўнай. Дзякуй за ўдзел!
+    {{ 'enterData.rules' | translate }}
 </div>
 
 <form class="enter-data__form" [formArray]="enterDataForm">
@@ -13,6 +13,6 @@
 <button class="enter-data__add-button" (click)="addMember()">+</button>
 
 <div class="enter-data__buttons">
-    <button (click)="onBack()"><-</button>
-    <button (click)="onNext()" [disabled]="!isFormValid()">-></button>
+    <button (click)="onBack()">{{ 'common.back' | translate }}</button>
+    <button (click)="onNext()" [disabled]="!isFormValid()">{{ 'common.next' | translate }}</button>
 </div>

@@ -1,14 +1,13 @@
 import { Component, inject } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { TranslatePipe } from "@ngx-translate/core";
 import * as selectors from "../store/selectors";
 import * as actions from "../store/actions";
 import { MemberValue } from "../model/weekly-form-model";
 import { GameValues } from "../model/weekly-stepper-model";
-import { NameMap } from "../enter-data/form-widget/form-widget-constants";
 
 export interface ReviewValueBlock {
   game: GameValues;
-  label: string;
   picked: boolean;
 }
 
@@ -21,16 +20,12 @@ const MEMBER_VALUE_KEYS: { game: GameValues; field: keyof MemberValue }[] = [
 
 @Component({
   selector: "app-review-submit",
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: "./review-submit.html",
   styleUrl: "./review-submit.scss",
 })
 export class ReviewSubmitComponent {
   private store = inject(Store);
-
-  /** Placeholder copy for the review page header; replace with real instructions when ready. */
-  protected readonly SAMPLE_MESSAGE =
-    "Праглядзіце звесткі ніжэй. Калі ўсё слушна, націсніце «Выслаць», каб адправіць форму.";
 
   protected impactMemberValues = this.store.selectSignal(selectors.selectFormValue);
 
@@ -40,8 +35,7 @@ export class ReviewSubmitComponent {
       if (raw !== true && raw !== false) {
         return acc;
       }
-      const label = NameMap.get(game) ?? game;
-      acc.push({ game, label, picked: raw });
+      acc.push({ game, picked: raw });
       return acc;
     }, []);
   }

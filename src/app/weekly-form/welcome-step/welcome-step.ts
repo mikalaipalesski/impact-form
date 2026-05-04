@@ -2,10 +2,11 @@ import { Component, inject } from "@angular/core";
 import * as actions from '../store/actions';
 import {Store} from "@ngrx/store";
 import { WeeklyFormStep } from "../model/weekly-stepper-model";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
   selector: "app-welcome-step",
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: "./welcome-step.html",
   styleUrl: "./welcome-step.scss",
 })
