@@ -114,12 +114,11 @@ export class EnterDataFormService {
       form.controls.effectiveness,
       form.controls.integration,
     ].every(control => control.value === null);
-    console.log('allValuesEmpty', allValuesEmpty);
 
     const commentEmpty = !form.controls.messageComment.value?.trim();
 
     if (allValuesEmpty && commentEmpty) {
-      return { formIncomplete: "Адзначце характарыстыкі або дадайце каментарый" };
+      return { formIncomplete: "errors.memberFormIncomplete" };
     }
 
     return null;

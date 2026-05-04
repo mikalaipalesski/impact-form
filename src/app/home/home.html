@@ -1,0 +1,19 @@
+<section class="home-page">
+  <div class="home-page__intro content-card">
+    <p class="home-page__text">{{ "landing.intro" | translate }}</p>
+  </div>
+
+  <div class="home-page__forms content-card">
+    <div class="home-page__buttons">
+      <button type="button" class="home-page__btn" routerLink="/weekly-form">
+        {{ "landing.formWeekly" | translate }}
+      </button>
+      <button type="button" class="home-page__btn" disabled>
+        {{ "landing.formPersistence" | translate }}
+      </button>
+      <button type="button" class="home-page__btn" disabled>
+        {{ "landing.formSlFeedback" | translate }}
+      </button>
+    </div>
+  </div>
+</section>

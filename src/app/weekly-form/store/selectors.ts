@@ -30,6 +30,11 @@ export const selectCurrentStep = createSelector(
   (state) => state.currentStep
 );
 
+export const getWeeklyFormValue = createSelector(
+  selectWeeklyFormState,
+  (state) => state.formValue
+);
+
 export const selectCurrentEnlistedMember = createSelector(
   selectWeeklyFormState,
   (state) => state.formValue.currentMember
@@ -50,10 +55,13 @@ export const enlistedUsersEmpty = createSelector(
   (enlistedUsers) => enlistedUsers.length === 0
 );
 
-export const selectCurrentSteplabel = createSelector(
+export const selectStepProgress = createSelector(
   selectCurrentStep,
   (currentStep) => {
     const steps = Object.values(WeeklyFormStep);
-    return `${steps.indexOf(currentStep) + 1} of ${steps.length}`;
+    return {
+      current: steps.indexOf(currentStep) + 1,
+      total: steps.length,
+    };
   }
-)
+);

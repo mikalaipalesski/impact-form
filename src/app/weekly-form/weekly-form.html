@@ -1,8 +1,10 @@
 <div class="welcome-page">
   <section class="welcome-page-header">
     <div class="welcome-page__card content-card">
-      <p class="welcome-page__step">{{ selectCurrentStepLabel | async }}</p>
-      <h1>Weekly Form</h1>
+      <p class="welcome-page__step">
+        {{ 'weekly.stepProgress' | translate: { current: stepProgress().current, total: stepProgress().total } }}
+      </p>
+      <h1>{{ 'weekly.title' | translate }}</h1>
     </div>
   </section>
   <section class="welcome-page__content">

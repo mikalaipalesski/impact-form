@@ -8,11 +8,11 @@ import { GameValues } from "../../model/weekly-stepper-model";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FormErrorPipe } from "./form-error.pipe";
-import { NameMap } from "./form-widget-constants";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
   selector: "app-form-widget",
-  imports: [CommonModule, ReactiveFormsModule, FormErrorPipe],
+  imports: [CommonModule, ReactiveFormsModule, FormErrorPipe, TranslatePipe],
   templateUrl: "./form-widget.html",
   styleUrl: "./form-widget.scss",
 })
@@ -25,10 +25,6 @@ export class FormWidgetComponent {
   
   removedMember = output<string>();
   members$ = this.store.select(selectors.selectMembers);
-
-  protected getValueLabel(value: GameValues): string {
-    return NameMap.get(value) ?? value;
-  }
 
   protected getFormControl(value: GameValues): FormControl<boolean | null> {
     return this.memberForm().get(value as string) as FormControl<boolean | null>;

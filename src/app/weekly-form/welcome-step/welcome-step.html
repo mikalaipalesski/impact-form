@@ -1,8 +1,9 @@
 <div class="welcome-content content-card">
     <div class="welcome-conent__message">
-        Прыклад паведамлення для карыстальніка. Тут можна дадаць інструкцыі або інфармацыю пра форму, якую яны будуць запаўняць. Гэта можа быць карысна для тлумачэння мэты формы або прадастаўлення кантактаў для падтрымкі.
+        {{ 'welcome.message' | translate }}
     </div>
     <div class="welcome-content__actions">
-        <button  class="start-button" (click)="start()">Пачаць</button>
+        <button class="back-button" (click)="onBack()">{{ 'common.back' | translate }}</button>
+        <button class="start-button" (click)="start()">{{ 'welcome.start' | translate }}</button>
     </div>
 </div>

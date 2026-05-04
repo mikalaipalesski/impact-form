@@ -5,10 +5,11 @@ import { FormBuilder, Validators, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { ImpactMember, WeeklyFormStep } from "../model/weekly-stepper-model";
 import * as actions from '../store/actions';
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
   selector: "app-member-name",
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: "./member-name.html",
   styleUrl: "./member-name.scss",
 })
