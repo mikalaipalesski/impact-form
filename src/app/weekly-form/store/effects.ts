@@ -1,17 +1,22 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, mergeMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { UsersSheetService } from '../services/users-sheet-service';
 import { weeklyFormActions } from './actions';
 import { Router } from '@angular/router';
 import { WeeklyFormStep } from '../model/weekly-stepper-model';
+import { SubmitWeeklyService } from '../services/submit-weekly-service';
+import { Store } from '@ngrx/store';
+import * as selectors from './selectors';
 
 @Injectable()
 export class WeeklyFormEffects {
   private actions$ = inject(Actions);
   private usersSheetService = inject(UsersSheetService);
   private router = inject(Router);
+  private submitWeeklyService = inject(SubmitWeeklyService);
+  private store = inject(Store);
 
   entered$ = createEffect(() =>
     this.actions$.pipe(
@@ -65,5 +70,15 @@ export class WeeklyFormEffects {
       tap(() => this.router.navigate(['/']))
     ),
     { dispatch: false },
+  );
+
+  submitWeekly$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(weeklyFormActions.submitWeekly),
+      switchMap(({ weeklyFormValue }) => this.submitWeeklyService.submitWeekly(weeklyFormValue)),
+      map(() => {
+        return weeklyFormActions.entered();
+      }),
+    )
   );
 }

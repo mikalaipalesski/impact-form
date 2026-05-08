@@ -27,7 +27,7 @@ const MEMBER_VALUE_KEYS: { game: GameValues; field: keyof MemberValue }[] = [
 export class ReviewSubmitComponent {
   private store = inject(Store);
 
-  protected impactMemberValues = this.store.selectSignal(selectors.selectFormValue);
+  protected weeklyFormValue = this.store.selectSignal(selectors.getWeeklyFormValue);
 
   protected valueBlocks(member: MemberValue): ReviewValueBlock[] {
     return MEMBER_VALUE_KEYS.reduce<ReviewValueBlock[]>((acc, { game, field }) => {
@@ -47,6 +47,6 @@ export class ReviewSubmitComponent {
   }
 
   protected onSubmit(): void {
-    this.store.dispatch(actions.weeklyFormActions.entered());
+    this.store.dispatch(actions.weeklyFormActions.submitWeekly({ weeklyFormValue: this.weeklyFormValue() }));
   }
 }
