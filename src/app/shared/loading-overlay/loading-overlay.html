@@ -1,5 +1,22 @@
 @if (visible()) {
-  <div class="loading-overlay" role="status" aria-live="polite" aria-busy="true">
-    <div class="loading-overlay__frame" aria-hidden="true"></div>
+  <div
+    class="loading-overlay"
+    [class.loading-overlay--impact]="variant() === 'impact'"
+    role="status"
+    aria-live="polite"
+    aria-busy="true"
+  >
+    @if (variant() === "impact") {
+      <div class="loading-overlay__word" aria-hidden="true">
+        @for (ch of impactLetters; track $index) {
+          <span
+            class="loading-overlay__letter"
+            [style.animation-delay.ms]="$index * 90"
+          >{{ ch }}</span>
+        }
+      </div>
+    } @else {
+      <div class="loading-overlay__frame" aria-hidden="true"></div>
+    }
   </div>
 }

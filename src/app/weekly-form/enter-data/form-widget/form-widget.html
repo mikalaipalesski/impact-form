@@ -13,6 +13,9 @@
     </section>
     <section class="form-widget__select_block">
         <select class="form-widget__member-select" formControlName="member">
+            <option [ngValue]="null" disabled hidden>
+                {{ "formWidget.memberNicknamePlaceholder" | translate }}
+            </option>
             @for(member of members$ | async; track member.name) {
                 <option [ngValue]="member">
                     {{ member.name }} - {{ member.rank }}

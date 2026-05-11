@@ -1,11 +1,37 @@
+<app-loading-overlay [visible]="membersLoading()" variant="impact" />
+
 <section class="home-page">
   <div class="home-page__intro content-card">
     <p class="home-page__text">{{ "landing.intro" | translate }}</p>
   </div>
 
   <div class="home-page__forms content-card">
-    <div class="home-page__buttons">
-      <button type="button" class="home-page__btn" routerLink="/weekly-form">
+    <form class="home-page__member-picker" [formGroup]="memberForm">
+      <label class="home-page__member-label" for="home-member-select">
+        {{ "memberName.pickNickname" | translate }}
+      </label>
+      <select
+        id="home-member-select"
+        class="home-page__select"
+        formControlName="enlistedMember"
+        [disabled]="!enlistedMembers().length"
+      >
+        <option [ngValue]="null" disabled hidden>
+          {{ "memberName.menuNicknamePlaceholder" | translate }}
+        </option>
+        @for (member of enlistedMembers(); track member.name + member.rank) {
+          <option [ngValue]="member">{{ member.name }} — {{ member.rank }}</option>
+        }
+      </select>
+    </form>
+
+    <div class="home-page__buttons" [class.home-page__buttons--locked]="!currentMember()">
+      <button
+        type="button"
+        class="home-page__btn home-page__btn--action"
+        [disabled]="!currentMember()"
+        (click)="goToWeeklyForm()"
+      >
         {{ "landing.formWeekly" | translate }}
       </button>
       <button type="button" class="home-page__btn" disabled>

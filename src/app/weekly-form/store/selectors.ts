@@ -20,6 +20,11 @@ export const selectMembers = createSelector(
   (state) => state.members
 );
 
+export const selectMembersLoading = createSelector(
+  selectWeeklyFormState,
+  (state) => state.membersLoading
+);
+
 export const selectError = createSelector(
   selectWeeklyFormState,
   (state) => state.error
@@ -55,6 +60,17 @@ export const selectEnlistedUsers = createSelector(
   (members) => members.filter(member => ENLISTED_MEMBER_RANKS.includes(member.rank as MemberRank))
 );
 
+export const selectFeedbackMembers = createSelector(
+  selectMembers,
+  selectCurrentEnlistedMember,
+  (members, currentMember) => {
+    if (currentMember) {
+      return members.filter(member => member.name !== currentMember.name);
+    }
+    return members;
+  }
+)
+
 export const enlistedUsersEmpty = createSelector(
   selectEnlistedUsers,
   (enlistedUsers) => enlistedUsers.length === 0
@@ -62,7 +78,6 @@ export const enlistedUsersEmpty = createSelector(
 
 const WIZARD_STEPS: WeeklyFormStep[] = [
   WeeklyFormStep.Welcome,
-  WeeklyFormStep.ChooseName,
   WeeklyFormStep.EnterData,
   WeeklyFormStep.ReviewSubmit,
 ];

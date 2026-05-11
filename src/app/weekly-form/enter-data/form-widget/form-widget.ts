@@ -24,7 +24,7 @@ export class FormWidgetComponent {
   private store = inject(Store);
   
   removedMember = output<string>();
-  members$ = this.store.select(selectors.selectMembers);
+  members$ = this.store.select(selectors.selectFeedbackMembers);
 
   protected getFormControl(value: GameValues): FormControl<boolean | null> {
     return this.memberForm().get(value as string) as FormControl<boolean | null>;

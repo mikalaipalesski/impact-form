@@ -12,7 +12,6 @@ export enum GameValues {
 
 export enum WeeklyFormStep {
     Welcome = 'welcome',
-    ChooseName = 'choose-name',
     EnterData = 'enter-data',
     ReviewSubmit = 'review_submit',
     Submitted = 'submitted',

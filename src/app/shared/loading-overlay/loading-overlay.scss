@@ -8,12 +8,33 @@
   background: rgba(0, 0, 0, 0.55);
 }
 
+.loading-overlay--impact {
+  background: #000;
+}
+
 .loading-overlay__frame {
   box-sizing: border-box;
   width: 3.5rem;
   height: 3.5rem;
   border: 6px solid var(--color-white);
   background: transparent;
+  animation: loading-overlay-pulse 1.1s ease-in-out infinite;
+}
+
+.loading-overlay--impact .loading-overlay__word {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.12em;
+  font-weight: 800;
+  font-size: clamp(2rem, 8vw, 3.25rem);
+  letter-spacing: 0.02em;
+  color: var(--color-white);
+  line-height: 1;
+}
+
+.loading-overlay__letter {
+  display: inline-block;
   animation: loading-overlay-pulse 1.1s ease-in-out infinite;
 }
 
