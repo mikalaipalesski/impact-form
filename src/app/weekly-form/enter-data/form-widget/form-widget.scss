@@ -1,76 +1,80 @@
 :host {
-    width: 100%;
-    
-    .form-widget {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
+  width: 100%;
 
-        &__header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
+  .form-widget {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 
-            .form-widget__error {
-                color: #ff4d4f;
-                font-weight: 600;
-            }
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
 
-            button {
-                margin-left: auto;
-                font-weight: 600;
+      .form-widget__error {
+        color: #ff4d4f;
+        font-weight: 600;
+      }
 
-                &.form-widget__remove-error {
-                    color: var(--color-primary);
-                    background: #ff4d4f;
-                    border-color: #ff4d4f;
-                }
-            }
+      button {
+        margin-left: auto;
+        font-weight: 600;
+
+        &.form-widget__remove-error {
+          color: var(--color-primary);
+          background: #ff4d4f;
+          border-color: #ff4d4f;
         }
-
-        &__select-block {
-            width: 100%;
-        }
-
-        &__member-select {
-            width: 100%;
-        }
-
-        &__values-container {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        &__values-title {
-            padding-left: 2px;
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-        }
-
-        &__values {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        &__value-radio-group {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            // gap: 0.5rem;
-        }
-
-        &__textarea-block {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        &__textarea {
-            width: 100%;
-        }
+      }
     }
+
+    &__select-block {
+      width: 100%;
+    }
+
+    &__member-select {
+      width: 100%;
+    }
+
+    &__values-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    &__values-title {
+      padding-left: 2px;
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    &__values {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    &__value-radio-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      // gap: 0.5rem;
+    }
+
+    &__trait-label {
+      text-align: center;
+    }
+
+    &__textarea-block {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    &__textarea {
+      width: 100%;
+    }
+  }
 }

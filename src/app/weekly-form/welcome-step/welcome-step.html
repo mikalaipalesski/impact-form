@@ -1,9 +1,7 @@
 <div class="welcome-content content-card">
-    <div class="welcome-conent__message">
-        {{ 'welcome.message' | translate }}
-    </div>
-    <div class="welcome-content__actions">
-        <button class="back-button" (click)="onBack()">{{ 'common.back' | translate }}</button>
-        <button class="start-button" (click)="start()">{{ 'welcome.start' | translate }}</button>
-    </div>
+  <div class="welcome-conent__message">{{ 'welcome.message' | translate }}</div>
+  <div class="welcome-content__actions">
+    <button class="back-button" (click)="onBack()">{{ 'common.back' | translate }}</button>
+    <button class="start-button" (click)="start()">{{ 'welcome.start' | translate }}</button>
+  </div>
 </div>

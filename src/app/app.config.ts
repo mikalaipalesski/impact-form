@@ -1,8 +1,4 @@
-import {
-  ApplicationConfig,
-  isDevMode,
-  provideBrowserGlobalErrorListeners
-} from '@angular/core';
+import { ApplicationConfig, isDevMode, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
@@ -21,12 +17,12 @@ export const appConfig: ApplicationConfig = {
     ...translateAppProviders(),
     provideRouter(routes),
     provideStore({
-      [weeklyFormFeature.name]: weeklyFormFeature.reducer
+      [weeklyFormFeature.name]: weeklyFormFeature.reducer,
     }),
     provideEffects(WeeklyFormEffects),
     provideStoreDevtools({
       maxAge: 25,
-      logOnly: !isDevMode()
-    })
-  ]
+      logOnly: !isDevMode(),
+    }),
+  ],
 };

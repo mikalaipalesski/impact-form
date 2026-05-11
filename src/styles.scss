@@ -1,4 +1,4 @@
-@use "./styles/design-tokens";
+@use './styles/design-tokens';
 
 *,
 *::before,
@@ -115,7 +115,7 @@ select {
   }
 }
 
-input[type="radio"] {
+input[type='radio'] {
   appearance: none;
   -webkit-appearance: none;
   width: 1.5rem;
@@ -125,7 +125,9 @@ input[type="radio"] {
   border: var(--border-width-regular) solid var(--color-border-strong);
   background: var(--color-primary);
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
   position: relative;
   border-radius: var(--radius-none);
 

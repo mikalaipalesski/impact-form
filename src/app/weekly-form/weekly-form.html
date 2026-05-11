@@ -2,11 +2,9 @@
   <section class="welcome-page-header">
     <div class="welcome-page__card content-card">
       <p class="welcome-page__step">
-        @if (currentStep() !== WeeklyFormStep.Submitted) {
-          {{ 'weekly.stepProgress' | translate: { current: stepProgress().current, total: stepProgress().total } }}
-        } @else {
-          {{ 'weekly.submittedStepLabel' | translate }}
-        }
+        @if (currentStep() !== WeeklyFormStep.Submitted) { {{ 'weekly.stepProgress' | translate: {
+        current: stepProgress().current, total: stepProgress().total } }} } @else { {{
+        'weekly.submittedStepLabel' | translate }} }
       </p>
       <h1>{{ 'weekly.title' | translate }}</h1>
     </div>

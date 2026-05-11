@@ -1,11 +1,11 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { provideMockStore } from "@ngrx/store/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
-import { EnterDataComponent } from "./enter-data";
-import { INITIAL_WEEKLY_FORM_STATE } from "../store/reuducer";
-import { testTranslateProviders } from "../../../test/test-translate.providers";
+import { EnterDataComponent } from './enter-data';
+import { INITIAL_WEEKLY_FORM_STATE } from '../store/reuducer';
+import { testTranslateProviders } from '../../../test/test-translate.providers';
 
-describe("EnterData", () => {
+describe('EnterData', () => {
   let component: EnterDataComponent;
   let fixture: ComponentFixture<EnterDataComponent>;
 
@@ -23,7 +23,7 @@ describe("EnterData", () => {
     await fixture.whenStable();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

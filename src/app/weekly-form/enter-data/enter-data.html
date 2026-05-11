@@ -1,14 +1,20 @@
 <form class="enter-data__form" [formArray]="enterDataForm">
-    @for(memberForm of enterDataForm.controls; track memberForm.controls.uuid.value) {
-        <section class="content-card">
-            <app-form-widget [memberForm]="memberForm" [formArray]="enterDataForm" (removedMember)="removeMember($event)"></app-form-widget>
-        </section>
-    }
+  @for(memberForm of enterDataForm.controls; track memberForm.controls.uuid.value) {
+  <section class="content-card">
+    <app-form-widget
+      [memberForm]="memberForm"
+      [formArray]="enterDataForm"
+      (removedMember)="removeMember($event)"
+    ></app-form-widget>
+  </section>
+  }
 </form>
 
-<button class="enter-data__add-button" type="button" (click)="addMember()">{{ 'enterData.addAnotherMember' | translate }}</button>
+<button class="enter-data__add-button" type="button" (click)="addMember()">
+  {{ 'enterData.addAnotherMember' | translate }}
+</button>
 
 <div class="enter-data__buttons">
-    <button (click)="onBack()">{{ 'common.back' | translate }}</button>
-    <button (click)="onNext()" [disabled]="!isFormValid()">{{ 'common.next' | translate }}</button>
+  <button (click)="onBack()">{{ 'common.back' | translate }}</button>
+  <button (click)="onNext()" [disabled]="!isFormValid()">{{ 'common.next' | translate }}</button>
 </div>

@@ -1,20 +1,19 @@
-import { Component, inject, input, output } from "@angular/core";
-import { Store } from "@ngrx/store";
+import { Component, computed, inject, input, output } from '@angular/core';
+import { Store } from '@ngrx/store';
 import * as selectors from '../../store/selectors';
-import * as actions from '../../store/actions';
-import { FormControl, FormGroup, FormArray } from "@angular/forms";
-import { MemberValueFormControls } from "../../model/weekly-form-model";
-import { GameValues } from "../../model/weekly-stepper-model";
-import { CommonModule } from "@angular/common";
-import { ReactiveFormsModule } from "@angular/forms";
-import { FormErrorPipe } from "./form-error.pipe";
-import { TranslatePipe } from "@ngx-translate/core";
+import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import { MemberValueFormControls } from '../../model/weekly-form-model';
+import { GameValues } from '../../model/weekly-stepper-model';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormErrorPipe } from './form-error.pipe';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
-  selector: "app-form-widget",
+  selector: 'app-form-widget',
   imports: [CommonModule, ReactiveFormsModule, FormErrorPipe, TranslatePipe],
-  templateUrl: "./form-widget.html",
-  styleUrl: "./form-widget.scss",
+  templateUrl: './form-widget.html',
+  styleUrl: './form-widget.scss',
 })
 export class FormWidgetComponent {
   public memberForm = input.required<FormGroup<MemberValueFormControls>>();
@@ -22,7 +21,11 @@ export class FormWidgetComponent {
   public gameValues = Object.values(GameValues);
 
   private store = inject(Store);
-  
+
+  protected commentsFieldId = computed(
+    () => `form-widget-comments-${this.memberForm().controls.uuid.value}`,
+  );
+
   removedMember = output<string>();
   members$ = this.store.select(selectors.selectFeedbackMembers);
 

@@ -18,8 +18,8 @@ export class WeeklyFormEffects {
   entered$ = createEffect(() =>
     this.actions$.pipe(
       ofType(weeklyFormActions.entered),
-      mergeMap(() => [weeklyFormActions.navigateToStep({ step: WeeklyFormStep.Welcome })])
-    )
+      mergeMap(() => [weeklyFormActions.navigateToStep({ step: WeeklyFormStep.Welcome })]),
+    ),
   );
 
   loadMembers$ = createEffect(() =>
@@ -28,41 +28,43 @@ export class WeeklyFormEffects {
       mergeMap(() =>
         this.usersSheetService.loadUsers().pipe(
           map((members) => weeklyFormActions.loadMembersSuccess({ members })),
-          catchError((error) => of(weeklyFormActions.loadMembersFailed({ error })))
-        )
-      )
-    )
+          catchError((error) => of(weeklyFormActions.loadMembersFailed({ error }))),
+        ),
+      ),
+    ),
   );
 
-  navigateToStep$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(weeklyFormActions.navigateToStep),
-      map(({ step }) => {
-        switch (step) {
-          case WeeklyFormStep.Welcome:
-            this.router.navigate(['/weekly-form', WeeklyFormStep.Welcome]);
-            break;
-          case WeeklyFormStep.EnterData:
-            this.router.navigate(['/weekly-form', WeeklyFormStep.EnterData]);
-            break;
-          case WeeklyFormStep.ReviewSubmit:
-            this.router.navigate(['/weekly-form', WeeklyFormStep.ReviewSubmit]);
-            break;
-          case WeeklyFormStep.Submitted:
-            this.router.navigate(['/weekly-form', WeeklyFormStep.Submitted]);
-            break;
-          default:
-            this.router.navigate(['/weekly-form', WeeklyFormStep.Welcome]);
-        }
-      })
-    ),
+  navigateToStep$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(weeklyFormActions.navigateToStep),
+        map(({ step }) => {
+          switch (step) {
+            case WeeklyFormStep.Welcome:
+              this.router.navigate(['/weekly-form', WeeklyFormStep.Welcome]);
+              break;
+            case WeeklyFormStep.EnterData:
+              this.router.navigate(['/weekly-form', WeeklyFormStep.EnterData]);
+              break;
+            case WeeklyFormStep.ReviewSubmit:
+              this.router.navigate(['/weekly-form', WeeklyFormStep.ReviewSubmit]);
+              break;
+            case WeeklyFormStep.Submitted:
+              this.router.navigate(['/weekly-form', WeeklyFormStep.Submitted]);
+              break;
+            default:
+              this.router.navigate(['/weekly-form', WeeklyFormStep.Welcome]);
+          }
+        }),
+      ),
     { dispatch: false },
   );
-  navigateToMain$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(weeklyFormActions.navigateToMain),
-      tap(() => this.router.navigate(['/']))
-    ),
+  navigateToMain$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(weeklyFormActions.navigateToMain),
+        tap(() => this.router.navigate(['/'])),
+      ),
     { dispatch: false },
   );
 
@@ -75,9 +77,9 @@ export class WeeklyFormEffects {
             weeklyFormActions.submitWeeklySucceeded(),
             weeklyFormActions.navigateToStep({ step: WeeklyFormStep.Submitted }),
           ]),
-          catchError((error) => of(weeklyFormActions.submitWeeklyFailed({ error })))
-        )
-      )
-    )
+          catchError((error) => of(weeklyFormActions.submitWeeklyFailed({ error }))),
+        ),
+      ),
+    ),
   );
 }

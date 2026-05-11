@@ -1,12 +1,12 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { provideMockStore } from "@ngrx/store/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
-import { ReviewSubmitComponent } from "./review-submit";
-import { testTranslateProviders } from "../../../test/test-translate.providers";
+import { ReviewSubmitComponent } from './review-submit';
+import { testTranslateProviders } from '../../../test/test-translate.providers';
 
-describe("ReviewSubmit", () => {
+describe('ReviewSubmit', () => {
   let component: ReviewSubmitComponent;
-  let fixture: ComponentFixture<ReviewSubmitComponent >;
+  let fixture: ComponentFixture<ReviewSubmitComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -16,7 +16,7 @@ describe("ReviewSubmit", () => {
         provideMockStore({
           initialState: {
             weeklyForm: {
-              currentStep: "review_submit",
+              currentStep: 'review_submit',
               members: [],
               membersLoading: false,
               error: null,
@@ -36,7 +36,7 @@ describe("ReviewSubmit", () => {
     await fixture.whenStable();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

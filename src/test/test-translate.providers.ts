@@ -1,11 +1,11 @@
-import { Injectable, Provider } from "@angular/core";
+import { Injectable, Provider } from '@angular/core';
 import {
   provideTranslateLoader,
   provideTranslateService,
   TranslateLoader,
   TranslationObject,
-} from "@ngx-translate/core";
-import { Observable, of } from "rxjs";
+} from '@ngx-translate/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class TestTranslateLoader extends TranslateLoader {
@@ -18,8 +18,8 @@ export class TestTranslateLoader extends TranslateLoader {
 export function testTranslateProviders(): Provider[] {
   return [
     ...provideTranslateService({
-      lang: "uk",
-      fallbackLang: "uk",
+      lang: 'uk',
+      fallbackLang: 'uk',
       loader: provideTranslateLoader(TestTranslateLoader),
     }),
   ];

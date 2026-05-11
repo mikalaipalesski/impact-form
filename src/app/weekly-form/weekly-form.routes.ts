@@ -7,13 +7,12 @@ export const WEEKLY_FORM_ROUTES: Routes = [
   {
     path: '',
     canActivate: [weeklyFormMemberGuard],
-    loadComponent: () =>
-      import('./weekly-form').then((m) => m.WeeklyFormComponent),
+    loadComponent: () => import('./weekly-form').then((m) => m.WeeklyFormComponent),
     children: [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'welcome'
+        redirectTo: 'welcome',
       },
       {
         path: 'choose-name',
@@ -31,19 +30,20 @@ export const WEEKLY_FORM_ROUTES: Routes = [
       },
       {
         path: WeeklyFormStep.ReviewSubmit,
-        loadComponent: () => import('./review-submit/review-submit').then((m) => m.ReviewSubmitComponent),
+        loadComponent: () =>
+          import('./review-submit/review-submit').then((m) => m.ReviewSubmitComponent),
       },
       {
         path: WeeklyFormStep.Submitted,
         loadComponent: () =>
           import('../shared/submitted-confirmation/submitted-confirmation').then(
-            (m) => m.SubmittedConfirmationComponent
+            (m) => m.SubmittedConfirmationComponent,
           ),
       },
     ],
   },
   {
     path: '**',
-    redirectTo: ''
-  }
+    redirectTo: '',
+  },
 ];

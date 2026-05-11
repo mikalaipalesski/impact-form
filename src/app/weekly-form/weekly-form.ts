@@ -24,12 +24,10 @@ export class WeeklyFormComponent implements OnInit {
   protected backButtonHandler!: void;
 
   ngOnInit(): void {
-    const onSubmittedRoute = this.router.url.includes(
-      `/weekly-form/${WeeklyFormStep.Submitted}`
-    );
+    const onSubmittedRoute = this.router.url.includes(`/weekly-form/${WeeklyFormStep.Submitted}`);
     if (onSubmittedRoute) {
       this.store.dispatch(
-        actions.weeklyFormActions.navigateToStep({ step: WeeklyFormStep.Submitted })
+        actions.weeklyFormActions.navigateToStep({ step: WeeklyFormStep.Submitted }),
       );
     } else {
       this.store.dispatch(actions.weeklyFormActions.entered());

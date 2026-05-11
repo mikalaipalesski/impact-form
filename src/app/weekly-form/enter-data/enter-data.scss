@@ -1,24 +1,24 @@
 :host {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 
-    .enter-data {
-        &__buttons {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        &__form {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        &__add-button {
-            display: flex;
-            width: 100%;
-            justify-content: center;
-        }
+  .enter-data {
+    &__buttons {
+      display: flex;
+      justify-content: space-between;
     }
+
+    &__form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    &__add-button {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
+  }
 }
