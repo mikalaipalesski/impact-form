@@ -9,6 +9,7 @@ export const INITIAL_WEEKLY_FORM_STATE: WeeklyFormState = {
   currentStep: WeeklyFormStep.Welcome,
   members: [],
   error: null,
+  submitInProgress: false,
   formValue: {
     currentMember: null,
     impactMemberValues: []
@@ -18,6 +19,7 @@ export const INITIAL_WEEKLY_FORM_STATE: WeeklyFormState = {
 const reducer = createReducer(
   INITIAL_WEEKLY_FORM_STATE,
   on(weeklyFormActions.entered, () => INITIAL_WEEKLY_FORM_STATE),
+  on(weeklyFormActions.submitWeeklySucceeded, () => INITIAL_WEEKLY_FORM_STATE),
   on(weeklyFormActions.loadMembers, (state) => ({
     ...state,
     error: null
@@ -49,6 +51,16 @@ const reducer = createReducer(
       ...state.formValue,
       impactMemberValues,
     },
+  })),
+  on(weeklyFormActions.submitWeekly, (state) => ({
+    ...state,
+    submitInProgress: true,
+    error: null,
+  })),
+  on(weeklyFormActions.submitWeeklyFailed, (state, { error }) => ({
+    ...state,
+    submitInProgress: false,
+    error: error instanceof Error ? error.message : "Submit failed",
   })),
 );
 

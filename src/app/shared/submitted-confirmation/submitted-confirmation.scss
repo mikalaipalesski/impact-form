@@ -1,0 +1,20 @@
+.submitted-confirmation {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.submitted-confirmation__title {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.submitted-confirmation__message {
+  margin: 0;
+  line-height: var(--line-height-base);
+}
+
+.submitted-confirmation__home {
+  align-self: center;
+}

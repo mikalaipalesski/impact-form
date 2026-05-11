@@ -7,8 +7,6 @@ import { weeklyFormActions } from './actions';
 import { Router } from '@angular/router';
 import { WeeklyFormStep } from '../model/weekly-stepper-model';
 import { SubmitWeeklyService } from '../services/submit-weekly-service';
-import { Store } from '@ngrx/store';
-import * as selectors from './selectors';
 
 @Injectable()
 export class WeeklyFormEffects {
@@ -16,7 +14,6 @@ export class WeeklyFormEffects {
   private usersSheetService = inject(UsersSheetService);
   private router = inject(Router);
   private submitWeeklyService = inject(SubmitWeeklyService);
-  private store = inject(Store);
 
   entered$ = createEffect(() =>
     this.actions$.pipe(
@@ -57,6 +54,9 @@ export class WeeklyFormEffects {
           case WeeklyFormStep.ReviewSubmit:
             this.router.navigate(['/weekly-form', WeeklyFormStep.ReviewSubmit]);
             break;
+          case WeeklyFormStep.Submitted:
+            this.router.navigate(['/weekly-form', WeeklyFormStep.Submitted]);
+            break;
           default:
             this.router.navigate(['/weekly-form', WeeklyFormStep.Welcome]);
         }
@@ -75,10 +75,15 @@ export class WeeklyFormEffects {
   submitWeekly$ = createEffect(() =>
     this.actions$.pipe(
       ofType(weeklyFormActions.submitWeekly),
-      switchMap(({ weeklyFormValue }) => this.submitWeeklyService.submitWeekly(weeklyFormValue)),
-      map(() => {
-        return weeklyFormActions.entered();
-      }),
+      switchMap(({ weeklyFormValue }) =>
+        this.submitWeeklyService.submitWeekly(weeklyFormValue).pipe(
+          mergeMap(() => [
+            weeklyFormActions.submitWeeklySucceeded(),
+            weeklyFormActions.navigateToStep({ step: WeeklyFormStep.Submitted }),
+          ]),
+          catchError((error) => of(weeklyFormActions.submitWeeklyFailed({ error })))
+        )
+      )
     )
   );
 }

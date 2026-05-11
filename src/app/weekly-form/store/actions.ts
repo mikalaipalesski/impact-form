@@ -15,5 +15,7 @@ export const weeklyFormActions = createActionGroup({
     SetImpactMemberValues: props<{ impactMemberValues: MemberValue[] }>(),
     NavigateToMain: emptyProps(),
     SubmitWeekly: props<{ weeklyFormValue: WeeklyFormValue }>(),
+    SubmitWeeklyFailed: props<{ error: unknown }>(),
+    SubmitWeeklySucceeded: emptyProps(),
   }
 });
