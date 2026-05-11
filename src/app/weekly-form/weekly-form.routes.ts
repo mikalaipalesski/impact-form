@@ -1,15 +1,12 @@
 import { Routes } from '@angular/router';
-import { provideEffects } from '@ngrx/effects';
-import { provideState } from '@ngrx/store';
 
-import { WeeklyFormEffects } from './store/effects';
-import { weeklyFormFeature } from './store/reuducer';
 import { WeeklyFormStep } from './model/weekly-stepper-model';
+import { weeklyFormMemberGuard } from './weekly-form-member.guard';
 
 export const WEEKLY_FORM_ROUTES: Routes = [
   {
     path: '',
-    providers: [provideState(weeklyFormFeature), provideEffects(WeeklyFormEffects)],
+    canActivate: [weeklyFormMemberGuard],
     loadComponent: () =>
       import('./weekly-form').then((m) => m.WeeklyFormComponent),
     children: [
@@ -19,13 +16,14 @@ export const WEEKLY_FORM_ROUTES: Routes = [
         redirectTo: 'welcome'
       },
       {
+        path: 'choose-name',
+        pathMatch: 'full',
+        redirectTo: WeeklyFormStep.Welcome,
+      },
+      {
         path: WeeklyFormStep.Welcome,
         loadComponent: () =>
           import('./welcome-step/welcome-step').then((m) => m.WelcomeStepComponent),
-      },
-      {
-        path: WeeklyFormStep.ChooseName,
-        loadComponent: () => import('./member-name/member-name').then((m) => m.MemberNameComponent),
       },
       {
         path: WeeklyFormStep.EnterData,
@@ -42,7 +40,7 @@ export const WEEKLY_FORM_ROUTES: Routes = [
             (m) => m.SubmittedConfirmationComponent
           ),
       },
-    ]
+    ],
   },
   {
     path: '**',

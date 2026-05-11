@@ -8,6 +8,7 @@ export const WEEKLY_FORM_FEATURE_KEY = 'weeklyForm';
 export const INITIAL_WEEKLY_FORM_STATE: WeeklyFormState = {
   currentStep: WeeklyFormStep.Welcome,
   members: [],
+  membersLoading: false,
   error: null,
   submitInProgress: false,
   formValue: {
@@ -18,21 +19,53 @@ export const INITIAL_WEEKLY_FORM_STATE: WeeklyFormState = {
 
 const reducer = createReducer(
   INITIAL_WEEKLY_FORM_STATE,
-  on(weeklyFormActions.entered, () => INITIAL_WEEKLY_FORM_STATE),
-  on(weeklyFormActions.submitWeeklySucceeded, () => INITIAL_WEEKLY_FORM_STATE),
+  on(weeklyFormActions.entered, (state) => ({
+    ...state,
+    currentStep: WeeklyFormStep.Welcome,
+    submitInProgress: false,
+    error: null,
+    formValue: {
+      ...state.formValue,
+      impactMemberValues: [],
+    },
+  })),
+  on(weeklyFormActions.submitWeeklySucceeded, (state) => ({
+    ...state,
+    submitInProgress: false,
+    error: null,
+    formValue: {
+      ...state.formValue,
+      impactMemberValues: [],
+    },
+  })),
   on(weeklyFormActions.loadMembers, (state) => ({
     ...state,
-    error: null
+    error: null,
+    membersLoading: state.members.length === 0,
   })),
-  on(weeklyFormActions.loadMembersSuccess, (state, { members }) => ({
-    ...state,
-    members,
-    error: null
-  })),
+  on(weeklyFormActions.loadMembersSuccess, (state, { members }) => {
+    let currentMember = state.formValue.currentMember;
+    if (currentMember) {
+      const match = members.find(
+        (m) => m.name === currentMember!.name && m.rank === currentMember!.rank,
+      );
+      currentMember = match ?? null;
+    }
+    return {
+      ...state,
+      members,
+      membersLoading: false,
+      error: null,
+      formValue: {
+        ...state.formValue,
+        currentMember,
+      },
+    };
+  }),
   on(weeklyFormActions.loadMembersFailed, (state, { error }) => ({
     ...state,
-    members: [],
-    error: error.message || 'Failed to load members'
+    membersLoading: false,
+    error: error.message || 'Failed to load members',
   })),
   on(weeklyFormActions.navigateToStep, (state, { step }) => ({
     ...state,

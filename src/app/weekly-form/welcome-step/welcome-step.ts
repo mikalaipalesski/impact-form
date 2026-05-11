@@ -14,7 +14,7 @@ export class WelcomeStepComponent {
   private store = inject(Store);
 
   start() {
-    this.store.dispatch(actions.weeklyFormActions.navigateToStep({ step: WeeklyFormStep.ChooseName }));
+    this.store.dispatch(actions.weeklyFormActions.navigateToStep({ step: WeeklyFormStep.EnterData }));
   }
 
   onBack(): void {

@@ -18,6 +18,7 @@ describe("ReviewSubmit", () => {
             weeklyForm: {
               currentStep: "review_submit",
               members: [],
+              membersLoading: false,
               error: null,
               submitInProgress: false,
               formValue: {

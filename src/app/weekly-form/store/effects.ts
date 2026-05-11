@@ -18,10 +18,7 @@ export class WeeklyFormEffects {
   entered$ = createEffect(() =>
     this.actions$.pipe(
       ofType(weeklyFormActions.entered),
-      mergeMap(() => [
-        weeklyFormActions.navigateToStep({ step: WeeklyFormStep.Welcome }),
-        weeklyFormActions.loadMembers()
-      ])
+      mergeMap(() => [weeklyFormActions.navigateToStep({ step: WeeklyFormStep.Welcome })])
     )
   );
 
@@ -44,9 +41,6 @@ export class WeeklyFormEffects {
         switch (step) {
           case WeeklyFormStep.Welcome:
             this.router.navigate(['/weekly-form', WeeklyFormStep.Welcome]);
-            break;
-          case WeeklyFormStep.ChooseName:
-            this.router.navigate(['/weekly-form', WeeklyFormStep.ChooseName]);
             break;
           case WeeklyFormStep.EnterData:
             this.router.navigate(['/weekly-form', WeeklyFormStep.EnterData]);

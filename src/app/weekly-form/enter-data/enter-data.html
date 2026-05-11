@@ -1,7 +1,3 @@
-<div class="enter-data__rules content-card">
-    {{ 'enterData.rules' | translate }}
-</div>
-
 <form class="enter-data__form" [formArray]="enterDataForm">
     @for(memberForm of enterDataForm.controls; track memberForm.controls.uuid.value) {
         <section class="content-card">
@@ -10,7 +6,7 @@
     }
 </form>
 
-<button class="enter-data__add-button" (click)="addMember()">+</button>
+<button class="enter-data__add-button" type="button" (click)="addMember()">{{ 'enterData.addAnotherMember' | translate }}</button>
 
 <div class="enter-data__buttons">
     <button (click)="onBack()">{{ 'common.back' | translate }}</button>
