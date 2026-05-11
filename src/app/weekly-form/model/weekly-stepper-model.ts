@@ -15,6 +15,7 @@ export enum WeeklyFormStep {
     ChooseName = 'choose-name',
     EnterData = 'enter-data',
     ReviewSubmit = 'review_submit',
+    Submitted = 'submitted',
 }
 
 export enum MemberRank {

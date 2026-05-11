@@ -8,4 +8,5 @@ export interface WeeklyFormState {
   members: ImpactMember[];
   error: string | null;
   formValue: WeeklyFormValue;
+  submitInProgress: boolean;
 }

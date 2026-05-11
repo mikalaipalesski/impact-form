@@ -19,6 +19,7 @@ describe("ReviewSubmit", () => {
               currentStep: "review_submit",
               members: [],
               error: null,
+              submitInProgress: false,
               formValue: {
                 currentMember: null,
                 impactMemberValues: [],

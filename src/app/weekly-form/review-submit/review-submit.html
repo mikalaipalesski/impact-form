@@ -1,9 +1,12 @@
+<app-loading-overlay [visible]="submitInProgress()" />
+
 <section class="review-submit">
   <header class="review-submit__header content-card">
     <p class="review-submit__intro">{{ 'review.intro' | translate }}</p>
   </header>
+  @let impactMemberValues = weeklyFormValue().impactMemberValues;
 
-  @for (entry of impactMemberValues(); track entry.uuid ?? entry.member.name + $index) {
+  @for (entry of impactMemberValues; track entry.uuid ?? entry.member.name + $index) {
     <article class="review-submit__member content-card">
       <h2 class="review-submit__nickname">{{ entry.member.name }}</h2>
       @if (entry.member.rank) {

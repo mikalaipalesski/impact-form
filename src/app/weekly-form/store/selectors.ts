@@ -25,6 +25,11 @@ export const selectError = createSelector(
   (state) => state.error
 );
 
+export const selectSubmitInProgress = createSelector(
+  selectWeeklyFormState,
+  (state) => state.submitInProgress
+);
+
 export const selectCurrentStep = createSelector(
   selectWeeklyFormState,
   (state) => state.currentStep
@@ -55,13 +60,20 @@ export const enlistedUsersEmpty = createSelector(
   (enlistedUsers) => enlistedUsers.length === 0
 );
 
+const WIZARD_STEPS: WeeklyFormStep[] = [
+  WeeklyFormStep.Welcome,
+  WeeklyFormStep.ChooseName,
+  WeeklyFormStep.EnterData,
+  WeeklyFormStep.ReviewSubmit,
+];
+
 export const selectStepProgress = createSelector(
   selectCurrentStep,
   (currentStep) => {
-    const steps = Object.values(WeeklyFormStep);
+    const idx = WIZARD_STEPS.indexOf(currentStep);
     return {
-      current: steps.indexOf(currentStep) + 1,
-      total: steps.length,
+      current: idx >= 0 ? idx + 1 : WIZARD_STEPS.length,
+      total: WIZARD_STEPS.length,
     };
   }
 );
