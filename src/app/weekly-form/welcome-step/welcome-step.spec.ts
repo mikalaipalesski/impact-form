@@ -1,11 +1,11 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { provideMockStore } from "@ngrx/store/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
-import { WelcomeStepComponent } from "./welcome-step";
-import { INITIAL_WEEKLY_FORM_STATE } from "../store/reuducer";
-import { testTranslateProviders } from "../../../test/test-translate.providers";
+import { WelcomeStepComponent } from './welcome-step';
+import { INITIAL_WEEKLY_FORM_STATE } from '../store/reuducer';
+import { testTranslateProviders } from '../../../test/test-translate.providers';
 
-describe("WelcomeStep", () => {
+describe('WelcomeStep', () => {
   let component: WelcomeStepComponent;
   let fixture: ComponentFixture<WelcomeStepComponent>;
 
@@ -23,7 +23,7 @@ describe("WelcomeStep", () => {
     await fixture.whenStable();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

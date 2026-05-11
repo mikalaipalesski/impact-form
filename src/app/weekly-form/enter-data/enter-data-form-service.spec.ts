@@ -1,8 +1,8 @@
-import { TestBed } from "@angular/core/testing";
+import { TestBed } from '@angular/core/testing';
 
-import { EnterDataFormService } from "./enter-data-form-service";
+import { EnterDataFormService } from './enter-data-form-service';
 
-describe("EnterDataFormService", () => {
+describe('EnterDataFormService', () => {
   let service: EnterDataFormService;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe("EnterDataFormService", () => {
     service = TestBed.inject(EnterDataFormService);
   });
 
-  it("should be created", () => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
   });
 });

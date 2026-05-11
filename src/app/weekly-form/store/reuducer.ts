@@ -13,8 +13,8 @@ export const INITIAL_WEEKLY_FORM_STATE: WeeklyFormState = {
   submitInProgress: false,
   formValue: {
     currentMember: null,
-    impactMemberValues: []
-  }
+    impactMemberValues: [],
+  },
 };
 
 const reducer = createReducer(
@@ -65,18 +65,18 @@ const reducer = createReducer(
   on(weeklyFormActions.loadMembersFailed, (state, { error }) => ({
     ...state,
     membersLoading: false,
-    error: error.message || 'Failed to load members',
+    error: error instanceof Error ? error.message : 'Failed to load members',
   })),
   on(weeklyFormActions.navigateToStep, (state, { step }) => ({
     ...state,
-    currentStep: step as WeeklyFormStep
+    currentStep: step as WeeklyFormStep,
   })),
   on(weeklyFormActions.selectCurrentMember, (state, { member }) => ({
     ...state,
     formValue: {
       ...state.formValue,
-      currentMember: member
-    }
+      currentMember: member,
+    },
   })),
   on(weeklyFormActions.setImpactMemberValues, (state, { impactMemberValues }) => ({
     ...state,
@@ -93,11 +93,11 @@ const reducer = createReducer(
   on(weeklyFormActions.submitWeeklyFailed, (state, { error }) => ({
     ...state,
     submitInProgress: false,
-    error: error instanceof Error ? error.message : "Submit failed",
+    error: error instanceof Error ? error.message : 'Submit failed',
   })),
 );
 
 export const weeklyFormFeature = createFeature({
   name: WEEKLY_FORM_FEATURE_KEY,
-  reducer
+  reducer,
 });

@@ -1,12 +1,12 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { provideMockStore } from "@ngrx/store/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
-import { FormWidgetComponent } from "./form-widget";
-import { EnterDataFormService } from "../enter-data-form-service";
-import { INITIAL_WEEKLY_FORM_STATE } from "../../store/reuducer";
-import { testTranslateProviders } from "../../../../test/test-translate.providers";
+import { FormWidgetComponent } from './form-widget';
+import { EnterDataFormService } from '../enter-data-form-service';
+import { INITIAL_WEEKLY_FORM_STATE } from '../../store/reuducer';
+import { testTranslateProviders } from '../../../../test/test-translate.providers';
 
-describe("FormWidgetComponent", () => {
+describe('FormWidgetComponent', () => {
   let component: FormWidgetComponent;
   let fixture: ComponentFixture<FormWidgetComponent>;
 
@@ -21,13 +21,13 @@ describe("FormWidgetComponent", () => {
 
     const enterDataForm = TestBed.inject(EnterDataFormService).createForm();
     fixture = TestBed.createComponent(FormWidgetComponent);
-    fixture.componentRef.setInput("memberForm", enterDataForm.at(0)!);
-    fixture.componentRef.setInput("formArray", enterDataForm);
+    fixture.componentRef.setInput('memberForm', enterDataForm.at(0)!);
+    fixture.componentRef.setInput('formArray', enterDataForm);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

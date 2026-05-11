@@ -1,12 +1,10 @@
-import { TestBed } from "@angular/core/testing";
-import { provideHttpClient } from "@angular/common/http";
-import { provideHttpClientTesting, HttpTestingController } from "@angular/common/http/testing";
+import { TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 
-import { SubmitWeeklyService } from "./submit-weekly-service";
-import { ImpactMember } from "../model/weekly-stepper-model";
-import { MemberValue } from "../model/weekly-form-model";
+import { SubmitWeeklyService } from './submit-weekly-service';
 
-describe("SubmitWeeklyService", () => {
+describe('SubmitWeeklyService', () => {
   let service: SubmitWeeklyService;
   let httpTestingController: HttpTestingController;
 
@@ -22,7 +20,7 @@ describe("SubmitWeeklyService", () => {
     httpTestingController.verify();
   });
 
-  it("should be created", () => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
   });
 });

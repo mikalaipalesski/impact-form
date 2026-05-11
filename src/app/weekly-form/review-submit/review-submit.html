@@ -4,37 +4,31 @@
   <header class="review-submit__header content-card">
     <p class="review-submit__intro">{{ 'review.intro' | translate }}</p>
   </header>
-  @let impactMemberValues = weeklyFormValue().impactMemberValues;
-
-  @for (entry of impactMemberValues; track entry.uuid ?? entry.member.name + $index) {
-    <article class="review-submit__member content-card">
-      <h2 class="review-submit__nickname">{{ entry.member.name }}</h2>
-      @if (entry.member.rank) {
-        <p class="review-submit__rank">{{ entry.member.rank }}</p>
-      }
-
-      @for (block of valueBlocks(entry); track block.game) {
-        <div class="review-submit__value-block">
-          <span class="review-submit__value-label">{{ ('gameValues.' + block.game) | translate }}</span>
-          <span class="review-submit__value-pick">
-            {{ block.picked ? (('formWidget.axisPositive' | translate)) : (('formWidget.axisNegative' | translate)) }}
-          </span>
-        </div>
-      }
-
-      @if (entry.messageComment.trim()) {
-        <div class="review-submit__message">
-          <span class="review-submit__message-label">{{ 'review.commentLabel' | translate }}</span>
-          <p class="review-submit__message-text">{{ entry.messageComment }}</p>
-        </div>
-      }
-    </article>
+  @let impactMemberValues = weeklyFormValue().impactMemberValues; @for (entry of impactMemberValues;
+  track entry.uuid ?? entry.member.name + $index) {
+  <article class="review-submit__member content-card">
+    <h2 class="review-submit__nickname">{{ entry.member.name }}</h2>
+    @if (entry.member.rank) {
+    <p class="review-submit__rank">{{ entry.member.rank }}</p>
+    } @for (block of valueBlocks(entry); track block.game) {
+    <div class="review-submit__value-block">
+      <span class="review-submit__value-label">{{ ('gameValues.' + block.game) | translate }}</span>
+      <span class="review-submit__value-pick">
+        {{ block.picked ? (('formWidget.axisPositive' | translate)) : (('formWidget.axisNegative' |
+        translate)) }}
+      </span>
+    </div>
+    } @if (entry.messageComment.trim()) {
+    <div class="review-submit__message">
+      <span class="review-submit__message-label">{{ 'review.commentLabel' | translate }}</span>
+      <p class="review-submit__message-text">{{ entry.messageComment }}</p>
+    </div>
+    }
+  </article>
   }
 
   <div class="review-submit__actions">
-    <button type="button" (click)="onBack()">
-      {{ 'common.back' | translate }}
-    </button>
+    <button type="button" (click)="onBack()">{{ 'common.back' | translate }}</button>
     <button type="button" class="review-submit__submit" (click)="onSubmit()">
       {{ 'review.submit' | translate }}
     </button>

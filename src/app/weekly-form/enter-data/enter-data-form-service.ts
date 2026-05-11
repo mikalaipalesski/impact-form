@@ -1,17 +1,22 @@
-import { Injectable, inject } from "@angular/core";
-import { FormArray, Validators, AbstractControl, ValidationErrors } from "@angular/forms";
-import { FormGroup, FormControl } from "@angular/forms";
-import { EnterDataForm, MemberValueFormControls, MemberValue, EnterDataFormValue } from "../model/weekly-form-model";
-import { GameValues, ImpactMember } from "../model/weekly-stepper-model";
-import { v1 as uuid } from "uuid";
+import { Injectable } from '@angular/core';
+import {
+  AbstractControl,
+  FormArray,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
+import { EnterDataForm, MemberValue, MemberValueFormControls } from '../model/weekly-form-model';
+import { ImpactMember } from '../model/weekly-stepper-model';
+import { v1 as uuid } from 'uuid';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class EnterDataFormService {
-
   public createForm(): EnterDataForm {
-    const form =  new FormArray<FormGroup<MemberValueFormControls>>([]);
+    const form = new FormArray<FormGroup<MemberValueFormControls>>([]);
 
     form.push(this.createMemberForm());
 
@@ -23,14 +28,14 @@ export class EnterDataFormService {
   }
 
   public removeMember(form: EnterDataForm, uuid: string): void {
-    const index = form.controls.findIndex(memberForm => memberForm.controls.uuid.value === uuid);
+    const index = form.controls.findIndex((memberForm) => memberForm.controls.uuid.value === uuid);
     if (index !== -1) {
       form.removeAt(index);
     }
   }
 
   public getFormValue(form: EnterDataForm): MemberValue[] {
-    const members: MemberValue[] = form.controls.map(memberForm => {
+    const members: MemberValue[] = form.controls.map((memberForm) => {
       const controls = memberForm.controls;
       return {
         member: controls.member.value!,
@@ -40,7 +45,7 @@ export class EnterDataFormService {
         integration: controls.integration.value!,
         messageComment: controls.messageComment.value!,
         uuid: controls.uuid.value!,
-      }
+      };
     });
 
     return members;
@@ -53,7 +58,7 @@ export class EnterDataFormService {
       return;
     }
 
-    const memberForms = formValue.map(memberValue => {
+    const memberForms = formValue.map((memberValue) => {
       const memberForm = this.createMemberForm();
       memberForm.controls.member.setValue(memberValue.member);
       memberForm.controls.communication.setValue(memberValue.communication);
@@ -62,22 +67,28 @@ export class EnterDataFormService {
       memberForm.controls.integration.setValue(memberValue.integration);
       memberForm.controls.messageComment.setValue(memberValue.messageComment);
       memberForm.controls.uuid.setValue(memberValue.uuid || uuid());
-      return memberForm;      
+      return memberForm;
     });
 
-    memberForms.forEach(memberForm => form.push(memberForm));
+    memberForms.forEach((memberForm) => form.push(memberForm));
   }
 
   private createMemberForm(): FormGroup<MemberValueFormControls> {
-    const form = new FormGroup<MemberValueFormControls>({
-      member: new FormControl<ImpactMember | null>(null, { nonNullable: true, validators: Validators.required }),
-      communication: new FormControl<boolean | null>(null),
-      discipline: new FormControl<boolean | null>(null),
-      effectiveness: new FormControl<boolean | null>(null),
-      integration: new FormControl<boolean | null>(null),
-      messageComment: new FormControl<string>('', { nonNullable: true }),
-      uuid: new FormControl<string>(uuid(), { nonNullable: true }),
-    }, { validators: [this.memberFormValidator] });
+    const form = new FormGroup<MemberValueFormControls>(
+      {
+        member: new FormControl<ImpactMember | null>(null, {
+          nonNullable: true,
+          validators: Validators.required,
+        }),
+        communication: new FormControl<boolean | null>(null),
+        discipline: new FormControl<boolean | null>(null),
+        effectiveness: new FormControl<boolean | null>(null),
+        integration: new FormControl<boolean | null>(null),
+        messageComment: new FormControl<string>('', { nonNullable: true }),
+        uuid: new FormControl<string>(uuid(), { nonNullable: true }),
+      },
+      { validators: [this.memberFormValidator] },
+    );
 
     const dependantControls = [
       form.controls.communication,
@@ -87,13 +98,13 @@ export class EnterDataFormService {
       form.controls.messageComment,
     ];
 
-    dependantControls.forEach(control => control.disable({ emitEvent: false }));
+    dependantControls.forEach((control) => control.disable({ emitEvent: false }));
 
-    form.controls.member.valueChanges.subscribe(member => {
+    form.controls.member.valueChanges.subscribe((member) => {
       if (member) {
-        dependantControls.forEach(control => control.enable({ emitEvent: false }));
+        dependantControls.forEach((control) => control.enable({ emitEvent: false }));
       } else {
-        dependantControls.forEach(control => control.disable({ emitEvent: false }));
+        dependantControls.forEach((control) => control.disable({ emitEvent: false }));
       }
     });
 
@@ -113,15 +124,14 @@ export class EnterDataFormService {
       form.controls.discipline,
       form.controls.effectiveness,
       form.controls.integration,
-    ].every(control => control.value === null);
+    ].every((control) => control.value === null);
 
     const commentEmpty = !form.controls.messageComment.value?.trim();
 
     if (allValuesEmpty && commentEmpty) {
-      return { formIncomplete: "errors.memberFormIncomplete" };
+      return { formIncomplete: 'errors.memberFormIncomplete' };
     }
 
     return null;
   }
 }
-  

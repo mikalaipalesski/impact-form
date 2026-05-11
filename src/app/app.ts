@@ -7,7 +7,7 @@ import { DEFAULT_LANGUAGE, LANG_STORAGE } from './core/i18n/translate.providers'
   selector: 'app-root',
   imports: [RouterOutlet, TranslatePipe],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App implements OnInit {
   private translate = inject(TranslateService);

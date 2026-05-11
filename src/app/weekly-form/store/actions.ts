@@ -9,7 +9,7 @@ export const weeklyFormActions = createActionGroup({
     Entered: emptyProps(),
     LoadMembers: emptyProps(),
     LoadMembersSuccess: props<{ members: ImpactMember[] }>(),
-    LoadMembersFailed: props<{ error: any }>(),
+    LoadMembersFailed: props<{ error: unknown }>(),
     SelectCurrentMember: props<{ member: ImpactMember }>(),
     NavigateToStep: props<{ step: WeeklyFormStep }>(),
     SetImpactMemberValues: props<{ impactMemberValues: MemberValue[] }>(),
@@ -17,5 +17,5 @@ export const weeklyFormActions = createActionGroup({
     SubmitWeekly: props<{ weeklyFormValue: WeeklyFormValue }>(),
     SubmitWeeklyFailed: props<{ error: unknown }>(),
     SubmitWeeklySucceeded: emptyProps(),
-  }
+  },
 });

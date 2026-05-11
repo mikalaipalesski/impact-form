@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { TranslateLoader, TranslationObject } from "@ngx-translate/core";
-import { Observable, of } from "rxjs";
+import { Injectable } from '@angular/core';
+import { TranslateLoader, TranslationObject } from '@ngx-translate/core';
+import { Observable, of } from 'rxjs';
 
-import uk from "../../../assets/i18n/uk.json";
-import be from "../../../assets/i18n/be.json";
+import uk from '../../../assets/i18n/uk.json';
+import be from '../../../assets/i18n/be.json';
 
 const CATALOG: Record<string, TranslationObject> = {
   uk: uk as TranslationObject,
@@ -17,6 +17,6 @@ const CATALOG: Record<string, TranslationObject> = {
 @Injectable()
 export class BundledTranslateLoader extends TranslateLoader {
   getTranslation(lang: string): Observable<TranslationObject> {
-    return of(CATALOG[lang] ?? CATALOG["uk"]);
+    return of(CATALOG[lang] ?? CATALOG['uk']);
   }
 }

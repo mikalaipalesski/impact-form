@@ -20,7 +20,7 @@
           {{ "memberName.menuNicknamePlaceholder" | translate }}
         </option>
         @for (member of enlistedMembers(); track member.name + member.rank) {
-          <option [ngValue]="member">{{ member.name }} — {{ member.rank }}</option>
+        <option [ngValue]="member">{{ member.name }} — {{ member.rank }}</option>
         }
       </select>
     </form>

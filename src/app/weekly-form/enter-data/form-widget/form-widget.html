@@ -1,50 +1,68 @@
 @let form = memberForm();
 
 <form [formGroup]="form" class="form-widget">
-    <section class="form-widget__header">
-        <span class="form-widget__error" *ngIf="form | formErrorMessage as formError">{{ formError }}</span>
-        <button
-            (click)="removeMember()"
-            [disabled]="!canRemoveMember()"
-            [class.form-widget__remove-error]="!!form.errors?.['formIncomplete']"
-        >
-            X
-        </button>
-    </section>
-    <section class="form-widget__select_block">
-        <select class="form-widget__member-select" formControlName="member">
-            <option [ngValue]="null" disabled hidden>
-                {{ "formWidget.memberNicknamePlaceholder" | translate }}
-            </option>
-            @for(member of members$ | async; track member.name) {
-                <option [ngValue]="member">
-                    {{ member.name }} - {{ member.rank }}
-                </option>
-            }
-        </select>
-    </section>
-    <section class="form-widget__values-container">
-        <div class="form-widget__values-title">
-            <span>{{ 'formWidget.axisNegative' | translate }}</span>
-            <span>{{ 'formWidget.pickTraits' | translate }}</span>
-            <span>{{ 'formWidget.axisPositive' | translate }}</span>
-        </div>
-        <div class="form-widget__values">
-            @for(value of gameValues; track value) {
-                <div class="form-widget__value">
-                    @let formControl = getFormControl(value);
+  <section class="form-widget__header">
+    @if (form | formErrorMessage; as formError) {
+    <span class="form-widget__error">{{ formError }}</span>
+    }
+    <button
+      (click)="removeMember()"
+      [disabled]="!canRemoveMember()"
+      [class.form-widget__remove-error]="!!form.errors?.['formIncomplete']"
+    >
+      X
+    </button>
+  </section>
+  <section class="form-widget__select_block">
+    <select class="form-widget__member-select" formControlName="member">
+      <option [ngValue]="null" disabled hidden>
+        {{ "formWidget.memberNicknamePlaceholder" | translate }}
+      </option>
+      @for(member of members$ | async; track member.name) {
+      <option [ngValue]="member">{{ member.name }} - {{ member.rank }}</option>
+      }
+    </select>
+  </section>
+  <section class="form-widget__values-container">
+    <div class="form-widget__values-title">
+      <span>{{ 'formWidget.axisNegative' | translate }}</span>
+      <span>{{ 'formWidget.pickTraits' | translate }}</span>
+      <span>{{ 'formWidget.axisPositive' | translate }}</span>
+    </div>
+    <div class="form-widget__values">
+      @for(value of gameValues; track value) {
+      <div class="form-widget__value">
+        @let formControl = getFormControl(value);
 
-                    <div class="form-widget__value-radio-group">
-                        <input type="radio" [formControl]="formControl" [value]="false" [name]="getUniqueRadioName(value)" (click)="toggleRadio(formControl, false)"/>
-                        <label>{{ ('gameValues.' + value) | translate }}</label>
-                        <input type="radio" [formControl]="formControl" [value]="true" [name]="getUniqueRadioName(value)" (click)="toggleRadio(formControl, true)"/>
-                    </div>
-                </div>
-            }
+        <div class="form-widget__value-radio-group">
+          <input
+            type="radio"
+            [formControl]="formControl"
+            [value]="false"
+            [name]="getUniqueRadioName(value)"
+            (click)="toggleRadio(formControl, false)"
+          />
+          <span class="form-widget__trait-label">{{ ('gameValues.' + value) | translate }}</span>
+          <input
+            type="radio"
+            [formControl]="formControl"
+            [value]="true"
+            [name]="getUniqueRadioName(value)"
+            (click)="toggleRadio(formControl, true)"
+          />
         </div>
-    </section>
-    <section class="form-widget__textarea-block">
-        <label>{{ 'formWidget.comments' | translate }}</label>
-        <textarea class="form-widget__textarea" formControlName="messageComment"></textarea>
-    </section>
+      </div>
+      }
+    </div>
+  </section>
+  <section class="form-widget__textarea-block">
+    <label class="form-widget__comments-label" [attr.for]="commentsFieldId()"
+      >{{ 'formWidget.comments' | translate }}</label
+    >
+    <textarea
+      class="form-widget__textarea"
+      [id]="commentsFieldId()"
+      formControlName="messageComment"
+    ></textarea>
+  </section>
 </form>

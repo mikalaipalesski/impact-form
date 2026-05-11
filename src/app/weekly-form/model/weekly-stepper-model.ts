@@ -11,10 +11,10 @@ export enum GameValues {
 }
 
 export enum WeeklyFormStep {
-    Welcome = 'welcome',
-    EnterData = 'enter-data',
-    ReviewSubmit = 'review_submit',
-    Submitted = 'submitted',
+  Welcome = 'welcome',
+  EnterData = 'enter-data',
+  ReviewSubmit = 'review_submit',
+  Submitted = 'submitted',
 }
 
 export enum MemberRank {
