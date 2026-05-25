@@ -5,6 +5,9 @@
     "formPersistence": "Persistance",
     "formSlFeedback": "Форма зворотного зв’язку SL"
   },
+  "squadLeadFeedback": {
+    "description": "Надайте свій відгук про керівника загону, оберіть його ім’я та напишіть повідомлення"
+  },
   "language": {
     "label": "Мова:",
     "uk": "Українська",

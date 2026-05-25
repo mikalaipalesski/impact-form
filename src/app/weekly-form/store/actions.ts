@@ -1,7 +1,7 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { ImpactMember } from '../model/weekly-stepper-model';
 import { WeeklyFormStep } from '../model/weekly-stepper-model';
 import { MemberValue, WeeklyFormValue } from '../model/weekly-form-model';
+import { ImpactMember } from '../../model/member-model';
 
 export const weeklyFormActions = createActionGroup({
   source: 'Weekly Form',

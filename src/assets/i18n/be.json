@@ -5,6 +5,9 @@
     "formPersistence": "Persistance",
     "formSlFeedback": "Форма зваротнай сувязі SL"
   },
+  "squadLeadFeedback": {
+    "description": "Падайце свой водгук пра кіраўніка каманды, абярыце яго імя і напішыце паведамленне"
+  },
   "language": {
     "label": "Мова:",
     "uk": "Українська",

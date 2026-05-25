@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ImpactMember } from '../model/weekly-stepper-model';
+import { ImpactMember } from '../../model/member-model';
 import { environment } from '../../../environments/environment';
 
 const ENCODED_RANGE = 'Sheet1!A:B';

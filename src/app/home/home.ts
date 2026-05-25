@@ -4,11 +4,10 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslatePipe } from '@ngx-translate/core';
-
 import { LoadingOverlayComponent } from '../shared/loading-overlay/loading-overlay';
-import { ImpactMember } from '../weekly-form/model/weekly-stepper-model';
 import * as actions from '../weekly-form/store/actions';
 import * as selectors from '../weekly-form/store/selectors';
+import { ImpactMember } from '../model/member-model';
 
 @Component({
   selector: 'app-home',
@@ -54,5 +53,9 @@ export class HomeComponent implements OnInit {
 
   protected goToWeeklyForm(): void {
     void this.router.navigateByUrl('/weekly-form');
+  }
+
+  protected goToSlFeedbackForm(): void {
+    void this.router.navigateByUrl('/squad-lead-feedback');
   }
 }

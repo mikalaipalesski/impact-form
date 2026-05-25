@@ -1,5 +1,5 @@
-import { ImpactMember } from './weekly-stepper-model';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { ImpactMember } from '../../model/member-model';
 
 export interface WeeklyFormValue {
   currentMember: ImpactMember | null;
@@ -12,14 +12,6 @@ export interface EnterDataFormValue {
 }
 
 export type EnterDataForm = FormArray<FormGroup<MemberValueFormControls>>;
-
-// export interface MemberFormControls {
-//   member: FormControl<ImpactMember | null>;
-//   positiveValues: FormControl<GameValues[]>;
-//   negativeValues: FormControl<GameValues[]>;
-//   messageComment: FormControl<string>;
-//   uuid: FormControl<string>;
-// }
 
 export interface MemberValueFormControls {
   member: FormControl<ImpactMember | null>;
@@ -40,12 +32,3 @@ export interface MemberValue {
   messageComment: string;
   uuid?: string;
 }
-
-// export interface ImpactMemberValue {
-//   member: ImpactMember;
-
-//   positiveValues: GameValues[];
-//   negativeValues: GameValues[];
-
-//   messageComment: string;
-// }

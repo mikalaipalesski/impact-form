@@ -8,8 +8,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { EnterDataForm, MemberValue, MemberValueFormControls } from '../model/weekly-form-model';
-import { ImpactMember } from '../model/weekly-stepper-model';
 import { v1 as uuid } from 'uuid';
+import { ImpactMember } from '../../model/member-model';
 
 @Injectable({
   providedIn: 'root',
