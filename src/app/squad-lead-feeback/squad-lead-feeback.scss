@@ -1,0 +1,20 @@
+.squad-lead-feedback {
+	width: min(100%, 36rem);
+	margin: 0 auto;
+	padding: 1rem;
+
+	.description {
+		margin-bottom: 1rem;
+	}
+
+	.field {
+		margin-bottom: 1rem;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.actions {
+		display: flex;
+		justify-content: flex-end;
+	}
+}
