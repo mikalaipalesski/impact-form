@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { squadLeadFeedbackActions } from './actions';
+import { SquadLeadFeedbackStep } from '../model/squad-lead-feedback-state-model';
 
 @Injectable()
 export class SquadLeadFeedbackEffects {
@@ -17,4 +18,19 @@ export class SquadLeadFeedbackEffects {
       map(() => squadLeadFeedbackActions.submitFormSucceeded()),
     ),
   );
+
+  stepChagnged$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(squadLeadFeedbackActions.navigateToStep),
+      map(({ step }) => step),
+      tap((step: SquadLeadFeedbackStep) => this.changeRoute(step)),
+    ),
+    {
+      dispatch: false,
+    },
+  );
+
+  private changeRoute(step: SquadLeadFeedbackStep) {
+    void this.router.navigate([`/${step}`]);
+  }
 }

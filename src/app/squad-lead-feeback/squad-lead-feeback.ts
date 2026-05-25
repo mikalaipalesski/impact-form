@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -20,7 +20,7 @@ import * as mainSelectors from '../store/selectors';
 export class SquadLeadFeebackComponent {
   private store = inject(Store);
 
-  members$: Observable<ImpactMember[]> = this.store.select(mainSelectors.selectMainMembers);
+  members: Signal<ImpactMember[]> = this.store.selectSignal(mainSelectors.selectMembersList);
 
   selectedMember: ImpactMember | null = null;
   message = '';

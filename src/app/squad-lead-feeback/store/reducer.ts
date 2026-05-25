@@ -22,7 +22,6 @@ const reducer = createReducer(
 		formValue,
 		step: SquadLeadFeedbackStep.VerifySubmit,
 	})),
-	on(squadLeadFeedbackActions.backToForm, (state) => ({ ...state, step: SquadLeadFeedbackStep.Form })),
 	on(squadLeadFeedbackActions.navigateToStep, (state, { step }) => ({
 		...state,
 		step: step as SquadLeadFeedbackStep,

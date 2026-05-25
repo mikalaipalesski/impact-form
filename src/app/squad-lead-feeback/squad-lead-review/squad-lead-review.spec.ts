@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SuqadLeadReviewComponent } from './suqad-lead-review';
+import { SquadLeadReviewComponent } from './squad-lead-review';
 
-describe('SuqadLeadReview', () => {
-  let component: SuqadLeadReviewComponent;
-  let fixture: ComponentFixture<SuqadLeadReviewComponent>;
+describe('SquadLeadReview', () => {
+  let component: SquadLeadReviewComponent;
+  let fixture: ComponentFixture<SquadLeadReviewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SuqadLeadReviewComponent],
+      imports: [SquadLeadReviewComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SuqadLeadReviewComponent);
+    fixture = TestBed.createComponent(SquadLeadReviewComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

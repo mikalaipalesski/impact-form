@@ -14,3 +14,11 @@ export const selectCurrentSelectedMemberName = createSelector(
     selectCurrentSelectedMember,
     (member) => member?.name || null,
 );
+
+export const selectMembersList = createSelector(
+    selectCurrentSelectedMember,
+    selectMainMembers,
+    (selectedMember, members) => selectedMember ?
+        members.filter((m) => m.name !== selectedMember!.name) :
+        members,
+)

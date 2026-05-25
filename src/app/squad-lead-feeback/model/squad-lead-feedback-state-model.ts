@@ -17,3 +17,9 @@ export interface SquadLeadFeedbackState {
   submitInProgress: boolean;
   error: string | null;
 }
+
+export enum SquadLeadFeedbackStepPath {
+  Instructions = 'instructions',
+  Form = 'form',
+  VerifySubmit = 'verify-submit',
+}
