@@ -1,1 +1,19 @@
-<p>suqad-lead-form-instructions works!</p>
+<div class="squad-lead-instructions">
+  <div class="squad-lead-instructions__card">
+    <h2 class="squad-lead-instructions__title">
+      {{ 'landing.formSlFeedback' | translate }}
+    </h2>
+    <div class="squad-lead-instructions__content">
+      <p>{{ 'squadLeadFeedback.description' | translate }}</p>
+    </div>
+  </div>
+
+  <div class="squad-lead-instructions__actions">
+    <button class="home-page__btn" routerLink="/">
+      {{ 'common.back' | translate }}
+    </button>
+    <button class="home-page__btn" (click)="onNext()">
+      {{ 'common.next' | translate }}
+    </button>
+  </div>
+</div>

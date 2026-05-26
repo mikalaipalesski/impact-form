@@ -10,6 +10,19 @@ export const selectFeedbackStep = createSelector(
   (s) => s.step,
 );
 
+const WIZARD_STEPS: SquadLeadFeedbackStep[] = [
+  SquadLeadFeedbackStep.Instructions,
+  SquadLeadFeedbackStep.Form,
+  SquadLeadFeedbackStep.VerifySubmit,
+];
+
+export const selectIsLastStep = createSelector(selectFeedbackStep, (currentStep) => {
+  const idx = WIZARD_STEPS.indexOf(currentStep);
+  return {
+    current: idx >= 0 ? idx + 1 : WIZARD_STEPS.length,
+    total: WIZARD_STEPS.length,
+  }});
+
 export const selectFeedbackFormValue = createSelector(
   selectSquadLeadFeedbackState,
   (s) => s.formValue,
@@ -24,17 +37,3 @@ export const selectFeedbackError = createSelector(
   selectSquadLeadFeedbackState,
   (s) => s.error,
 );
-
-const WIZARD_STEPS: SquadLeadFeedbackStep[] = [
-  SquadLeadFeedbackStep.Instructions,
-  SquadLeadFeedbackStep.Form,
-  SquadLeadFeedbackStep.VerifySubmit,
-];
-
-export const selectFeedbackStepProgress = createSelector(selectFeedbackStep, (currentStep) => {
-  const idx = WIZARD_STEPS.indexOf(currentStep);
-  return {
-    current: idx >= 0 ? idx + 1 : WIZARD_STEPS.length,
-    total: WIZARD_STEPS.length,
-  };
-});

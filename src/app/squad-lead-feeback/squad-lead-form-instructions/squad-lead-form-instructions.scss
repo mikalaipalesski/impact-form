@@ -1,0 +1,47 @@
+.squad-lead-instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 720px;
+  margin: 2.5rem auto;
+  padding: 0 1.25rem;
+
+  &__card {
+    background-color: var(--surface-card, #ffffff);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    border: 1px solid var(--surface-border, #e5e7eb);
+  }
+
+  &__title {
+    margin-top: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color, #111827);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  &__content {
+    line-height: 1.7;
+    color: var(--text-color-secondary, #4b5563);
+    font-size: 1.125rem;
+    white-space: pre-line;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    @media (max-width: 480px) {
+      flex-direction: column-reverse;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

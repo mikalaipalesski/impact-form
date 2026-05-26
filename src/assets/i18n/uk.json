@@ -6,6 +6,7 @@
     "formSlFeedback": "Форма зворотного зв’язку SL"
   },
   "squadLeadFeedback": {
+    "title": "Форма зворотного зв’язку SL",
     "description": "Надайте свій відгук про керівника загону, оберіть його ім’я та напишіть повідомлення"
   },
   "language": {
@@ -15,14 +16,14 @@
   },
   "common": {
     "back": "<-",
-    "next": "->"
+    "next": "->",
+    "stepProgress": "{{current}} з {{total}}"
   },
   "enterData": {
     "addAnotherMember": "Додати ще одного учасника"
   },
   "weekly": {
     "title": "Щотижнева форма",
-    "stepProgress": "{{current}} з {{total}}",
     "submittedStepLabel": "Надіслано"
   },
   "welcome": {

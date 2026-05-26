@@ -4,6 +4,7 @@ export enum SquadLeadFeedbackStep {
   Instructions = 'Instructions',
   Form = 'Form',
   VerifySubmit = 'VerifySubmit',
+  Submitted = 'Submitted',
 }
 
 export interface SquadLeadFeedbackFormValue {
@@ -22,4 +23,5 @@ export enum SquadLeadFeedbackStepPath {
   Instructions = 'instructions',
   Form = 'form',
   VerifySubmit = 'verify-submit',
+  Submitted = 'submitted',
 }

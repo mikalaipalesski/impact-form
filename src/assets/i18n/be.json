@@ -6,6 +6,7 @@
     "formSlFeedback": "Форма зваротнай сувязі SL"
   },
   "squadLeadFeedback": {
+    "title": "Форма зваротнай сувязі SL",
     "description": "Падайце свой водгук пра кіраўніка каманды, абярыце яго імя і напішыце паведамленне"
   },
   "language": {
@@ -14,8 +15,9 @@
     "be": "Беларуская"
   },
   "common": {
-    "back": "Назад",
-    "next": "Далей"
+    "back": "<-",
+    "next": "->",
+    "stepProgress": "{{current}} з {{total}}"
   },
   "enterData": {
     "addAnotherMember": "Дадаць яшчэ аднаго удзельніка"
