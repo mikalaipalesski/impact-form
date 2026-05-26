@@ -10,21 +10,11 @@
     		letter-spacing: var(--letter-spacing-tight);
     		text-transform: uppercase;
 		}
+	}
 
-		.description {
-			margin-bottom: 1rem;
-		}
-
-		.field {
-			margin-bottom: 1rem;
-			display: flex;
-			flex-direction: column;
-		}
-
-		.actions {
-			display: flex;
-			justify-content: flex-end;
-		}
+	.squad-lead-feedback-content {
+		margin-top: 2rem;
+    	width: min(100%, 36rem);
 	}
 }
 

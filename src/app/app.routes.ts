@@ -12,7 +12,8 @@ export const routes: Routes = [
   },
   {
     path: 'squad-lead-feedback',
-    loadComponent: () => import('./squad-lead-feeback/squad-lead-feeback').then((m) => m.SquadLeadFeebackComponent),
+    loadChildren: () =>
+      import('./squad-lead-feeback/squad-lead-feedback.routes').then((m) => m.SUQAD_LEAD_FEEDBACK_ROUTES),
   },
   {
     path: '**',
