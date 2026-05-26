@@ -4,6 +4,7 @@ import { tap, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { squadLeadFeedbackActions } from './actions';
 import { SquadLeadFeedbackStep } from '../model/squad-lead-feedback-state-model';
+import { SQUAD_LEAD_FEEDBACK_STEPS_MAP } from '../constants/squad-lead-feedback-steps-map';
 
 @Injectable()
 export class SquadLeadFeedbackEffects {
@@ -31,6 +32,10 @@ export class SquadLeadFeedbackEffects {
   );
 
   private changeRoute(step: SquadLeadFeedbackStep) {
-    void this.router.navigate([`/${step}`]);
+    const path = SQUAD_LEAD_FEEDBACK_STEPS_MAP.get(step);
+    if (!path) {
+      return;
+    }
+    void this.router.navigate(['/squad-lead-feedback', path]);
   }
 }

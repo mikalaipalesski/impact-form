@@ -22,6 +22,6 @@ export interface SquadLeadFeedbackState {
 export enum SquadLeadFeedbackStepPath {
   Instructions = 'instructions',
   Form = 'form',
-  VerifySubmit = 'verify-submit',
+  VerifySubmit = 'verify_submit',
   Submitted = 'submitted',
 }
