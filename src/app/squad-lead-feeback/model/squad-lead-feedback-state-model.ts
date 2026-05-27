@@ -1,4 +1,5 @@
 import { ImpactMember } from '../../model/member-model';
+import { FormControl, FormGroup, FormArray } from '@angular/forms';
 
 export enum SquadLeadFeedbackStep {
   Instructions = 'Instructions',

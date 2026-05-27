@@ -1,0 +1,17 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .squad-lead-form {
+
+        &__add-btn {
+            width: 100%;
+        }
+
+        &__footer {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

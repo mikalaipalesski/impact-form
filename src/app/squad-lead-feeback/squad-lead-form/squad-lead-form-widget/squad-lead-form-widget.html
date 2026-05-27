@@ -1,0 +1,29 @@
+<div class="squad-lead-form-widget" [formGroup]="memberForm()">
+    <section class="squad-lead-form-widget__header">
+        <button type="button" class="squad-lead-form-widget__remove-btn" (click)="removeMember()"
+            [title]="'common.remove' | translate" [disabled]="!canRemoveMember()">
+            <span class="material-icons"> X </span>
+        </button>
+    </section>
+
+    <section class="squad-lead-form-widget__select-block">
+        <label class="squad-lead-form-widget__label" [for]="selectFieldId()">
+            {{ 'formWidget.memberLabel' | translate }}
+        </label>
+        <select [id]="selectFieldId()" formControlName="member" class="squad-lead-form-widget__select">
+            <option [ngValue]="null" disabled>
+                {{ 'formWidget.memberNicknamePlaceholder' | translate }}
+            </option>
+            @for (member of members$ | async; track member.name) {
+            <option [ngValue]="member">{{ member.name }}</option>
+            }
+        </select>
+    </section>
+
+    <section class="squad-lead-form-widget__text">
+        <label class="squad-lead-form-widget__label" [for]="feedbackFieldId()">{{ 'formWidget.comments' | translate
+            }}</label>
+        <textarea [id]="feedbackFieldId()" formControlName="feedback" class="squad-lead-form-widget__textarea"
+            [placeholder]="'formWidget.comments' | translate" rows="4"></textarea>
+    </section>
+</div>

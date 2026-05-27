@@ -1,0 +1,48 @@
+:host {
+    width: 100%;
+
+    .squad-lead-form-widget {
+        gap: 16px;
+        display: flex;
+        flex-direction: column;
+
+        &__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .squad-lead-form-widget__error {
+            color: #ff4d4f;
+            font-weight: 600;
+        }
+
+        button {
+            margin-left: auto;
+            font-weight: 600;
+
+            &.squad-lead-form-widget__remove-error {
+              color: var(--color-primary);
+              background: #ff4d4f;
+              border-color: #ff4d4f;
+            }
+        }
+
+        &__select-block {
+            width: 100%;
+        }
+
+        &__select {
+            width: 100%;
+        }
+
+        &__text {
+            width: 100%;
+
+            textarea {
+                width: 100%;
+            }
+        }
+    }
+}

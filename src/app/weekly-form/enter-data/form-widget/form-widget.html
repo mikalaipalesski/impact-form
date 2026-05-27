@@ -3,7 +3,7 @@
 <form [formGroup]="form" class="form-widget">
   <section class="form-widget__header">
     @if (form | formErrorMessage; as formError) {
-    <span class="form-widget__error">{{ formError }}</span>
+      <span class="form-widget__error">{{ formError }}</span>
     }
     <button
       (click)="removeMember()"

@@ -17,9 +17,7 @@
   "common": {
     "back": "<-",
     "next": "->",
-    "stepProgress": "{{current}} з {{total}}"
-  },
-  "enterData": {
+    "stepProgress": "{{current}} з {{total}}",
     "addAnotherMember": "Додати ще одного учасника"
   },
   "weekly": {
