@@ -6,10 +6,7 @@ export const SQUAD_LEAD_FEEDBACK_FEATURE_KEY = 'squadLeadFeedback';
 
 export const INITIAL_SQUAD_LEAD_FEEDBACK_STATE: SquadLeadFeedbackState = {
 	step: SquadLeadFeedbackStep.Instructions,
-	formValue: {
-		member: null,
-		message: '',
-	},
+	formValue: [],
 	submitInProgress: false,
 	error: null,
 };

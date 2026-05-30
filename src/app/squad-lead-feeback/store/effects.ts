@@ -11,14 +11,14 @@ export class SquadLeadFeedbackEffects {
   private actions$ = inject(Actions);
   private router = inject(Router);
 
-  submitForm$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(squadLeadFeedbackActions.submitForm),
-      tap(({ formValue }) => console.log('Submitting squad lead feedback:', formValue)),
-      tap(() => void this.router.navigate(['/'])),
-      map(() => squadLeadFeedbackActions.submitFormSucceeded()),
-    ),
-  );
+  // submitForm$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(squadLeadFeedbackActions.submitForm),
+  //     tap(({ formValue }) => console.log('Submitting squad lead feedback:', formValue)),
+  //     tap(() => void this.router.navigate(['/'])),
+  //     map(() => squadLeadFeedbackActions.submitFormSucceeded()),
+  //   ),
+  // );
 
   stepChagnged$ = createEffect(() =>
     this.actions$.pipe(

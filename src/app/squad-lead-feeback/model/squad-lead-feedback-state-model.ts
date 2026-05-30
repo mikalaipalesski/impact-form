@@ -1,5 +1,6 @@
 import { ImpactMember } from '../../model/member-model';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import { SquadLeadMemberValue } from '../squad-lead-form/squad-lead-form-model';
 
 export enum SquadLeadFeedbackStep {
   Instructions = 'Instructions',
@@ -15,7 +16,7 @@ export interface SquadLeadFeedbackFormValue {
 
 export interface SquadLeadFeedbackState {
   step: SquadLeadFeedbackStep;
-  formValue: SquadLeadFeedbackFormValue;
+  formValue: SquadLeadMemberValue[];
   submitInProgress: boolean;
   error: string | null;
 }
