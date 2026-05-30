@@ -1,7 +1,8 @@
 import { inject, Pipe, PipeTransform } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { MemberValueFormControls } from '../../model/weekly-form-model';
+import { MemberValueFormControls } from '../../weekly-form/model/weekly-form-model';
+import { SquadLeadMemberFormControls } from '../../squad-lead-feeback/squad-lead-form/squad-lead-form-model';
 
 @Pipe({
   name: 'formErrorMessage',
@@ -11,7 +12,7 @@ import { MemberValueFormControls } from '../../model/weekly-form-model';
 export class FormErrorPipe implements PipeTransform {
   private translate = inject(TranslateService);
 
-  transform(form: FormGroup<MemberValueFormControls> | null): string | null {
+  transform(form: FormGroup | null): string | null {
     if (!form) {
       return null;
     }

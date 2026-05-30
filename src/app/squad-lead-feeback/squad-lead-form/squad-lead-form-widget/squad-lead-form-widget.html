@@ -1,15 +1,19 @@
 <div class="squad-lead-form-widget" [formGroup]="memberForm()">
     <section class="squad-lead-form-widget__header">
-        <button type="button" class="squad-lead-form-widget__remove-btn" (click)="removeMember()"
+        @if (memberForm() | formErrorMessage; as formError) {
+            <span class="squad-lead-form-widget__error">{{ formError }}</span>
+        }
+        <button
+            type="button"
+            class="squad-lead-form-widget__remove-btn"
+            (click)="removeMember()"
+            [class.squad-lead-form-widget__remove-error]="!!memberForm().errors?.['formIncomplete']"
             [title]="'common.remove' | translate" [disabled]="!canRemoveMember()">
             <span class="material-icons"> X </span>
         </button>
     </section>
 
     <section class="squad-lead-form-widget__select-block">
-        <label class="squad-lead-form-widget__label" [for]="selectFieldId()">
-            {{ 'formWidget.memberLabel' | translate }}
-        </label>
         <select [id]="selectFieldId()" formControlName="member" class="squad-lead-form-widget__select">
             <option [ngValue]="null" disabled>
                 {{ 'formWidget.memberNicknamePlaceholder' | translate }}

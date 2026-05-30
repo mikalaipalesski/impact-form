@@ -13,7 +13,7 @@
       gap: 1rem;
 
       .form-widget__error {
-        color: #ff4d4f;
+        color: var(--color-bg-error);
         font-weight: 600;
       }
 
@@ -23,8 +23,8 @@
 
         &.form-widget__remove-error {
           color: var(--color-primary);
-          background: #ff4d4f;
-          border-color: #ff4d4f;
+          background: var(--color-bg-error);
+          border-color: var(--color-bg-error);
         }
       }
     }

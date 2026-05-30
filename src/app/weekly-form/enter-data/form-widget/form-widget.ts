@@ -6,7 +6,7 @@ import { MemberValueFormControls } from '../../model/weekly-form-model';
 import { GameValues } from '../../model/weekly-stepper-model';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormErrorPipe } from './form-error.pipe';
+import { FormErrorPipe } from '../../../shared/pipes/form-error.pipe';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({

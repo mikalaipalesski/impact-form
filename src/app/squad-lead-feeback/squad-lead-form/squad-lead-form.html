@@ -20,7 +20,7 @@
   <button type="button" (click)="onBack()">
     {{ 'common.back' | translate }}
   </button>
-  <button type="button" (click)="onNext()">
+  <button [disabled]="!squadLeadFeedbackForm.valid" type="button" (click)="onNext()">
     {{ 'common.next' | translate }}
   </button>
 </div>

@@ -47,9 +47,11 @@ export class SquadLeadFormComponent implements OnInit {
   }
 
   protected onNext(): void {
-    // Navigate to the verification step
-    this.store.dispatch(
-      squadLeadFeedbackActions.navigateToStep({ step: SquadLeadFeedbackStep.VerifySubmit }),
-    );
+    if (this.squadLeadFeedbackForm.valid) {
+      // Navigate to the verification step
+      this.store.dispatch(
+        squadLeadFeedbackActions.navigateToStep({ step: SquadLeadFeedbackStep.VerifySubmit }),
+      );
+    }
   }
 }

@@ -57,6 +57,7 @@
     "backToHome": "На галоўную"
   },
   "errors": {
-    "memberFormIncomplete": "Адзначце характарыстыкі або дадайце каментарый"
+    "memberFormIncomplete": "Адзначце характарыстыкі або дадайце каментарый",
+    "squadLeadFormIncomplete": "Напішыце водгук"
   }
 }

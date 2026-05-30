@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ImpactMember } from '../../model/member-model';
 import { SquadLeadForm, SquadLeadMemberFormControls, SquadLeadMemberValue } from './squad-lead-form-model';
 import { v1 as uuid } from 'uuid';
@@ -88,19 +88,37 @@ export class SquadLeadFormService {
    * @returns A FormGroup representing a single member's feedback.
    */
   private createMemberForm(): FormGroup<SquadLeadMemberFormControls> {
-    return new FormGroup<SquadLeadMemberFormControls>({
+    const form = new FormGroup<SquadLeadMemberFormControls>({
       member: new FormControl<ImpactMember | null>(null, {
         nonNullable: true,
         validators: Validators.required,
       }),
       feedback: new FormControl<string>('', {
         nonNullable: true,
-        validators: Validators.required,
       }),
       uuid: new FormControl<string>(uuid(), {
         nonNullable: true,
         validators: Validators.required,
       }),
-    });
+    }, { validators: [this.memberFormValidator] });
+
+    return form;
+  }
+
+  private memberFormValidator(control: AbstractControl): ValidationErrors | null {
+    const form = control as FormGroup<SquadLeadMemberFormControls>;
+    const memberSelected = !!form.controls.member.value;
+
+    if (!memberSelected) {
+      return null;
+    }
+
+    const feedbackEmpty = !form.controls.feedback.value?.trim();
+
+    if (feedbackEmpty) {
+      return { formIncomplete: 'errors.squadLeadFormIncomplete' };
+    }
+
+    return null;
   }
 }
