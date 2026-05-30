@@ -2,8 +2,6 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ImpactMember } from '../../model/member-model';
 
 export interface WeeklyFormValue {
-  currentMember: ImpactMember | null;
-
   impactMemberValues: MemberValue[];
 }
 

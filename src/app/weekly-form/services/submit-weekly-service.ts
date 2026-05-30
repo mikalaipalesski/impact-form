@@ -3,14 +3,17 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WeeklyFormValue } from '../model/weekly-form-model';
 import { environment } from '../../../environments/environment';
+import { selectCurrentSelectedMember } from '../../store/selectors';
+import { Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SubmitWeeklyService {
   private readonly http = inject(HttpClient);
+  private readonly store = inject(Store);
   private readonly scriptUrl = environment.googleAppsScriptUrl ?? '';
-
+  
   submitWeekly(weeklyFormValue: WeeklyFormValue): Observable<string> {
     if (!this.scriptUrl) {
       throw new Error('Google Apps Script URL is not configured.');
@@ -38,8 +41,9 @@ export class SubmitWeeklyService {
   }
 
   buildRows(weeklyFormValue: WeeklyFormValue): (string | number)[][] {
+    const currentMember = this.store.selectSignal(selectCurrentSelectedMember);
     return weeklyFormValue.impactMemberValues.map((memberValue) => [
-      weeklyFormValue.currentMember?.name || 'Unknown Author',
+      currentMember()!.name,
       memberValue.member.name,
       this.mapTraitValue(memberValue.communication),
       this.mapTraitValue(memberValue.discipline),

@@ -1,6 +1,6 @@
 import { Component, computed, inject, input, output } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as selectors from '../../store/selectors';
+import * as selectors from '../../../store/selectors';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { MemberValueFormControls } from '../../model/weekly-form-model';
 import { GameValues } from '../../model/weekly-stepper-model';
@@ -27,7 +27,7 @@ export class FormWidgetComponent {
   );
 
   removedMember = output<string>();
-  members$ = this.store.select(selectors.selectFeedbackMembers);
+  members$ = this.store.select(selectors.selectMembersList);
 
   protected getFormControl(value: GameValues): FormControl<boolean | null> {
     return this.memberForm().get(value as string) as FormControl<boolean | null>;

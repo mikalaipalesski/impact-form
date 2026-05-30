@@ -13,17 +13,33 @@ export const INITIAL_MAIN_STORE: MainStoreState = {
 
 export const mainStoreReducer = createReducer(
     INITIAL_MAIN_STORE,
-    on(mainStoreActions.loadMembers, (state) => ({
+    on(mainStoreActions.loadMembers, (state) => 
+    ({
         ...state,
-        membersLoading: true,
+        membersLoading: state.members.length > 0 ? false : true,
         membersLoadingError: null,
     })),
-    on(mainStoreActions.loadMembersSuccess, (state, { members }) => ({
-        ...state,
-        members,
-        membersLoading: false,
-        membersLoadingError: null,
-    })),
+    on(mainStoreActions.loadMembersSuccess, (state, { members }) => {
+        const currentSelectedMember = state.currentSelectedMember;
+
+        if (currentSelectedMember) {
+            // Sync the reference to the newly loaded object instance
+            const syncedMember = members.find(m => m.name === currentSelectedMember.name) || currentSelectedMember;
+            return {
+                ...state,
+                currentSelectedMember: syncedMember,
+                members,
+                membersLoading: false,
+                membersLoadingError: null,
+            }
+        }
+        return {
+            ...state,
+            members,
+            membersLoading: false,
+            membersLoadingError: null,
+        }
+    }),
     on(mainStoreActions.loadMembersFailed, (state, { error }) => ({
         ...state,
         membersLoading: false,

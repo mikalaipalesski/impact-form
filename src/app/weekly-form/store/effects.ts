@@ -20,18 +20,6 @@ export class WeeklyFormEffects {
     ),
   );
 
-  // loadMembers$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(weeklyFormActions.loadMembers),
-  //     mergeMap(() =>
-  //       this.usersSheetService.loadUsers().pipe(
-  //         map((members) => weeklyFormActions.loadMembersSuccess({ members })),
-  //         catchError((error) => of(weeklyFormActions.loadMembersFailed({ error }))),
-  //       ),
-  //     ),
-  //   ),
-  // );
-
   navigateToStep$ = createEffect(
     () =>
       this.actions$.pipe(

@@ -7,12 +7,8 @@ export const WEEKLY_FORM_FEATURE_KEY = 'weeklyForm';
 
 export const INITIAL_WEEKLY_FORM_STATE: WeeklyFormState = {
   currentStep: WeeklyFormStep.Welcome,
-  members: [],
-  membersLoading: false,
-  error: null,
   submitInProgress: false,
   formValue: {
-    currentMember: null,
     impactMemberValues: [],
   },
 };
@@ -38,45 +34,9 @@ const reducer = createReducer(
       impactMemberValues: [],
     },
   })),
-  on(weeklyFormActions.loadMembers, (state) => ({
-    ...state,
-    error: null,
-    membersLoading: state.members.length === 0,
-  })),
-  on(weeklyFormActions.loadMembersSuccess, (state, { members }) => {
-    let currentMember = state.formValue.currentMember;
-    if (currentMember) {
-      const match = members.find(
-        (m) => m.name === currentMember!.name && m.rank === currentMember!.rank,
-      );
-      currentMember = match ?? null;
-    }
-    return {
-      ...state,
-      members,
-      membersLoading: false,
-      error: null,
-      formValue: {
-        ...state.formValue,
-        currentMember,
-      },
-    };
-  }),
-  on(weeklyFormActions.loadMembersFailed, (state, { error }) => ({
-    ...state,
-    membersLoading: false,
-    error: error instanceof Error ? error.message : 'Failed to load members',
-  })),
   on(weeklyFormActions.navigateToStep, (state, { step }) => ({
     ...state,
     currentStep: step as WeeklyFormStep,
-  })),
-  on(weeklyFormActions.selectCurrentMember, (state, { member }) => ({
-    ...state,
-    formValue: {
-      ...state.formValue,
-      currentMember: member,
-    },
   })),
   on(weeklyFormActions.setImpactMemberValues, (state, { impactMemberValues }) => ({
     ...state,

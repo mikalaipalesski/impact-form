@@ -4,7 +4,7 @@ import { FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { SquadLeadMemberFormControls } from '../squad-lead-form-model';
-import * as selectors from '../../../weekly-form/store/selectors';
+import { selectMembersList } from '../../../store/selectors';
 
 @Component({
   selector: 'app-squad-lead-form-widget',
@@ -29,7 +29,7 @@ export class SquadLeadFormWidget {
   );
 
   removedMember = output<string>();
-  members$ = this.store.select(selectors.selectFeedbackMembers);
+  members$ = this.store.select(selectMembersList);
 
   protected removeMember(): void {
     if (this.canRemoveMember()) {
