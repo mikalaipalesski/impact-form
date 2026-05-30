@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 
 import { weeklyFormFeature } from './reuducer';
-import { ENLISTED_MEMBER_RANKS } from '../constants/enlisted-member-ranks';
+import { ENLISTED_MEMBER_RANKS } from '../../constants/enlisted-member-ranks';
 import { MemberRank } from '../model/weekly-stepper-model';
 import { WeeklyFormStep } from '../model/weekly-stepper-model';
 

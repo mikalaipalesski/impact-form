@@ -1,5 +1,7 @@
 import { createSelector } from '@ngrx/store';
 import { mainStoreFeature } from './reducer';
+import { ENLISTED_MEMBER_RANKS } from '../constants/enlisted-member-ranks';
+import { MemberRank } from '../model/member-model';
 
 export const { name: mainStoreFeatureKey, selectMainState } = mainStoreFeature;
 
@@ -22,3 +24,7 @@ export const selectMembersList = createSelector(
         members.filter((m) => m.name !== selectedMember!.name) :
         members,
 )
+
+export const selectEnlistedMembers = createSelector(selectMainMembers, (members) =>
+  members.filter((member) => ENLISTED_MEMBER_RANKS.includes(member.rank as MemberRank)),
+);

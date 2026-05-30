@@ -1,4 +1,4 @@
-import { MemberRank } from '../model/weekly-stepper-model';
+import { MemberRank } from '../weekly-form/model/weekly-stepper-model';
 
 export const ENLISTED_MEMBER_RANKS: MemberRank[] = [
   MemberRank.OF1,

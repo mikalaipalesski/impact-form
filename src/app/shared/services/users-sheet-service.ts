@@ -16,8 +16,6 @@ export class UsersSheetService {
    * Backend should fetch from Google Sheet and return normalized JSON.
    */
   private readonly http = inject(HttpClient);
-  private readonly usersApiUrl = '/api/weekly-form/users';
-  private readonly sheetRange = 'A:A';
 
   loadUsers(): Observable<ImpactMember[]> {
     const apiUrl = `https://sheets.googleapis.com/v4/spreadsheets/${environment.spreadsheetId}/values/${ENCODED_RANGE}?key=${environment.googleSheetsApiKey}`;

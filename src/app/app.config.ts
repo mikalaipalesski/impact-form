@@ -12,6 +12,7 @@ import { squadLeadFeedbackFeature } from './squad-lead-feeback/store/reducer';
 import { SquadLeadFeedbackEffects } from './squad-lead-feeback/store/effects';
 import { translateAppProviders } from './core/i18n/translate.providers';
 import { mainStoreFeature } from './store/reducer';
+import { MainStoreEffects } from './store/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,7 +25,7 @@ export const appConfig: ApplicationConfig = {
       [mainStoreFeature.name]: mainStoreFeature.reducer,
       [squadLeadFeedbackFeature.name]: squadLeadFeedbackFeature.reducer,
     }),
-    provideEffects(WeeklyFormEffects, SquadLeadFeedbackEffects),
+    provideEffects(WeeklyFormEffects, SquadLeadFeedbackEffects, MainStoreEffects),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
