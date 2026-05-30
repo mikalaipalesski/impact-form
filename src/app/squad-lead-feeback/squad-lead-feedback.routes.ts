@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router';
 import { SquadLeadFeedbackStepPath } from './model/squad-lead-feedback-state-model';
+import { squadLeadFeedbackGuard } from './suqad-laed-feedback.guard';
 
 export const SUQAD_LEAD_FEEDBACK_ROUTES: Routes = [
     {
         path: '',
+        canActivate: [squadLeadFeedbackGuard],
         loadComponent: () => import('./squad-lead-feeback').then((m) => m.SquadLeadFeebackComponent),
         children: [
             {
