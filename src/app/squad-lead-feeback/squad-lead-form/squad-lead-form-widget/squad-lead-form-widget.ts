@@ -4,8 +4,8 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { SquadLeadMemberFormControls } from '../squad-lead-form-model';
-import { selectMembersList } from '../../../store/selectors';
 import { FormErrorPipe } from '../../../shared/pipes/form-error.pipe';
+import { selectSlFeedbackMembers } from '../../store/selectors';
 
 @Component({
   selector: 'app-squad-lead-form-widget',
@@ -30,7 +30,7 @@ export class SquadLeadFormWidget implements OnInit {
   );
 
   removedMember = output<string>();
-  members$ = this.store.select(selectMembersList);
+  members = this.store.selectSignal(selectSlFeedbackMembers);
 
   ngOnInit() {
     const memberControl = this.memberForm().controls.member;

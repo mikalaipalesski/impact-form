@@ -1,6 +1,7 @@
 import { createSelector } from '@ngrx/store';
 import { squadLeadFeedbackFeature } from './reducer';
 import { SquadLeadFeedbackStep } from '../model/squad-lead-feedback-state-model';
+import { selectMembersList } from '../../store/selectors';
 
 export const { name: squadLeadFeedbackFeatureKey, selectSquadLeadFeedbackState } =
   squadLeadFeedbackFeature;
@@ -37,3 +38,12 @@ export const selectFeedbackError = createSelector(
   selectSquadLeadFeedbackState,
   (s) => s.error,
 );
+
+export const selectSlFeedbackMembers = createSelector(
+  selectMembersList,
+  selectFeedbackFormValue,
+  (members, formValue) => {
+    const selectedMembers = formValue.map((m) => m.member.name);
+    return members.filter((m) => !selectedMembers.includes(m.name));
+  }
+)

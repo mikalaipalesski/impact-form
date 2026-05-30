@@ -4,7 +4,7 @@ import { weeklyFormFeature } from './reuducer';
 import { ENLISTED_MEMBER_RANKS } from '../../constants/enlisted-member-ranks';
 import { MemberRank } from '../model/weekly-stepper-model';
 import { WeeklyFormStep } from '../model/weekly-stepper-model';
-import { selectCurrentSelectedMember } from '../../store/selectors';
+import { selectCurrentSelectedMember, selectMembersList } from '../../store/selectors';
 
 export const { name: weeklyFormFeatureKey, selectWeeklyFormState } = weeklyFormFeature;
 
@@ -20,12 +20,21 @@ export const selectCurrentStep = createSelector(
   (state) => state.currentStep,
 );
 
-export const getWeeklyFormValue = createSelector(selectWeeklyFormState, (state) => state.formValue);
+export const selectWeeklyFormValue = createSelector(selectWeeklyFormState, (state) => state.formValue);
 
 export const selectFormValue = createSelector(
   selectWeeklyFormState,
   (state) => state.formValue.impactMemberValues,
 );
+
+export const selectFeedbackMembersList = createSelector(
+  selectMembersList,
+  selectWeeklyFormValue,
+  (members, formValue) => {
+    const selectedMembers = formValue.impactMemberValues.map((v) => v.member.name);
+    return members.filter((m) => !selectedMembers.includes(m.name));
+  },
+)
 
 
 const WIZARD_STEPS: WeeklyFormStep[] = [

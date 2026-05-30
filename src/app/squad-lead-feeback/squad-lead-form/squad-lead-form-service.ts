@@ -78,7 +78,7 @@ export class SquadLeadFormService {
       memberForm.controls.member.setValue(memberValue.member);
       memberForm.controls.feedback.setValue(memberValue.feedback);
       memberForm.controls.uuid.setValue(memberValue.uuid);
-      form.push(memberForm);
+      form.push(memberForm, { emitEvent: false });
     });
   }
 

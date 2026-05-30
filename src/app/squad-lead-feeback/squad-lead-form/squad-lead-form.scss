@@ -5,6 +5,12 @@
 
     .squad-lead-form {
 
+        &__form {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
         &__add-btn {
             width: 100%;
         }

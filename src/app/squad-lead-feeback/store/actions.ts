@@ -7,7 +7,7 @@ export const squadLeadFeedbackActions = createActionGroup({
 	events: {
 		Entered: emptyProps(),
 		NavigateToStep: props<{ step: SquadLeadFeedbackStep }>(),
-		CompleteForm: props<{ formValue: SquadLeadMemberValue[] }>(),
+		setFormChange: props<{ formValue: SquadLeadMemberValue[] }>(),
 		SubmitForm: emptyProps(),
 		SubmitFormSucceeded: emptyProps(),
 		SubmitFormFailed: props<{ error: unknown }>(),

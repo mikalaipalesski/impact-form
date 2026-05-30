@@ -18,7 +18,7 @@
             <option [ngValue]="null" disabled>
                 {{ 'formWidget.memberNicknamePlaceholder' | translate }}
             </option>
-            @for (member of members$ | async; track member.name) {
+            @for (member of members(); track member.name) {
             <option [ngValue]="member">{{ member.name }}</option>
             }
         </select>

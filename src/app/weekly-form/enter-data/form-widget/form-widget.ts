@@ -1,6 +1,5 @@
 import { Component, computed, inject, input, output } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as selectors from '../../../store/selectors';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { MemberValueFormControls } from '../../model/weekly-form-model';
 import { GameValues } from '../../model/weekly-stepper-model';
@@ -8,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormErrorPipe } from '../../../shared/pipes/form-error.pipe';
 import { TranslatePipe } from '@ngx-translate/core';
+import { selectFeedbackMembersList } from '../../store/selectors';
 
 @Component({
   selector: 'app-form-widget',
@@ -27,7 +27,7 @@ export class FormWidgetComponent {
   );
 
   removedMember = output<string>();
-  members$ = this.store.select(selectors.selectMembersList);
+  members$ = this.store.select(selectFeedbackMembersList);
 
   protected getFormControl(value: GameValues): FormControl<boolean | null> {
     return this.memberForm().get(value as string) as FormControl<boolean | null>;

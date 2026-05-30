@@ -57,7 +57,7 @@ export class SquadLeadFormComponent implements OnInit {
     if (this.squadLeadFeedbackForm.valid) {
       // Navigate to the verification step
       this.store.dispatch(
-        squadLeadFeedbackActions.completeForm({
+        squadLeadFeedbackActions.setFormChange({
           formValue: this.squadLeadFormService.getFormValue(this.squadLeadFeedbackForm) as SquadLeadMemberValue[],
         })
       )
