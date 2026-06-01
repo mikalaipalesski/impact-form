@@ -13,7 +13,10 @@ export class SquadLeadFormService {
    * @returns The initialized SquadLeadForm.
    */
   public createForm(): SquadLeadForm {
-    const form = new FormArray<FormGroup<SquadLeadMemberFormControls>>([]);
+    const form = new FormArray<FormGroup<SquadLeadMemberFormControls>>(
+      [],
+      { validators: [this.memberDuplicateValidator.bind(this)] },
+    );
     form.push(this.createMemberForm());
     return form;
   }
@@ -78,7 +81,7 @@ export class SquadLeadFormService {
       memberForm.controls.member.setValue(memberValue.member);
       memberForm.controls.feedback.setValue(memberValue.feedback);
       memberForm.controls.uuid.setValue(memberValue.uuid);
-      form.push(memberForm, { emitEvent: false });
+      form.push(memberForm);
     });
   }
 
@@ -120,5 +123,30 @@ export class SquadLeadFormService {
     }
 
     return null;
+  }
+
+  private memberDuplicateValidator(control: AbstractControl): ValidationErrors | null {
+    const formArray = control as FormArray<FormGroup<SquadLeadMemberFormControls>>;
+    const duplications = new Set();
+    let hasDuplicates = false;
+  
+    formArray.controls.forEach((group) => {
+      const memberCtrl = group.controls.member;
+      const name = memberCtrl.value?.name;
+
+      if (duplications.has(name)) {
+        group.setErrors({ duplicateMember: 'errors.duplicateMember' });
+        hasDuplicates = true;
+      } else {
+        duplications.add(name);
+        const errors = group.errors;
+        if (errors && errors['duplicateMember']) {
+          delete errors['duplicateMember'];
+        }
+      }
+
+    });
+
+    return hasDuplicates ? { hasDuplicateMembers: true } : null;
   }
 }

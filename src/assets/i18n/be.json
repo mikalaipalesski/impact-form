@@ -58,6 +58,7 @@
   },
   "errors": {
     "memberFormIncomplete": "Адзначце характарыстыкі або дадайце каментарый",
-    "squadLeadFormIncomplete": "Напішыце водгук"
+    "squadLeadFormIncomplete": "Напішыце водгук",
+    "duplicateMember": "Гэты ўдзельнік ужо дададзены"
   }
 }

@@ -17,7 +17,10 @@ export class FormErrorPipe implements PipeTransform {
       return null;
     }
 
-    const error = form.errors?.['formIncomplete'];
-    return typeof error === 'string' ? (this.translate.instant(error) as string) : null;
+    const formIncompleteError = form.errors?.['formIncomplete'];
+    const duplicateMemberError = form.get('member')?.errors?.['duplicateMember'] || form.errors?.['duplicateMember'];
+    
+    const error = formIncompleteError || duplicateMemberError;
+    return typeof error === 'string' ? (this.translate.instant(error) as string) : null;  
   }
 }

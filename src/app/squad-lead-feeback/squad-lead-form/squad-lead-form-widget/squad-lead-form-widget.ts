@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, computed, effect, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, computed, effect, inject, input, output } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { SquadLeadMemberFormControls } from '../squad-lead-form-model';
 import { FormErrorPipe } from '../../../shared/pipes/form-error.pipe';
-import { selectSlFeedbackMembers } from '../../store/selectors';
+import { selectMembersList } from '../../../store/selectors';
 
 @Component({
   selector: 'app-squad-lead-form-widget',
@@ -20,6 +20,7 @@ export class SquadLeadFormWidget implements OnInit {
   public canRemoveMember = input.required<boolean>();
 
   private readonly store = inject(Store);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   protected selectFieldId = computed(
     () => `squad-lead-member-select-${this.memberForm().controls.uuid.value}`,
@@ -30,7 +31,7 @@ export class SquadLeadFormWidget implements OnInit {
   );
 
   removedMember = output<string>();
-  members = this.store.selectSignal(selectSlFeedbackMembers);
+  members = this.store.selectSignal(selectMembersList);
 
   ngOnInit() {
     const memberControl = this.memberForm().controls.member;
@@ -43,6 +44,18 @@ export class SquadLeadFormWidget implements OnInit {
         feedbackControl.disable({ emitEvent: false });
       }
     });
+
+    const syncDuplicateError = () => {
+      if (memberControl.hasError('duplicateMember')) {
+        memberControl.markAsTouched();
+      }
+      this.cdr.markForCheck();
+    };
+
+    // Listen for status changes to catch errors set by the FormArray validator
+    memberControl.statusChanges.subscribe(syncDuplicateError);
+    memberControl.root.valueChanges.subscribe(syncDuplicateError);
+    syncDuplicateError();
   }
 
   protected removeMember(): void {

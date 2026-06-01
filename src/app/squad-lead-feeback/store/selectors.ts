@@ -38,12 +38,3 @@ export const selectFeedbackError = createSelector(
   selectSquadLeadFeedbackState,
   (s) => s.error,
 );
-
-export const selectSlFeedbackMembers = createSelector(
-  selectMembersList,
-  selectFeedbackFormValue,
-  (members, formValue) => {
-    const selectedMembers = formValue.map((m) => m.member.name);
-    return members.filter((m) => !selectedMembers.includes(m.name));
-  }
-)

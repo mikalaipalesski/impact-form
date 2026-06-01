@@ -7,14 +7,18 @@
             type="button"
             class="squad-lead-form-widget__remove-btn"
             (click)="removeMember()"
-            [class.squad-lead-form-widget__remove-error]="!!memberForm().errors?.['formIncomplete']"
+            [class.squad-lead-form-widget__remove-error]="!!memberForm().errors?.['formIncomplete'] || !!memberForm().errors?.['duplicateMember']"
             [title]="'common.remove' | translate" [disabled]="!canRemoveMember()">
             <span class="material-icons"> X </span>
         </button>
     </section>
 
     <section class="squad-lead-form-widget__select-block">
-        <select [id]="selectFieldId()" formControlName="member" class="squad-lead-form-widget__select">
+        <select 
+            [id]="selectFieldId()" 
+            formControlName="member" 
+            class="squad-lead-form-widget__select"
+            [class.squad-lead-form-widget__select--error]="memberForm().controls.member.invalid && memberForm().controls.member.touched">
             <option [ngValue]="null" disabled>
                 {{ 'formWidget.memberNicknamePlaceholder' | translate }}
             </option>

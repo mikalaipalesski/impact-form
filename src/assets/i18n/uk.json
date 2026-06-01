@@ -57,6 +57,7 @@
   },
   "errors": {
     "memberFormIncomplete": "Позначте характеристики або додайте коментар",
-    "squadLeadFormIncomplete": "Напишіть відгук"
+    "squadLeadFormIncomplete": "Напишіть відгук",
+    "duplicateMember": "Цього учасника вже додано"
   }
 }
