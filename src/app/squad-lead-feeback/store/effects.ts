@@ -20,6 +20,15 @@ export class SquadLeadFeedbackEffects {
   //   ),
   // );
 
+  entered$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(squadLeadFeedbackActions.entered),
+      map(() => squadLeadFeedbackActions.navigateToStep({
+        step: SquadLeadFeedbackStep.Instructions,
+      })),
+    ),
+  );
+
   stepChagnged$ = createEffect(() =>
     this.actions$.pipe(
       ofType(squadLeadFeedbackActions.navigateToStep),

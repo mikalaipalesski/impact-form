@@ -13,7 +13,14 @@ export const INITIAL_SQUAD_LEAD_FEEDBACK_STATE: SquadLeadFeedbackState = {
 
 const reducer = createReducer(
 	INITIAL_SQUAD_LEAD_FEEDBACK_STATE,
-	on(squadLeadFeedbackActions.entered, () => ({ ...INITIAL_SQUAD_LEAD_FEEDBACK_STATE })),
+	// on(squadLeadFeedbackActions.entered, () => ({ ...INITIAL_SQUAD_LEAD_FEEDBACK_STATE })),
+	on(squadLeadFeedbackActions.entered, (state) => ({
+		...state,
+		step: SquadLeadFeedbackStep.Instructions,
+		submitInProgress: false,
+		error: null,
+	  	formValue: [],
+	})),
 	on(squadLeadFeedbackActions.setFormChange, (state, { formValue }) => ({
 		...state,
 		formValue,
