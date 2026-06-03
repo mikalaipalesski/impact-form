@@ -1,24 +1,22 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { tap, map } from 'rxjs/operators';
+import { tap, map, switchMap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { Router } from '@angular/router';
 import { squadLeadFeedbackActions } from './actions';
 import { SquadLeadFeedbackStep } from '../model/squad-lead-feedback-state-model';
 import { SQUAD_LEAD_FEEDBACK_STEPS_MAP } from '../constants/squad-lead-feedback-steps-map';
+import { SubmitSLService } from '../submit-sl-service';
+import { Store } from '@ngrx/store';
+import { selectFeedbackFormValue } from './selectors';
+import { selectCurrentSelectedMember } from '../../store/selectors';
 
 @Injectable()
 export class SquadLeadFeedbackEffects {
   private actions$ = inject(Actions);
   private router = inject(Router);
-
-  // submitForm$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(squadLeadFeedbackActions.submitForm),
-  //     tap(({ formValue }) => console.log('Submitting squad lead feedback:', formValue)),
-  //     tap(() => void this.router.navigate(['/'])),
-  //     map(() => squadLeadFeedbackActions.submitFormSucceeded()),
-  //   ),
-  // );
+  private submitSLService = inject(SubmitSLService);
+  private store = inject(Store);
 
   entered$ = createEffect(() =>
     this.actions$.pipe(
@@ -29,7 +27,7 @@ export class SquadLeadFeedbackEffects {
     ),
   );
 
-  stepChagnged$ = createEffect(() =>
+  stepChanged$ = createEffect(() =>
     this.actions$.pipe(
       ofType(squadLeadFeedbackActions.navigateToStep),
       map(({ step }) => step),
@@ -39,6 +37,18 @@ export class SquadLeadFeedbackEffects {
       dispatch: false,
     },
   );
+
+  submitSLForm$ = createEffect(() => this.actions$.pipe(
+    ofType(squadLeadFeedbackActions.submitForm), // Assumes action contains formValue or we select it from store
+    switchMap(() => {
+      const formValue = this.store.selectSignal(selectFeedbackFormValue)();
+      const formSender = this.store.selectSignal(selectCurrentSelectedMember)();
+      return this.submitSLService.submitSLFeedback(formValue, formSender!).pipe(
+        map(() => squadLeadFeedbackActions.submitFormSucceeded()),
+        catchError((error) => of(squadLeadFeedbackActions.submitFormFailed({ error: error.message })))
+      )
+    }),
+  ));
 
   private changeRoute(step: SquadLeadFeedbackStep) {
     const path = SQUAD_LEAD_FEEDBACK_STEPS_MAP.get(step);

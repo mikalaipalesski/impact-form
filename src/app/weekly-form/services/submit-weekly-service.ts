@@ -12,7 +12,7 @@ import { Store } from '@ngrx/store';
 export class SubmitWeeklyService {
   private readonly http = inject(HttpClient);
   private readonly store = inject(Store);
-  private readonly scriptUrl = environment.googleAppsScriptUrl ?? '';
+  private readonly scriptUrl = environment.gsScriptLink ?? '';
   
   submitWeekly(weeklyFormValue: WeeklyFormValue): Observable<string> {
     if (!this.scriptUrl) {
@@ -29,13 +29,17 @@ export class SubmitWeeklyService {
     // Do NOT use 'application/json' as it triggers the CORS pre-flight OPTIONS request.
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'text/plain;charset=utf-8',
+        'Content-Type': 'text/plain',
       }),
       responseType: 'text' as 'json', // This tells Angular not to try and parse the response as JSON
     };
 
     // We MUST stringify the data ourselves because we are lying and saying it's text/plain
-    const payload = JSON.stringify({ values: rows, clientDate });
+    const payload = JSON.stringify({ 
+      formType: 'weekly', 
+      values: rows, 
+      clientDate 
+    });
 
     return this.http.post<string>(this.scriptUrl, payload, httpOptions);
   }
