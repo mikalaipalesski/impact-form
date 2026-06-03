@@ -1,13 +1,14 @@
-<div class="squad-lead-form-widget" [formGroup]="memberForm()">
+@let form = memberForm();
+<div class="squad-lead-form-widget" [formGroup]="form">
     <section class="squad-lead-form-widget__header">
-        @if (memberForm() | formErrorMessage; as formError) {
+        @if (form | formErrorMessage; as formError) {
             <span class="squad-lead-form-widget__error">{{ formError }}</span>
         }
         <button
             type="button"
             class="squad-lead-form-widget__remove-btn"
             (click)="removeMember()"
-            [class.squad-lead-form-widget__remove-error]="!!memberForm().errors?.['formIncomplete'] || !!memberForm().errors?.['duplicateMember']"
+            [class.squad-lead-form-widget__remove-error]="!!form.errors?.['formIncomplete'] || !!form.errors?.['duplicateMember']"
             [title]="'common.remove' | translate" [disabled]="!canRemoveMember()">
             <span class="material-icons"> X </span>
         </button>
@@ -18,7 +19,7 @@
             [id]="selectFieldId()" 
             formControlName="member" 
             class="squad-lead-form-widget__select"
-            [class.squad-lead-form-widget__select--error]="memberForm().controls.member.invalid && memberForm().controls.member.touched">
+            [class.squad-lead-form-widget__select--error]="form.controls.member.invalid && form.controls.member.touched">
             <option [ngValue]="null" disabled>
                 {{ 'formWidget.memberNicknamePlaceholder' | translate }}
             </option>

@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, computed, effect, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, computed, OnDestroy, inject, input, output } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { SquadLeadMemberFormControls } from '../squad-lead-form-model';
 import { FormErrorPipe } from '../../../shared/pipes/form-error.pipe';
 import { selectMembersList } from '../../../store/selectors';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-squad-lead-form-widget',
@@ -15,9 +17,10 @@ import { selectMembersList } from '../../../store/selectors';
   styleUrl: './squad-lead-form-widget.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SquadLeadFormWidget implements OnInit {
+export class SquadLeadFormWidget implements OnInit, OnDestroy {
   public memberForm = input.required<FormGroup<SquadLeadMemberFormControls>>();
   public canRemoveMember = input.required<boolean>();
+  private readonly onDestroyRefecence = new Subject<void>();
 
   private readonly store = inject(Store);
   private readonly cdr = inject(ChangeDetectorRef);
@@ -36,26 +39,20 @@ export class SquadLeadFormWidget implements OnInit {
   ngOnInit() {
     const memberControl = this.memberForm().controls.member;
     const feedbackControl = this.memberForm().controls.feedback;
-
-    memberControl.valueChanges.subscribe((member) => {
+    feedbackControl.disable();
+  
+    memberControl.valueChanges.pipe(takeUntil(this.onDestroyRefecence)).subscribe((member) => {
       if (member) {
-        feedbackControl.enable({ emitEvent: false });
+        feedbackControl.enable();
       } else {
-        feedbackControl.disable({ emitEvent: false });
+        feedbackControl.disable();
       }
     });
+  }
 
-    const syncDuplicateError = () => {
-      if (memberControl.hasError('duplicateMember')) {
-        memberControl.markAsTouched();
-      }
-      this.cdr.markForCheck();
-    };
-
-    // Listen for status changes to catch errors set by the FormArray validator
-    memberControl.statusChanges.subscribe(syncDuplicateError);
-    memberControl.root.valueChanges.subscribe(syncDuplicateError);
-    syncDuplicateError();
+  ngOnDestroy() {
+    this.onDestroyRefecence.next();
+    this.onDestroyRefecence.complete();
   }
 
   protected removeMember(): void {
