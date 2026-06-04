@@ -9,5 +9,6 @@ export const mainStoreActions = createActionGroup({
         LoadMembersSuccess: props<{ members: ImpactMember[] }>(),
         LoadMembersFailed: props<{ error: any }>(),
         SelectCurrentMember: props<{ member: ImpactMember }>(),
+        NavigateToMain: emptyProps(),
     },
 });

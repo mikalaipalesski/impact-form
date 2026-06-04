@@ -50,6 +50,14 @@ export class SquadLeadFeedbackEffects {
     }),
   ));
 
+  submitSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(squadLeadFeedbackActions.submitFormSucceeded),
+      map(() => squadLeadFeedbackActions.navigateToStep({ step: SquadLeadFeedbackStep.Submitted })),
+    ),
+  );
+
+
   private changeRoute(step: SquadLeadFeedbackStep) {
     const path = SQUAD_LEAD_FEEDBACK_STEPS_MAP.get(step);
     if (!path) {

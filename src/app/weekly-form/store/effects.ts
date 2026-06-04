@@ -45,14 +45,6 @@ export class WeeklyFormEffects {
       ),
     { dispatch: false },
   );
-  navigateToMain$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(weeklyFormActions.navigateToMain),
-        tap(() => this.router.navigate(['/'])),
-      ),
-    { dispatch: false },
-  );
 
   submitWeekly$ = createEffect(() =>
     this.actions$.pipe(

@@ -25,10 +25,4 @@ export class SquadLeadFeebackComponent {
   protected currentStep: Signal<SquadLeadFeedbackStep> = this.store.selectSignal(selectors.selectFeedbackStep);
   protected members: Signal<ImpactMember[]> = this.store.selectSignal(mainSelectors.selectMembersList);
   protected readonly SquadLeadFeedbackStep = SquadLeadFeedbackStep;
-
-  selectedMember: ImpactMember | null = null;
-
-  constructor() {
-    this.store.dispatch(squadLeadFeedbackActions.entered());
-  }
 }

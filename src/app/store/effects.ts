@@ -4,11 +4,14 @@ import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { UsersSheetService } from '../shared/services/users-sheet-service';
 import { mainStoreActions } from '../store/actions';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class MainStoreEffects {
   private actions$ = inject(Actions);
   private usersSheetService = inject(UsersSheetService);
+  private router = inject(Router);
 
   entered$ = createEffect(() => this.actions$.pipe(
     ofType(mainStoreActions.entered),
@@ -22,4 +25,14 @@ export class MainStoreEffects {
       catchError(error => of(mainStoreActions.loadMembersFailed({ error }))),
     )),
   ));
+
+   navigateToMain$ = createEffect(
+      () =>
+        this.actions$.pipe(
+          ofType(mainStoreActions.navigateToMain),
+          tap(() => this.router.navigate(['/'])),
+        ),
+      { dispatch: false },
+    );
+  
 }

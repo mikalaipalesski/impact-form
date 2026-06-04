@@ -26,6 +26,10 @@ export const SUQAD_LEAD_FEEDBACK_ROUTES: Routes = [
                 loadComponent: () => import('./squad-lead-review/squad-lead-review').then((m) => m.SquadLeadReviewComponent),
             },
             {
+                path: SquadLeadFeedbackStepPath.Submitted,
+                loadComponent: () => import('../shared/submitted-confirmation/submitted-confirmation').then((m) => m.SubmittedConfirmationComponent),
+            },
+            {
                 path: '**',
                 redirectTo: '',
             },

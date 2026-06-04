@@ -39,7 +39,10 @@ export class SquadLeadFormWidget implements OnInit, OnDestroy {
   ngOnInit() {
     const memberControl = this.memberForm().controls.member;
     const feedbackControl = this.memberForm().controls.feedback;
-    feedbackControl.disable();
+
+    if (!memberControl.value) {
+      feedbackControl.disable();
+    }
   
     memberControl.valueChanges.pipe(takeUntil(this.onDestroyRefecence)).subscribe((member) => {
       if (member) {

@@ -21,7 +21,6 @@ const reducer = createReducer(
     submitInProgress: false,
     error: null,
     formValue: {
-      ...state.formValue,
       impactMemberValues: [],
     },
   })),
@@ -30,7 +29,6 @@ const reducer = createReducer(
     submitInProgress: false,
     error: null,
     formValue: {
-      ...state.formValue,
       impactMemberValues: [],
     },
   })),

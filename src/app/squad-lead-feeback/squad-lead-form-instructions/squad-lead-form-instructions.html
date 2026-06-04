@@ -4,11 +4,11 @@
   </p>
 
   <div class="squad-lead-instructions__actions">
-    <button class="home-page__btn" routerLink="/">
+    <button class="home-page__btn" (click)="onBack()">
       {{ 'common.back' | translate }}
     </button>
     <button class="home-page__btn" (click)="onNext()">
-      {{ 'common.next' | translate }}
+      {{ 'common.start' | translate }}
     </button>
   </div>
 </section>
