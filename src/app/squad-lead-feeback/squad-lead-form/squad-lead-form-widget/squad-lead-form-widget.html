@@ -1,38 +1,47 @@
 @let form = memberForm();
 <div class="squad-lead-form-widget" [formGroup]="form">
-    <section class="squad-lead-form-widget__header">
-        @if (form | formErrorMessage; as formError) {
-            <span class="squad-lead-form-widget__error">{{ formError }}</span>
-        }
-        <button
-            type="button"
-            class="squad-lead-form-widget__remove-btn"
-            (click)="removeMember()"
-            [class.squad-lead-form-widget__remove-error]="!!form.errors?.['formIncomplete'] || !!form.errors?.['duplicateMember']"
-            [title]="'common.remove' | translate" [disabled]="!canRemoveMember()">
-            <span class="material-icons"> X </span>
-        </button>
-    </section>
+  <section class="squad-lead-form-widget__header">
+    @if (form | formErrorMessage; as formError) {
+    <span class="squad-lead-form-widget__error">{{ formError }}</span>
+    }
+    <button
+      type="button"
+      class="squad-lead-form-widget__remove-btn"
+      (click)="removeMember()"
+      [class.squad-lead-form-widget__remove-error]="!!form.errors?.['formIncomplete'] || !!form.errors?.['duplicateMember']"
+      [title]="'common.remove' | translate"
+      [disabled]="!canRemoveMember()"
+    >
+      <span class="material-icons"> X </span>
+    </button>
+  </section>
 
-    <section class="squad-lead-form-widget__select-block">
-        <select 
-            [id]="selectFieldId()" 
-            formControlName="member" 
-            class="squad-lead-form-widget__select"
-            [class.squad-lead-form-widget__select--error]="form.controls.member.invalid && form.controls.member.touched">
-            <option [ngValue]="null" disabled>
-                {{ 'formWidget.memberNicknamePlaceholder' | translate }}
-            </option>
-            @for (member of members(); track member.name) {
-            <option [ngValue]="member">{{ member.name }}</option>
-            }
-        </select>
-    </section>
+  <section class="squad-lead-form-widget__select-block">
+    <select
+      [id]="selectFieldId()"
+      formControlName="member"
+      class="squad-lead-form-widget__select"
+      [class.squad-lead-form-widget__select--error]="form.controls.member.invalid && form.controls.member.touched"
+    >
+      <option [ngValue]="null" disabled>
+        {{ 'formWidget.memberNicknamePlaceholder' | translate }}
+      </option>
+      @for (member of members(); track member.name) {
+      <option [ngValue]="member">{{ member.name }}</option>
+      }
+    </select>
+  </section>
 
-    <section class="squad-lead-form-widget__text">
-        <label class="squad-lead-form-widget__label" [for]="feedbackFieldId()">{{ 'formWidget.comments' | translate
-            }}</label>
-        <textarea [id]="feedbackFieldId()" formControlName="feedback" class="squad-lead-form-widget__textarea"
-            [placeholder]="'formWidget.comments' | translate" rows="4"></textarea>
-    </section>
+  <section class="squad-lead-form-widget__text">
+    <label class="squad-lead-form-widget__label" [for]="feedbackFieldId()"
+      >{{ 'formWidget.comments' | translate }}</label
+    >
+    <textarea
+      [id]="feedbackFieldId()"
+      formControlName="feedback"
+      class="squad-lead-form-widget__textarea"
+      [placeholder]="'formWidget.comments' | translate"
+      rows="4"
+    ></textarea>
+  </section>
 </div>

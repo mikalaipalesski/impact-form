@@ -1,7 +1,18 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { ImpactMember } from '../../model/member-model';
-import { SquadLeadForm, SquadLeadMemberFormControls, SquadLeadMemberValue } from './squad-lead-form-model';
+import {
+  SquadLeadForm,
+  SquadLeadMemberFormControls,
+  SquadLeadMemberValue,
+} from './squad-lead-form-model';
 import { v1 as uuid } from 'uuid';
 
 @Injectable({
@@ -9,10 +20,9 @@ import { v1 as uuid } from 'uuid';
 })
 export class SquadLeadFormService {
   public createForm(): SquadLeadForm {
-    const form = new FormArray<FormGroup<SquadLeadMemberFormControls>>(
-      [],
-      { validators: [this.memberDuplicateValidator.bind(this)] },
-    );
+    const form = new FormArray<FormGroup<SquadLeadMemberFormControls>>([], {
+      validators: [this.memberDuplicateValidator.bind(this)],
+    });
     form.push(this.createMemberForm());
     return form;
   }
@@ -27,7 +37,9 @@ export class SquadLeadFormService {
       return;
     }
 
-    const index = form.controls.findIndex((memberForm) => memberForm.controls.uuid.value === memberUuid);
+    const index = form.controls.findIndex(
+      (memberForm) => memberForm.controls.uuid.value === memberUuid,
+    );
     if (index !== -1) {
       form.removeAt(index);
     }
@@ -60,21 +72,23 @@ export class SquadLeadFormService {
     });
   }
 
-
   private createMemberForm(): FormGroup<SquadLeadMemberFormControls> {
-    const form = new FormGroup<SquadLeadMemberFormControls>({
-      member: new FormControl<ImpactMember | null>(null, {
-        nonNullable: true,
-        validators: Validators.required,
-      }),
-      feedback: new FormControl<string>('', {
-        nonNullable: true,
-      }),
-      uuid: new FormControl<string>(uuid(), {
-        nonNullable: true,
-        validators: Validators.required,
-      }),
-    }, { validators: [this.memberFormValidator] });
+    const form = new FormGroup<SquadLeadMemberFormControls>(
+      {
+        member: new FormControl<ImpactMember | null>(null, {
+          nonNullable: true,
+          validators: Validators.required,
+        }),
+        feedback: new FormControl<string>('', {
+          nonNullable: true,
+        }),
+        uuid: new FormControl<string>(uuid(), {
+          nonNullable: true,
+          validators: Validators.required,
+        }),
+      },
+      { validators: [this.memberFormValidator] },
+    );
 
     return form;
   }
@@ -100,7 +114,7 @@ export class SquadLeadFormService {
     const formArray = control as FormArray<FormGroup<SquadLeadMemberFormControls>>;
     const duplications = new Set();
     let hasDuplicates = false;
-  
+
     formArray.controls.forEach((group) => {
       const memberCtrl = group.controls.member;
       const name = memberCtrl.value?.name;
@@ -115,7 +129,6 @@ export class SquadLeadFormService {
           delete errors['duplicateMember'];
         }
       }
-
     });
 
     return hasDuplicates ? { hasDuplicateMembers: true } : null;

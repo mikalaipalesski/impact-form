@@ -10,9 +10,7 @@
     <h2 class="squad-lead-review__nickname">{{ entry.member.name }}</h2>
     @if (entry.member.rank) {
     <p class="squad-lead-review__rank">{{ entry.member.rank }}</p>
-    }
-
-    @if (entry.feedback.trim()) {
+    } @if (entry.feedback.trim()) {
     <div class="squad-lead-review__message">
       <span class="squad-lead-review__message-label">{{ 'review.commentLabel' | translate }}</span>
       <p class="squad-lead-review__message-text">{{ entry.feedback }}</p>

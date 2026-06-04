@@ -1,5 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, computed, OnDestroy, inject, input, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  computed,
+  OnDestroy,
+  inject,
+  input,
+  output,
+} from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
@@ -43,7 +53,7 @@ export class SquadLeadFormWidget implements OnInit, OnDestroy {
     if (!memberControl.value) {
       feedbackControl.disable();
     }
-  
+
     memberControl.valueChanges.pipe(takeUntil(this.onDestroyRefecence)).subscribe((member) => {
       if (member) {
         feedbackControl.enable();

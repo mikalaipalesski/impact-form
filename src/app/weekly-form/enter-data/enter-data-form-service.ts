@@ -141,7 +141,7 @@ export class EnterDataFormService {
     const formArray = control as FormArray<FormGroup<MemberValueFormControls>>;
     const duplications = new Set();
     let hasDuplicates = false;
-  
+
     formArray.controls.forEach((group) => {
       const memberCtrl = group.controls.member;
       const name = memberCtrl.value?.name;
@@ -156,7 +156,6 @@ export class EnterDataFormService {
           delete errors['duplicateMember'];
         }
       }
-
     });
 
     return hasDuplicates ? { hasDuplicateMembers: true } : null;

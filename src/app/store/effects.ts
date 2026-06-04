@@ -13,26 +13,31 @@ export class MainStoreEffects {
   private usersSheetService = inject(UsersSheetService);
   private router = inject(Router);
 
-  entered$ = createEffect(() => this.actions$.pipe(
-    ofType(mainStoreActions.entered),
-    mergeMap(() => [mainStoreActions.loadMembers()]),
-  ));
+  entered$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(mainStoreActions.entered),
+      mergeMap(() => [mainStoreActions.loadMembers()]),
+    ),
+  );
 
-  loadMembers$ = createEffect(() => this.actions$.pipe(
-    ofType(mainStoreActions.loadMembers),
-    mergeMap(() => this.usersSheetService.loadUsers().pipe(
-      map(members => mainStoreActions.loadMembersSuccess({ members })),
-      catchError(error => of(mainStoreActions.loadMembersFailed({ error }))),
-    )),
-  ));
-
-   navigateToMain$ = createEffect(
-      () =>
-        this.actions$.pipe(
-          ofType(mainStoreActions.navigateToMain),
-          tap(() => this.router.navigate(['/'])),
+  loadMembers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(mainStoreActions.loadMembers),
+      mergeMap(() =>
+        this.usersSheetService.loadUsers().pipe(
+          map((members) => mainStoreActions.loadMembersSuccess({ members })),
+          catchError((error) => of(mainStoreActions.loadMembersFailed({ error }))),
         ),
-      { dispatch: false },
-    );
-  
+      ),
+    ),
+  );
+
+  navigateToMain$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(mainStoreActions.navigateToMain),
+        tap(() => this.router.navigate(['/'])),
+      ),
+    { dispatch: false },
+  );
 }

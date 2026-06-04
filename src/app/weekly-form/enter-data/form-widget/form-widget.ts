@@ -35,7 +35,7 @@ export class FormWidgetComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const memberControl = this.memberForm().controls.member;
     const feedbackControl = this.memberForm().controls.messageComment;
-    
+
     if (!memberControl.value) {
       feedbackControl.disable();
     }

@@ -1,12 +1,12 @@
 <section class="squad-lead-feedback-steps content-card">
-	<p class="suqad-lead-feedbackl-steps__step">
-		@if (currentStep() !== SquadLeadFeedbackStep.Submitted) { {{ 'common.stepProgress' | translate: {
-        current: stepProgress().current, total: stepProgress().total } }} } @else { {{
-        'weekly.submittedStepLabel' | translate }} }
-	</p>
-	<h1>{{ 'squadLeadFeedback.title' | translate }}</h1>
+  <p class="suqad-lead-feedbackl-steps__step">
+    @if (currentStep() !== SquadLeadFeedbackStep.Submitted) { {{ 'common.stepProgress' | translate:
+    { current: stepProgress().current, total: stepProgress().total } }} } @else { {{
+    'weekly.submittedStepLabel' | translate }} }
+  </p>
+  <h1>{{ 'squadLeadFeedback.title' | translate }}</h1>
 </section>
 
 <div class="squad-lead-feedback-content">
-	<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>

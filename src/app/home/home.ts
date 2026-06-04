@@ -44,9 +44,7 @@ export class HomeComponent implements OnInit {
 
     this.memberForm.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
       if (value.enlistedMember) {
-        this.store.dispatch(
-          mainStoreActions.selectCurrentMember({ member: value.enlistedMember }),
-        );
+        this.store.dispatch(mainStoreActions.selectCurrentMember({ member: value.enlistedMember }));
       }
     });
   }

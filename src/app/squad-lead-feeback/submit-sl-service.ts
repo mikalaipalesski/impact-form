@@ -12,7 +12,10 @@ export class SubmitSLService {
   private readonly http = inject(HttpClient);
   private readonly scriptUrl = environment.gsScriptLink ?? '';
 
-  submitSLFeedback(feedbackData: SquadLeadMemberValue[], formSender: ImpactMember): Observable<string> {
+  submitSLFeedback(
+    feedbackData: SquadLeadMemberValue[],
+    formSender: ImpactMember,
+  ): Observable<string> {
     if (!this.scriptUrl) {
       throw new Error('Google Apps Script URL is not configured.');
     }
@@ -31,22 +34,21 @@ export class SubmitSLService {
       responseType: 'text' as 'json',
     };
 
-    const payload = JSON.stringify({ 
-      formType: 'sl', 
-      values: rows, 
-      clientDate 
+    const payload = JSON.stringify({
+      formType: 'sl',
+      values: rows,
+      clientDate,
     });
 
     return this.http.post<string>(this.scriptUrl, payload, httpOptions);
   }
 
-  private buildRows(feedbackData: SquadLeadMemberValue[], formSender: ImpactMember): (string | number)[][] {
+  private buildRows(
+    feedbackData: SquadLeadMemberValue[],
+    formSender: ImpactMember,
+  ): (string | number)[][] {
     const reporterName = formSender.name ?? 'Unknown';
 
-    return feedbackData.map((entry) => [
-      reporterName,
-      entry.member.name,
-      entry.feedback,
-    ]);
+    return feedbackData.map((entry) => [reporterName, entry.member.name, entry.feedback]);
   }
 }

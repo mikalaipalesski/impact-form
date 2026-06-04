@@ -18,7 +18,9 @@ export class SquadLeadReviewComponent {
   private readonly store = inject(Store);
 
   protected readonly feedbackValue = this.store.selectSignal(selectors.selectFeedbackFormValue);
-  protected readonly submitInProgress = this.store.selectSignal(selectors.selectFeedbackSubmitInProgress);
+  protected readonly submitInProgress = this.store.selectSignal(
+    selectors.selectFeedbackSubmitInProgress,
+  );
 
   protected onBack(): void {
     this.store.dispatch(
@@ -27,8 +29,6 @@ export class SquadLeadReviewComponent {
   }
 
   protected onSubmit(): void {
-    this.store.dispatch(
-      squadLeadFeedbackActions.submitForm(),
-    );
+    this.store.dispatch(squadLeadFeedbackActions.submitForm());
   }
 }

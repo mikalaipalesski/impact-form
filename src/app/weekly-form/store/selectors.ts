@@ -17,7 +17,10 @@ export const selectCurrentStep = createSelector(
   (state) => state.currentStep,
 );
 
-export const selectWeeklyFormValue = createSelector(selectWeeklyFormState, (state) => state.formValue);
+export const selectWeeklyFormValue = createSelector(
+  selectWeeklyFormState,
+  (state) => state.formValue,
+);
 
 export const selectFormValue = createSelector(
   selectWeeklyFormState,

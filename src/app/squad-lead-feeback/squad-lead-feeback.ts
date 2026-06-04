@@ -22,7 +22,11 @@ export class SquadLeadFeebackComponent {
   private store = inject(Store);
 
   protected stepProgress = this.store.selectSignal(selectors.selectIsLastStep);
-  protected currentStep: Signal<SquadLeadFeedbackStep> = this.store.selectSignal(selectors.selectFeedbackStep);
-  protected members: Signal<ImpactMember[]> = this.store.selectSignal(mainSelectors.selectMembersList);
+  protected currentStep: Signal<SquadLeadFeedbackStep> = this.store.selectSignal(
+    selectors.selectFeedbackStep,
+  );
+  protected members: Signal<ImpactMember[]> = this.store.selectSignal(
+    mainSelectors.selectMembersList,
+  );
   protected readonly SquadLeadFeedbackStep = SquadLeadFeedbackStep;
 }

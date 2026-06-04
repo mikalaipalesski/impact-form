@@ -1,14 +1,14 @@
-
 <form [formArray]="squadLeadFeedbackForm" class="squad-lead-form__form">
-  @for (slFeedbackForm of squadLeadFeedbackForm.controls; track slFeedbackForm.controls.uuid.value) {
-    <section class="content-card">
-      <app-squad-lead-form-widget
-        [memberForm]="slFeedbackForm"
-        [canRemoveMember]="squadLeadFeedbackForm!.controls.length > 1"
-        (removedMember)="onRemoveWidget($event)"
-      ></app-squad-lead-form-widget>
-    </section>
-    
+  @for (slFeedbackForm of squadLeadFeedbackForm.controls; track slFeedbackForm.controls.uuid.value)
+  {
+  <section class="content-card">
+    <app-squad-lead-form-widget
+      [memberForm]="slFeedbackForm"
+      [canRemoveMember]="squadLeadFeedbackForm!.controls.length > 1"
+      (removedMember)="onRemoveWidget($event)"
+    ></app-squad-lead-form-widget>
+  </section>
+
   }
 </form>
 
@@ -17,9 +17,7 @@
 </button>
 
 <div class="squad-lead-form__footer">
-  <button type="button" (click)="onBack()">
-    {{ 'common.reset' | translate }}
-  </button>
+  <button type="button" (click)="onBack()">{{ 'common.reset' | translate }}</button>
   <button [disabled]="!squadLeadFeedbackForm.valid" type="button" (click)="onNext()">
     {{ 'common.next' | translate }}
   </button>

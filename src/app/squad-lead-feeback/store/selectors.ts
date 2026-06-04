@@ -6,10 +6,7 @@ import { selectMembersList } from '../../store/selectors';
 export const { name: squadLeadFeedbackFeatureKey, selectSquadLeadFeedbackState } =
   squadLeadFeedbackFeature;
 
-export const selectFeedbackStep = createSelector(
-  selectSquadLeadFeedbackState,
-  (s) => s.step,
-);
+export const selectFeedbackStep = createSelector(selectSquadLeadFeedbackState, (s) => s.step);
 
 const WIZARD_STEPS: SquadLeadFeedbackStep[] = [
   SquadLeadFeedbackStep.Instructions,
@@ -22,7 +19,8 @@ export const selectIsLastStep = createSelector(selectFeedbackStep, (currentStep)
   return {
     current: idx >= 0 ? idx + 1 : WIZARD_STEPS.length,
     total: WIZARD_STEPS.length,
-  }});
+  };
+});
 
 export const selectFeedbackFormValue = createSelector(
   selectSquadLeadFeedbackState,
@@ -34,7 +32,4 @@ export const selectFeedbackSubmitInProgress = createSelector(
   (s) => s.submitInProgress,
 );
 
-export const selectFeedbackError = createSelector(
-  selectSquadLeadFeedbackState,
-  (s) => s.error,
-);
+export const selectFeedbackError = createSelector(selectSquadLeadFeedbackState, (s) => s.error);

@@ -31,7 +31,10 @@ export class SquadLeadFormComponent implements OnInit {
     const formValue = this.store.selectSignal(selectors.selectFeedbackFormValue);
 
     if (formValue().length) {
-      this.squadLeadFormService.setFormValue(this.squadLeadFeedbackForm, formValue() as SquadLeadMemberValue[]);
+      this.squadLeadFormService.setFormValue(
+        this.squadLeadFeedbackForm,
+        formValue() as SquadLeadMemberValue[],
+      );
     }
   }
 
@@ -58,9 +61,11 @@ export class SquadLeadFormComponent implements OnInit {
       // Navigate to the verification step
       this.store.dispatch(
         squadLeadFeedbackActions.setFormChange({
-          formValue: this.squadLeadFormService.getFormValue(this.squadLeadFeedbackForm) as SquadLeadMemberValue[],
-        })
-      )
+          formValue: this.squadLeadFormService.getFormValue(
+            this.squadLeadFeedbackForm,
+          ) as SquadLeadMemberValue[],
+        }),
+      );
       this.store.dispatch(
         squadLeadFeedbackActions.navigateToStep({ step: SquadLeadFeedbackStep.VerifySubmit }),
       );

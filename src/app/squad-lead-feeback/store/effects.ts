@@ -21,34 +21,41 @@ export class SquadLeadFeedbackEffects {
   entered$ = createEffect(() =>
     this.actions$.pipe(
       ofType(squadLeadFeedbackActions.entered),
-      map(() => squadLeadFeedbackActions.navigateToStep({
-        step: SquadLeadFeedbackStep.Instructions,
-      })),
+      map(() =>
+        squadLeadFeedbackActions.navigateToStep({
+          step: SquadLeadFeedbackStep.Instructions,
+        }),
+      ),
     ),
   );
 
-  stepChanged$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(squadLeadFeedbackActions.navigateToStep),
-      map(({ step }) => step),
-      tap((step: SquadLeadFeedbackStep) => this.changeRoute(step)),
-    ),
+  stepChanged$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(squadLeadFeedbackActions.navigateToStep),
+        map(({ step }) => step),
+        tap((step: SquadLeadFeedbackStep) => this.changeRoute(step)),
+      ),
     {
       dispatch: false,
     },
   );
 
-  submitSLForm$ = createEffect(() => this.actions$.pipe(
-    ofType(squadLeadFeedbackActions.submitForm), // Assumes action contains formValue or we select it from store
-    switchMap(() => {
-      const formValue = this.store.selectSignal(selectFeedbackFormValue)();
-      const formSender = this.store.selectSignal(selectCurrentSelectedMember)();
-      return this.submitSLService.submitSLFeedback(formValue, formSender!).pipe(
-        map(() => squadLeadFeedbackActions.submitFormSucceeded()),
-        catchError((error) => of(squadLeadFeedbackActions.submitFormFailed({ error: error.message })))
-      )
-    }),
-  ));
+  submitSLForm$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(squadLeadFeedbackActions.submitForm), // Assumes action contains formValue or we select it from store
+      switchMap(() => {
+        const formValue = this.store.selectSignal(selectFeedbackFormValue)();
+        const formSender = this.store.selectSignal(selectCurrentSelectedMember)();
+        return this.submitSLService.submitSLFeedback(formValue, formSender!).pipe(
+          map(() => squadLeadFeedbackActions.submitFormSucceeded()),
+          catchError((error) =>
+            of(squadLeadFeedbackActions.submitFormFailed({ error: error.message })),
+          ),
+        );
+      }),
+    ),
+  );
 
   submitSuccess$ = createEffect(() =>
     this.actions$.pipe(
@@ -56,7 +63,6 @@ export class SquadLeadFeedbackEffects {
       map(() => squadLeadFeedbackActions.navigateToStep({ step: SquadLeadFeedbackStep.Submitted })),
     ),
   );
-
 
   private changeRoute(step: SquadLeadFeedbackStep) {
     const path = SQUAD_LEAD_FEEDBACK_STEPS_MAP.get(step);

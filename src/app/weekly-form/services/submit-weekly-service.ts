@@ -13,7 +13,7 @@ export class SubmitWeeklyService {
   private readonly http = inject(HttpClient);
   private readonly store = inject(Store);
   private readonly scriptUrl = environment.gsScriptLink ?? '';
-  
+
   submitWeekly(weeklyFormValue: WeeklyFormValue): Observable<string> {
     if (!this.scriptUrl) {
       throw new Error('Google Apps Script URL is not configured.');
@@ -35,10 +35,10 @@ export class SubmitWeeklyService {
     };
 
     // We MUST stringify the data ourselves because we are lying and saying it's text/plain
-    const payload = JSON.stringify({ 
-      formType: 'weekly', 
-      values: rows, 
-      clientDate 
+    const payload = JSON.stringify({
+      formType: 'weekly',
+      values: rows,
+      clientDate,
     });
 
     return this.http.post<string>(this.scriptUrl, payload, httpOptions);

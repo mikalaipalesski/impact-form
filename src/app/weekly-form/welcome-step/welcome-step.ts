@@ -19,9 +19,7 @@ export class WelcomeStepComponent implements OnInit {
   }
 
   start() {
-    this.store.dispatch(
-      weeklyFormActions.navigateToStep({ step: WeeklyFormStep.EnterData }),
-    );
+    this.store.dispatch(weeklyFormActions.navigateToStep({ step: WeeklyFormStep.EnterData }));
   }
 
   onBack(): void {
