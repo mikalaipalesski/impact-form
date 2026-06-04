@@ -1,0 +1,1 @@
+var i=(O=>(O.Communication="communication",O.Discipline="discipline",O.Effectiveness="effectiveness",O.Integration="integration",O))(i||{}),t=(O=>(O.Welcome="welcome",O.EnterData="enter-data",O.ReviewSubmit="review_submit",O.Submitted="submitted",O))(t||{});export{i as a,t as b};
