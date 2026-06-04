@@ -34,10 +34,12 @@
       >
         {{ "landing.formWeekly" | translate }}
       </button>
-      <button type="button" class="home-page__btn" disabled>
-        {{ "landing.formPersistence" | translate }}
-      </button>
-      <button type="button" class="home-page__btn" disabled>
+      <button
+        type="button"
+        class="home-page__btn"
+        [disabled]="!currentMember()"
+        (click)="goToSlFeedbackForm()"
+      >
         {{ "landing.formSlFeedback" | translate }}
       </button>
     </div>

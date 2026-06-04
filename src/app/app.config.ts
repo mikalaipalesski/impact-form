@@ -8,7 +8,11 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { routes } from './app.routes';
 import { weeklyFormFeature } from './weekly-form/store/reuducer';
 import { WeeklyFormEffects } from './weekly-form/store/effects';
+import { squadLeadFeedbackFeature } from './squad-lead-feeback/store/reducer';
+import { SquadLeadFeedbackEffects } from './squad-lead-feeback/store/effects';
 import { translateAppProviders } from './core/i18n/translate.providers';
+import { mainStoreFeature } from './store/reducer';
+import { MainStoreEffects } from './store/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,8 +22,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore({
       [weeklyFormFeature.name]: weeklyFormFeature.reducer,
+      [mainStoreFeature.name]: mainStoreFeature.reducer,
+      [squadLeadFeedbackFeature.name]: squadLeadFeedbackFeature.reducer,
     }),
-    provideEffects(WeeklyFormEffects),
+    provideEffects(WeeklyFormEffects, SquadLeadFeedbackEffects, MainStoreEffects),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),

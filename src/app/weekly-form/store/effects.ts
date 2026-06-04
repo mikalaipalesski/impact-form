@@ -2,7 +2,6 @@ import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap, mergeMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { UsersSheetService } from '../services/users-sheet-service';
 import { weeklyFormActions } from './actions';
 import { Router } from '@angular/router';
 import { WeeklyFormStep } from '../model/weekly-stepper-model';
@@ -11,7 +10,6 @@ import { SubmitWeeklyService } from '../services/submit-weekly-service';
 @Injectable()
 export class WeeklyFormEffects {
   private actions$ = inject(Actions);
-  private usersSheetService = inject(UsersSheetService);
   private router = inject(Router);
   private submitWeeklyService = inject(SubmitWeeklyService);
 
@@ -19,18 +17,6 @@ export class WeeklyFormEffects {
     this.actions$.pipe(
       ofType(weeklyFormActions.entered),
       mergeMap(() => [weeklyFormActions.navigateToStep({ step: WeeklyFormStep.Welcome })]),
-    ),
-  );
-
-  loadMembers$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(weeklyFormActions.loadMembers),
-      mergeMap(() =>
-        this.usersSheetService.loadUsers().pipe(
-          map((members) => weeklyFormActions.loadMembersSuccess({ members })),
-          catchError((error) => of(weeklyFormActions.loadMembersFailed({ error }))),
-        ),
-      ),
     ),
   );
 
@@ -56,14 +42,6 @@ export class WeeklyFormEffects {
               this.router.navigate(['/weekly-form', WeeklyFormStep.Welcome]);
           }
         }),
-      ),
-    { dispatch: false },
-  );
-  navigateToMain$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(weeklyFormActions.navigateToMain),
-        tap(() => this.router.navigate(['/'])),
       ),
     { dispatch: false },
   );

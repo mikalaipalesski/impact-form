@@ -1,0 +1,28 @@
+<app-loading-overlay [visible]="submitInProgress()" />
+
+<section class="squad-lead-review">
+  <header class="squad-lead-review__header content-card">
+    <p class="squad-lead-review__intro">{{ 'review.intro' | translate }}</p>
+  </header>
+
+  @for (entry of feedbackValue(); track entry.uuid ?? entry.member.name + $index) {
+  <article class="squad-lead-review__member content-card">
+    <h2 class="squad-lead-review__nickname">{{ entry.member.name }}</h2>
+    @if (entry.member.rank) {
+    <p class="squad-lead-review__rank">{{ entry.member.rank }}</p>
+    } @if (entry.feedback.trim()) {
+    <div class="squad-lead-review__message">
+      <span class="squad-lead-review__message-label">{{ 'review.commentLabel' | translate }}</span>
+      <p class="squad-lead-review__message-text">{{ entry.feedback }}</p>
+    </div>
+    }
+  </article>
+  }
+
+  <div class="squad-lead-review__actions">
+    <button type="button" (click)="onBack()">{{ 'common.back' | translate }}</button>
+    <button type="button" class="squad-lead-review__submit" (click)="onSubmit()">
+      {{ 'review.submit' | translate }}
+    </button>
+  </div>
+</section>

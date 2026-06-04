@@ -77,6 +77,12 @@ button {
       color: var(--color-grey);
     }
   }
+
+  .error {
+    color: var(--color-primary);
+    background: var(--color-bg-error);
+    border-color: var(--color-bg-error);
+  }
 }
 
 select {

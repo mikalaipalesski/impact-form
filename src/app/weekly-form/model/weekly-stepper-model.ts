@@ -1,8 +1,3 @@
-export interface ImpactMember {
-  name: string;
-  rank: string;
-}
-
 export enum GameValues {
   Communication = 'communication',
   Discipline = 'discipline',

@@ -8,15 +8,17 @@ import {
   Validators,
 } from '@angular/forms';
 import { EnterDataForm, MemberValue, MemberValueFormControls } from '../model/weekly-form-model';
-import { ImpactMember } from '../model/weekly-stepper-model';
 import { v1 as uuid } from 'uuid';
+import { ImpactMember } from '../../model/member-model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EnterDataFormService {
   public createForm(): EnterDataForm {
-    const form = new FormArray<FormGroup<MemberValueFormControls>>([]);
+    const form = new FormArray<FormGroup<MemberValueFormControls>>([], {
+      validators: [this.memberDuplicateValidator.bind(this)],
+    });
 
     form.push(this.createMemberForm());
 
@@ -133,5 +135,29 @@ export class EnterDataFormService {
     }
 
     return null;
+  }
+
+  private memberDuplicateValidator(control: AbstractControl): ValidationErrors | null {
+    const formArray = control as FormArray<FormGroup<MemberValueFormControls>>;
+    const duplications = new Set();
+    let hasDuplicates = false;
+
+    formArray.controls.forEach((group) => {
+      const memberCtrl = group.controls.member;
+      const name = memberCtrl.value?.name;
+
+      if (duplications.has(name)) {
+        group.setErrors({ duplicateMember: 'errors.duplicateMember' });
+        hasDuplicates = true;
+      } else {
+        duplications.add(name);
+        const errors = group.errors;
+        if (errors && errors['duplicateMember']) {
+          delete errors['duplicateMember'];
+        }
+      }
+    });
+
+    return hasDuplicates ? { hasDuplicateMembers: true } : null;
   }
 }

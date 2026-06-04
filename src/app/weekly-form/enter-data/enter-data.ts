@@ -20,7 +20,6 @@ export class EnterDataComponent implements OnInit {
   private store = inject(Store);
   private enterDataFormService = inject(EnterDataFormService);
 
-  members$ = this.store.select(selectors.selectMembers);
   currentMembersForm = this.store.selectSignal(selectors.selectFormValue);
   protected enterDataForm!: EnterDataForm;
 

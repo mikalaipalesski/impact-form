@@ -8,13 +8,17 @@
     <button
       (click)="removeMember()"
       [disabled]="!canRemoveMember()"
-      [class.form-widget__remove-error]="!!form.errors?.['formIncomplete']"
+      [class.form-widget__remove-error]="!!form.errors?.['formIncomplete'] || !!form.errors?.['duplicateMember']"
     >
       X
     </button>
   </section>
   <section class="form-widget__select_block">
-    <select class="form-widget__member-select" formControlName="member">
+    <select
+      class="form-widget__member-select"
+      formControlName="member"
+      [class.form-widget__member-select--error]="form.controls.member.invalid && form.controls.member.touched"
+    >
       <option [ngValue]="null" disabled hidden>
         {{ "formWidget.memberNicknamePlaceholder" | translate }}
       </option>

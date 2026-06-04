@@ -1,0 +1,10 @@
+:host {
+  .squad-lead-instructions {
+    &__actions {
+      display: flex;
+      margin-top: 1.5rem;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+}

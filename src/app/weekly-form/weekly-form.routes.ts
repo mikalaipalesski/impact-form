@@ -15,11 +15,6 @@ export const WEEKLY_FORM_ROUTES: Routes = [
         redirectTo: 'welcome',
       },
       {
-        path: 'choose-name',
-        pathMatch: 'full',
-        redirectTo: WeeklyFormStep.Welcome,
-      },
-      {
         path: WeeklyFormStep.Welcome,
         loadComponent: () =>
           import('./welcome-step/welcome-step').then((m) => m.WelcomeStepComponent),
