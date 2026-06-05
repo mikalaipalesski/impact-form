@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { errorScreenGuard } from './error-screen/error-screen.guard';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,11 @@ export const routes: Routes = [
       import('./squad-lead-feeback/squad-lead-feedback.routes').then(
         (m) => m.SUQAD_LEAD_FEEDBACK_ROUTES,
       ),
+  },
+  {
+    path: 'error',
+    loadComponent: () => import('./error-screen/error-screen').then((m) => m.ErrorScreenComponent),
+    canActivate: [errorScreenGuard],
   },
   {
     path: '**',

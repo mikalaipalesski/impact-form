@@ -6,7 +6,7 @@ export const MAIN_STORE_KEY = 'main';
 
 export const INITIAL_MAIN_STORE: MainStoreState = {
   members: [],
-  membersLoading: false,
+  membersLoading: true,
   membersLoadingError: null,
   currentSelectedMember: null,
 };

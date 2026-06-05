@@ -1,8 +1,6 @@
 import { inject, Pipe, PipeTransform } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { MemberValueFormControls } from '../../weekly-form/model/weekly-form-model';
-import { SquadLeadMemberFormControls } from '../../squad-lead-feeback/squad-lead-form/squad-lead-form-model';
 
 @Pipe({
   name: 'formErrorMessage',

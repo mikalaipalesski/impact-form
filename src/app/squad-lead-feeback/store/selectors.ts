@@ -1,7 +1,6 @@
 import { createSelector } from '@ngrx/store';
 import { squadLeadFeedbackFeature } from './reducer';
 import { SquadLeadFeedbackStep } from '../model/squad-lead-feedback-state-model';
-import { selectMembersList } from '../../store/selectors';
 
 export const { name: squadLeadFeedbackFeatureKey, selectSquadLeadFeedbackState } =
   squadLeadFeedbackFeature;

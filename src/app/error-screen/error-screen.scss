@@ -1,0 +1,32 @@
+.error-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+
+  &__logo {
+    margin-bottom: 3rem;
+    user-select: none;
+  }
+
+  &__message {
+    margin-bottom: 3rem;
+    max-width: 600px;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  &__textarea {
+    resize: none;
+  }
+}

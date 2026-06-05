@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { SquadLeadFeedbackStep } from '../model/squad-lead-feedback-state-model';
@@ -9,7 +8,7 @@ import { mainStoreActions } from '../../store/actions';
 @Component({
   selector: 'app-squad-lead-form-instructions',
   standalone: true,
-  imports: [TranslateModule, RouterLink],
+  imports: [TranslateModule],
   templateUrl: './squad-lead-form-instructions.html',
   styleUrl: './squad-lead-form-instructions.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

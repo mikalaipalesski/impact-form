@@ -49,9 +49,7 @@ export class SquadLeadFeedbackEffects {
         const formSender = this.store.selectSignal(selectCurrentSelectedMember)();
         return this.submitSLService.submitSLFeedback(formValue, formSender!).pipe(
           map(() => squadLeadFeedbackActions.submitFormSucceeded()),
-          catchError((error) =>
-            of(squadLeadFeedbackActions.submitFormFailed({ error: error.message })),
-          ),
+          catchError((error) => of(squadLeadFeedbackActions.submitFormFailed({ error }))),
         );
       }),
     ),
@@ -62,6 +60,15 @@ export class SquadLeadFeedbackEffects {
       ofType(squadLeadFeedbackActions.submitFormSucceeded),
       map(() => squadLeadFeedbackActions.navigateToStep({ step: SquadLeadFeedbackStep.Submitted })),
     ),
+  );
+
+  submitFormFailedNavigation$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(squadLeadFeedbackActions.submitFormFailed),
+        tap(({ error }) => this.router.navigate(['/error'], { state: { error } })),
+      ),
+    { dispatch: false },
   );
 
   private changeRoute(step: SquadLeadFeedbackStep) {

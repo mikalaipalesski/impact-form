@@ -60,6 +60,9 @@
   "errors": {
     "memberFormIncomplete": "Адзначце характарыстыкі або дадайце каментарый",
     "squadLeadFormIncomplete": "Напішыце водгук",
-    "duplicateMember": "Гэты ўдзельнік ужо дададзены"
+    "duplicateMember": "Гэты ўдзельнік ужо дададзены",
+    "unexpectedError": "Узнікла нечаканая памылка, калі ласка, звяжыцеся з Palesski, каб падзяліцца падрабязнасцямі.",
+    "copyError": "Скапіяваць памылку",
+    "errorDetailsPlaceholder": "Падрабязнасці памылкі з'явяцца тут..."
   }
 }

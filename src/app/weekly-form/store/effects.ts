@@ -60,4 +60,13 @@ export class WeeklyFormEffects {
       ),
     ),
   );
+
+  submitWeeklyFailedNavigation$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(weeklyFormActions.submitWeeklyFailed),
+        tap(({ error }) => this.router.navigate(['/error'], { state: { error } })),
+      ),
+    { dispatch: false },
+  );
 }
