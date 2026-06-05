@@ -49,9 +49,7 @@ export class SquadLeadFeedbackEffects {
         const formSender = this.store.selectSignal(selectCurrentSelectedMember)();
         return this.submitSLService.submitSLFeedback(formValue, formSender!).pipe(
           map(() => squadLeadFeedbackActions.submitFormSucceeded()),
-          catchError((error) =>
-            of(squadLeadFeedbackActions.submitFormFailed({ error })),
-          ),
+          catchError((error) => of(squadLeadFeedbackActions.submitFormFailed({ error }))),
         );
       }),
     ),

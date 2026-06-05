@@ -10,6 +10,6 @@ export const squadLeadFeedbackActions = createActionGroup({
     setFormChange: props<{ formValue: SquadLeadMemberValue[] }>(),
     SubmitForm: emptyProps(),
     SubmitFormSucceeded: emptyProps(),
-    SubmitFormFailed: props<{ error: string | null}>(),
+    SubmitFormFailed: props<{ error: string | null }>(),
   },
 });
