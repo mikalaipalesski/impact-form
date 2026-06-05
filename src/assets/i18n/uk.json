@@ -59,6 +59,9 @@
   "errors": {
     "memberFormIncomplete": "Позначте характеристики або додайте коментар",
     "squadLeadFormIncomplete": "Напишіть відгук",
-    "duplicateMember": "Цього учасника вже додано"
+    "duplicateMember": "Цього учасника вже додано",
+    "unexpectedError": "Виникла несподівана помилка, будь ласка, зв'яжіться з Palesski, щоб поділитися деталями.",
+    "copyError": "Копіювати помилку",
+    "errorDetailsPlaceholder": "Деталі помилки з'являться тут..."
   }
 }

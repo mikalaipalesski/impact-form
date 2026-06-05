@@ -45,7 +45,7 @@ const reducer = createReducer(
   on(squadLeadFeedbackActions.submitFormFailed, (state, { error }) => ({
     ...state,
     submitInProgress: false,
-    error: error instanceof Error ? error.message : 'Submit failed',
+    error,
   })),
 );
 

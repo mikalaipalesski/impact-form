@@ -40,4 +40,13 @@ export class MainStoreEffects {
       ),
     { dispatch: false },
   );
+
+  loadMembersFailed$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(mainStoreActions.loadMembersFailed),
+        tap(({ error }) => this.router.navigate(['/error'], { state: { error } })),
+      ),
+    { dispatch: false },
+  );
 }

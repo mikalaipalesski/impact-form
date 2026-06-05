@@ -1,0 +1,24 @@
+<div class="error-screen">
+  <div class="error-screen__logo">
+    <svg width="240" height="80" viewBox="0 0 240 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="10" y="60" font-family="var(--font-family-base)" font-size="64" font-weight="var(--font-weight-extrabold)" fill="var(--color-text-primary)">
+        <tspan fill="var(--color-red)">!</tspan>MPACT
+      </text>
+    </svg>
+  </div>
+
+  <p class="error-screen__message">
+    {{ 'errors.unexpectedError' | translate }}
+  </p>
+
+  <div class="error-screen__details">
+    <textarea
+      class="error-screen__textarea"
+      [value]="errorMessage() | json"
+      disabled
+      rows="5"
+      [placeholder]="'errors.errorDetailsPlaceholder' | translate"
+    ></textarea>
+    <button class="error-screen__copy-button" (click)="copyError()">{{ 'errors.copyError' | translate }}</button>
+  </div>
+</div>
