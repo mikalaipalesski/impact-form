@@ -27,7 +27,7 @@
         {{ 'formWidget.memberNicknamePlaceholder' | translate }}
       </option>
       @for (member of members(); track member.name) {
-      <option [ngValue]="member">{{ member.name }}</option>
+      <option [ngValue]="member">{{ member.name }} - {{ member.rank }}</option>
       }
     </select>
   </section>
